@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products=Product::latest()->take(5);
+        $products=Product::latest()->take(5)->get();
         return view('welcome',compact('products'));
     }
 

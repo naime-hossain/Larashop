@@ -33,14 +33,14 @@ public function category()
 
 
 /**
- * Product has many Tags.
+ * Product has many types.
  *
  * @return \Illuminate\Database\Eloquent\Relations\HasMany
  */
-public function tags()
+public function types()
 {
 	// hasMany(RelatedModel, foreignKeyOnRelatedModel = product_id, localKey = id)
-	return $this->hasMany(Tag::class);
+	return $this->belongsToMany(Type::class);
 }
 
 /**

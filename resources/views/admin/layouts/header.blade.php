@@ -34,7 +34,7 @@
                 </button>
                 <a class="navbar-brand fa-2x" href="/">
                     {{-- <img src="/admin/img/logo.png" alt="" /> --}}
-                    Larablog
+                    larashop
                 </a>
             </div>
             <!-- end navbar-header -->
@@ -109,9 +109,7 @@
                             <li>
                                 <a href="{{route('users.index')}}">all users</a>
                             </li>
-                            <li>
-                                <a href="{{route('users.create')}}">add users</a>
-                            </li>
+                          
                         </ul>
                         <!-- second-level-items -->
                     </li>
@@ -140,6 +138,18 @@
                         </ul>
                         <!-- second-level-items -->
                     </li>
+                  {{--       <li>
+                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> &nbsp;product type<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="{{ route('type.index') }}">all type</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('type.create') }}">add new category</a>
+                            </li>
+                        </ul>
+                        <!-- second-level-items -->
+                    </li> --}}
                  
 
                 </ul>

@@ -22,6 +22,6 @@ class Type extends Model
     public function products()
     {
     	// belongsTo(RelatedModel, foreignKey = products_id, keyOnRelatedModel = id)
-    	return $this->belongsToMany(Products::class);
+    	return $this->hasMany(Products::class);
     }
 }
