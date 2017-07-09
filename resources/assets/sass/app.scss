@@ -1,0 +1,314 @@
+
+// // Fonts
+// @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+
+// // Variables
+// @import "variables";
+
+// // Bootstrap
+// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+body {
+  color: #eee;
+  font-size: 12px;
+  font-family: "raleway", "Helvetica", "Arial", sans-serif;
+  background: #002c53;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4 {
+  font-family: "raleway", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 2em;
+}
+
+.navbar-default .navbar-brand {
+  margin-top: 10px;
+  transition: all .5s;
+}
+
+img.raised {
+  height: 50px;
+  width: 50px;
+}
+
+.sm-form {
+  float: right;
+}
+
+.form-control,
+.form-group .form-control {
+  border: 0;
+  background-image: linear-gradient(#002444, #002444), linear-gradient(#002c53, #002c53);
+}
+
+#navbar {
+  background-color: #4CAF50;
+}
+
+.user-section {
+  margin-top: 20px;
+  font-size: 22px;
+  background-color: #4caf50;
+}
+
+#side-menu {
+  background-color: #4caf50;
+}
+
+#wrapper {
+  width: 100%;
+  margin-top: 80px !important;
+  background-color: #4CAF50;
+}
+
+.navbar {
+  position: relative;
+  min-height: 50px;
+  margin-bottom: 0px;
+  border: 1px solid transparent;
+}
+
+.welcome_wrap {
+    width: 100%;
+    background: url(/images/123.jpg);
+    background-size: cover;
+    background-position: bottom;
+}
+.welcome_text {
+  overflow: hidden;
+  text-align: center;
+  padding: 120px 0px 60px 0px;
+  color: #fff;
+  text-transform: capitalize;
+  /* background-position: center; */
+  margin-bottom: 0px;
+  margin-top: 0px;
+  min-height: 300px;
+}
+
+
+.body_wrap {
+  padding: 60px 0px 60px 0px;
+  background: #607D8B;
+  color: #fff;
+}
+
+
+
+.btn-small {
+  padding: 5px 10px;
+}
+
+.navbar,
+.navbar.navbar-default {
+  background-color: transparent;
+  color: #ffffff;
+}
+
+div#app {
+  position: absolute;
+  width: 100%;
+}
+
+.panel {
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 10px 0px;
+  margin-top: 50px;
+}
+
+.panel > .panel-heading,
+.panel.panel-default > .panel-heading {
+  background-color: transparent;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4 {
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+div#app-navbar-collapse {
+  background: transparent;
+  z-index: 999;
+  position: relative;
+}
+
+div#app-navbar-collapse::after {
+  position: absolute;
+  content: " ";
+  height: 100%;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  opacity: 0.7;
+  background: #012442;
+  display: block;
+}
+
+a,
+a:hover,
+a:focus {
+  color: #fd7a60;
+}
+
+.btn.btn-primary,
+.btn.btn-primary:hover,
+.btn.btn-primary:focus,
+.btn.btn-primary:active,
+.btn.btn-primary.active,
+.btn.btn-primary:active:focus,
+.btn.btn-primary:active:hover,
+.btn.btn-primary.active:focus,
+.btn.btn-primary.active:hover,
+.open > .btn.btn-primary.dropdown-toggle,
+.open > .btn.btn-primary.dropdown-toggle:focus,
+.open > .btn.btn-primary.dropdown-toggle:hover,
+.navbar .navbar-nav > li > a.btn.btn-primary,
+.navbar .navbar-nav > li > a.btn.btn-primary:hover,
+.navbar .navbar-nav > li > a.btn.btn-primary:focus,
+.navbar .navbar-nav > li > a.btn.btn-primary:active,
+.navbar .navbar-nav > li > a.btn.btn-primary.active,
+.navbar .navbar-nav > li > a.btn.btn-primary:active:focus,
+.navbar .navbar-nav > li > a.btn.btn-primary:active:hover,
+.navbar .navbar-nav > li > a.btn.btn-primary.active:focus,
+.navbar .navbar-nav > li > a.btn.btn-primary.active:hover,
+.open > .navbar .navbar-nav > li > a.btn.btn-primary.dropdown-toggle,
+.open > .navbar .navbar-nav > li > a.btn.btn-primary.dropdown-toggle:focus,
+.open > .navbar .navbar-nav > li > a.btn.btn-primary.dropdown-toggle:hover {
+  background-color: #fd7a60;
+  color: #FFFFFF;
+}
+
+.btn.btn-primary:focus,
+.btn.btn-primary:active,
+.btn.btn-primary:hover,
+.navbar .navbar-nav > li > a.btn.btn-primary:focus,
+.navbar .navbar-nav > li > a.btn.btn-primary:active,
+.navbar .navbar-nav > li > a.btn.btn-primary:hover {
+  box-shadow: 0 14px 26px -12px rgba(253, 122, 96, 0.27), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(253, 122, 96, 0.13);
+}
+
+.navbar .dropdown-menu li > a:hover,
+.navbar .dropdown-menu li > a:focus,
+.navbar.navbar-default .dropdown-menu li > a:hover,
+.navbar.navbar-default .dropdown-menu li > a:focus {
+  color: #FFFFFF;
+  background-color: #fd7a60;
+}
+
+.form-group.is-focused .form-control {
+  border: 0;
+  background-image: linear-gradient(#fd7a60, #fd7a60), linear-gradient(#4CAF50, #4caf50);
+}
+
+.form-control {
+  color: #fff;
+}
+
+option {
+  background: #012442;
+}
+
+.form-group.is-focused label,
+.form-group.is-focused label.control-label {
+  color: #fd7a60;
+}
+
+
+.footer_wrap {
+  background: rgba(96, 125, 139, 0.91);
+  padding: 10px 0px 30px 0px;
+}
+
+.alt_text_wrap {
+  padding: 5px 10px 15px 10px;
+}
+
+.sidebar-module {
+  padding: 10px;
+  border-bottom: 1px solid #002c53;
+  margin-bottom: 20px;
+}
+
+.sidebar-module h4 {
+  text-transform: capitalize;
+}
+
+.sidebar-module:last-child {
+  border-bottom: 0px solid #002c53;
+}
+
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  /* change if the mask should have another color then white */
+  z-index: 9999;
+  /* makes sure it stays on top */
+}
+
+#status {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  left: 50%;
+  /* centers the loading animation horizontally one the screen */
+  top: 50%;
+  /* centers the loading animation vertically one the screen */
+  background-image: url(/images/Loader.gif?fd2768cde92bd3b8e06b32fc7bbf92bb);
+  /* path to your loading animation */
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: -100px 0 0 -100px;
+  /* is width and height divided by two */
+}
+
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover {
+  background-color: #fd7a60;
+  border-color: #fd7a60;
+  color: #FFFFFF;
+  box-shadow: 0 4px 5px 0 rgba(253, 122, 96, 0.17), 0 1px 10px 0 rgba(156, 39, 176, 0.12), 0 2px 4px -1px rgba(253, 122, 96, 0.46);
+}
+
+.carousel .carousel-control {
+  width: 10%;
+}
+
+.carousel-control.right,
+.carousel-control.left {
+  background-repeat: no-repeat !important;
+}
+
+.ratings p {
+    margin: 0 0 11px;
+    color: #fd7a60;
+}
