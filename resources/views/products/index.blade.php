@@ -3,25 +3,48 @@
 	<h1>All Of Our Products</h1>
 @endsection
 @section('content')
-	<div class="col-md-8">
-		   <div class="Products_wrap">
+	<div class="col-md-9 all_products products_wrap">
+		   <div class="">
 
             @if ($products->count()>0)
                 @foreach ($products as $product)
                 
-                            <div class="col-sm-6 col-lg-6 col-md-6">
-                        <div class="thumbnail">
-                          @foreach ($product->photos as $photo)
-                             <img src="/images/products/{{ $photo->path }}" alt="">
-                          @endforeach
-                            
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                       <div class="thumbnail img-raised img-rounded">
+                        <div class="product_head">
+                             @if (count($product->photos)>0)
+                              @foreach ($product->photos as $photo)
+                              @if ($loop->index==0)
+                                 <img class="img-rounded" src="/images/products/{{  $photo->path }}" alt="{{ $product->name }}">
+                              @endif
+                             
+
+                            @endforeach
+                            @else
+                            <img class="img-rounded" src="/images/products/{{ $product->name }}" alt="{{ $product->name }}">
+                          @endif
+                            <div class="cart_button">
+                                <a href="" class="btn btn-primary btn-block">add to cart</a>
+                            </div>
+                                 <div class="cat_button">
+                                <a href="" class="btn btn-primary cat_btn">{{ $product->category->name }}</a>
+                                 <a href="" class="btn btn-primary size_btn">{{ $product->size }}</a>
+                                 @foreach ($product->types as $type)
+                                       <a href="" class="btn btn-primary type_btn">{{ 
+                                   $type->name
+                                  }}</a>
+                                 @endforeach
+                               
+                            </div>
+                        </div>
+                        
                             <div class="caption">
                                 <h4 class="pull-right">{{ $product->price }}</h4>
                                 <h4><a href="{{ route('home.product',$product->id) }}">{{ $product->name }}</a>
                                 </h4>
                                 <p>{{ str_limit($product->description,50)  }}</p>
                             </div>
-                          {{--   <div class="ratings">
+                        {{--     <div class="ratings">
                                 <p class="pull-right">15 reviews</p>
                                 <p>
                    <span class="glyphicon glyphicon-star"></span>

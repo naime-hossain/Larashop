@@ -2,21 +2,52 @@
 @section('heading')
     {{-- expr --}}
     <h1>welcome to Larashop</h1>
-    <p>choose wisely</p>
+    <p>SHOP LIKE THERE’S NO TOMORROW</p>
 @endsection
 @section('content')
     {{-- expr --}}
       <div class="Products_wrap">
-
+      <div class="col-md-12">
+           <ol class="breadcrumb">
+                 
+                  <li class="active">Home</li>
+              </ol>
+              <h2>New Products</h2>
+      </div>
+             
             @if ($products->count()>0)
                 @foreach ($products as $product)
-                
+               
                             <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                          @foreach ($product->photos as $photo)
-                             <img src="/images/products/{{ $photo->path }}" alt="">
-                          @endforeach
+                        <div class="thumbnail img-raised img-rounded">
+                        <div class="product_head">
+                          @if (count($product->photos)>0)
+                              @foreach ($product->photos as $photo)
+                              @if ($loop->index==0)
+                                 <img class="img-rounded" src="/images/products/{{  $photo->path }}" alt="{{ $product->name }}">
+                              @endif
+                             
+
+                            @endforeach
+                            @else
+                            <img class="img-rounded" src="/images/products/{{ $product->name }}" alt="{{ $product->name }}">
+                          @endif
                             
+                            <div class="cart_button">
+                                <a href="" class="btn btn-primary btn-block">add to cart</a>
+                            </div>
+                            <div class="cat_button">
+                                <a href="" class="btn btn-primary cat_btn">{{ $product->category->name }}</a>
+                                 <a href="" class="btn btn-primary size_btn">{{ $product->size }}</a>
+                                 @foreach ($product->types as $type)
+                                       <a href="" class="btn btn-primary type_btn">{{ 
+                                   $type->name
+                                  }}</a>
+                                 @endforeach
+                               
+                            </div>
+                        </div>
+                        
                             <div class="caption">
                                 <h4 class="pull-right">{{ $product->price }}</h4>
                                 <h4><a href="{{ route('home.product',$product->id) }}">{{ $product->name }}</a>
@@ -41,7 +72,7 @@
                         <h4>Like Our products?
                         </h4>
                         <p>If you like these product, then check out <a target="_blank" href="{{ route('home.products') }}">All products</a> And choose from variety</p>
-                        <a class="btn btn-primary" target="_blank" href="{{ route('home.products') }}">All products</a>
+                        <a class="btn btn-primary" target="" href="{{ route('home.products') }}">All products</a>
                     </div>
             @endif
 

@@ -53,6 +53,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                          <li class="{{ $url==route('home')?'active':'' }}"><a href="{{route('home')}}" title="">home</a></li>
+                           <li class="{{ $url==route('home.products')?'active':'' }}"><a href="{{route('home.products')}}" title="">products</a></li>
                         @if (Auth::check())
                                  <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -90,6 +91,7 @@
                         <li class="{{ $url==route('register')?'active':'' }}"><a href="{{ route('register') }}">Register</a></li>
                         
                         @endif
+                         <li class="cart_menu_item"><a href=""> <i class="fa fa-shopping-cart"></i> Cart</a></li>
 
 
                     </ul>

@@ -45,10 +45,15 @@
                     <td>{{ str_limit($product->description,10)  }}</td>
                     <td>
                      @if ($product->photos)
-                      @foreach ($product->photos as $photo)
-                             <img height="50" width="150" src="/images/products/{{ $photo->path }}" alt="">
-                          @endforeach
-         
+                  
+                             @foreach ($product->photos as $photo)
+                              @if ($loop->index==0)
+                                 <img height="50" width="150" class="img-rounded" src="/images/products/{{ $photo->path }}" alt="">
+                              @endif
+                             
+
+                            @endforeach
+        
                     @endif
                     </td>
                     <td>@if($product->types)

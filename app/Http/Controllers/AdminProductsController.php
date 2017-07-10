@@ -48,7 +48,7 @@ class AdminProductsController extends Controller
         $this->validate($request,[
              'name'=>'required|unique:products',
              'description'=>'required',
-             'image'=>'required|mimes:jpg,png,jpeg', 
+             'image'=>'required', 
              'category_id'=>'required',
              'type_id'=>'required',
              'size'=>'required',
@@ -63,9 +63,12 @@ class AdminProductsController extends Controller
        }
         $product=Product::create($input);
          if ($request->hasFile('image')) {
-           $filename=rand(0,time()).$request->image->getClientOriginalName();
-           $request->image->move('images/products',$filename);
+            foreach ($request->image as $file)
+             {
+           $filename=rand(0,time()).$file->getClientOriginalName();
+           $file->move('images/products',$filename);
            $product->photos()->create(['path'=>$filename]);
+       }
         }
         $type=Type::find($request->type_id);
         if ($type) {

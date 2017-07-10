@@ -39,8 +39,8 @@
      {!! Form::select('size',['small'=>'small','medium'=>'medium','large'=>'large'],'', ['placeholder' => 'Pick a size...','class'=>'form-control']) !!}
    </div>
     <div class=" col-md-6">
-       {!! Form::label('image','Select a Photo', ['class'=>'btn btn-info']) !!}
-   	 {!! Form::file('image', ['class'=>'form-control']) !!}
+       {!! Form::label('image[]','Select a Photo', ['class'=>'btn btn-info']) !!}
+   	 {!! Form::file('image[]', ['class'=>'form-control','multiple'=>true]) !!}
    </div>
 
     <div class="form-group col-md-12 {{ $errors->has('body') ? ' has-error' : '' }}">
