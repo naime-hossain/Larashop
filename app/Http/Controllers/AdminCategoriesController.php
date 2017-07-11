@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Category;
 class AdminCategoriesController extends Controller
 {
     /**
@@ -13,7 +13,8 @@ class AdminCategoriesController extends Controller
      */
     public function index()
     {
-        //
+        $categories=Category::paginate(10);
+        return view('admin.categories.index',compact('categories'));
     }
 
     /**
@@ -34,7 +35,12 @@ class AdminCategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+        'name'=>'required|max:12|unique:categories'
+            ]);
+        $input=$request->all();
+        Category::create($input);
+        return back()->with(['message'=>'Category created']);
     }
 
     /**
@@ -67,8 +73,15 @@ class AdminCategoriesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    { 
+
+        $category=Category::findOrFail($id);
+         $this->validate($request,[
+        'name'=>'required|max:12|unique:categories'
+            ]);
+        $input=$request->all();
+        $category->update($input);
+        return back()->with(['message'=>'Category updated']);
     }
 
     /**
@@ -79,6 +92,8 @@ class AdminCategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category=Category::findOrFail($id);
+        $category->delete();
+        return back()->with(['message'=>'Category deleted']);
     }
 }
