@@ -70,6 +70,10 @@
        {!! Form::label('type','Select type for product', []) !!}
      {!! Form::select('type_id',count($types)>0?$types:[0=>'uncategorized'],null, ['placeholder' => 'Pick a type...','class'=>'form-control']) !!}
    </div>
+    <div class="form-group col-md-6 {{ $errors->has('new_type') ? ' has-error' : '' }}">
+       {!! Form::label('new_type','Add a new Type', []) !!}
+     {!! Form::text('new_type',null, ['class'=>"form-control",'value'=>old('new_type')]) !!}
+   </div>
  <div class="form-group col-md-6">
        {!! Form::label('size','Select size for product', []) !!}
      {!! Form::select('size',['small'=>'small','medium'=>'medium','large'=>'large'],null, ['placeholder' => 'Pick a size...','class'=>'form-control']) !!}

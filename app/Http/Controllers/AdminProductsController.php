@@ -134,7 +134,39 @@ class AdminProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+       $product=Product::findOrFail($id);
+        $input=$request->except(['image','type_id','new_type']);
+         // return $request->all();
+       if ($input['category_id']==0) {
+           $category=Category::create(['name'=>'uncategorized']);
+           $input['category_id']=$category->id;
+       }
+          $product->update($input);
+         if ($request->hasFile('image')) {
+            foreach ($request->image as $file)
+             {
+           $filename=rand(0,time()).$file->getClientOriginalName();
+           $file->move('images/products',$filename);
+           $product->photos()->create(['path'=>$filename]);
+       }
+        }
+        $typeToAdd=Type::find($request->type_id);
+        if ($typeToAdd) {
+             foreach ($product->types as $type) {
+                 if ($typeToAdd->id!=$type->id) {
+                      $product->types()->attach($typeToAdd->id);
+                 }
+             }
+           
+
+        }
+         if ($request->new_type) {
+              $product->types()->create(['name'=>$request->new_type]);
+            }
+
+        return redirect(route('products.index'))->with(['message'=>'Product Updated succefully']);
+        
     }
 
     /**
