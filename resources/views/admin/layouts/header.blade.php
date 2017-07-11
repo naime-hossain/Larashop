@@ -90,7 +90,18 @@
                         <!-- user image section-->
                         <div class="user-section">
                             <div class="user-section-inner">
-                                <img class="img-rounded img-raised img-responsive" src="/{{  Auth::user()->photo?Auth::user()->photo->image:'placeholder' }}" alt="">
+                              
+                                 @if (Auth::user()->photos)
+                  
+                                             @foreach (Auth::user()->photos as $photo)
+                                                @if ($loop->index==0)
+                                                   <img height="50" width="150" class="img-rounded" src="/images/users/{{ $photo->path }}" alt="">
+                                                @endif
+                                             
+
+                                            @endforeach
+        
+                                           @endif
                             </div>
                          {{--    <div class="user-info">
                                 <div>{{ Auth::user()->name }}</strong></div>
@@ -109,6 +120,9 @@
                             <li>
                                 <a href="{{route('users.index')}}">all users</a>
                             </li>
+                            {{--  <li>
+                                <a href="{{route('users.create')}}">add new user</a>
+                            </li> --}}
                           
                         </ul>
                         <!-- second-level-items -->

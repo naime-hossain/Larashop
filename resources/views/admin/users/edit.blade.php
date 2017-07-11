@@ -13,12 +13,23 @@
 
 @endforeach --}}
 
+
   <div class="col-lg-12">
       <h1 class="page-header">Edit user</h1>
 
   </div>
   <div class="col-md-3">
-    <img class="img-responsive img-rounded" src="/images/users/{{ $user->photo?$user->photo->image:'http://via.placeholder.com/350x350' }}" alt="">
+       @if ($user->photos)
+                  
+         @foreach ($user->photos as $photo)
+            @if ($loop->index==0)
+               <img  class="img-rounded" src="/images/users/{{ $photo->path }}" alt="">
+            @endif
+         
+
+        @endforeach
+
+       @endif
   </div>
 
  <div class="col-md-8 col-offset-2">

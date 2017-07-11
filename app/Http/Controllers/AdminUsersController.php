@@ -158,26 +158,16 @@ class AdminUsersController extends Controller
         $user=User::findOrFail($id);
        
         if ($user) {
-           
-            if ($user->photo) {
-            //delete user photo from folder
-            File::delete($user->photo->image);
-            //delete user photo from dat abase
-            $old_photo=Photo::find($user->photo_id)->delete();
-            }
-             if ($posts=$user->posts) {
-                 foreach ($posts as $post) {
-                        if ($post->photo)
-                         {
+           //remove user photo
+             if ($user->photos) {
+              foreach ($user->photos as $photo) {
+            File::delete('images/users/'.$photo->path);
+          
+              }
+           $old_photo=$user->photos()->delete();
+          }
 
-                            File::delete($post->photo->image);
-                            $old_photo=Photo::find($post->photo_id)->delete();
-                             
-
-                           }
-                 }
-             }
- 
+       
 
             //delete users Posts from database
              $user_delete=$user->delete();

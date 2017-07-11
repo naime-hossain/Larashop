@@ -32,10 +32,10 @@ Route::group(['prefix' => 'admin','middleware'=>'admin'], function() {
     return view('admin.index');
 });
 
-    Route::resource('/users','AdminUsersController');
+    Route::resource('/users','AdminUsersController',['except'=>['create']]);
     Route::resource('/products','AdminProductsController');
     Route::get('/products/{product_id}/removephoto/{photo_id}','AdminProductsController@remove_photo')->name('photo.remove');
-    
+
     Route::resource('/categories','AdminCategoriesController',['except'=>['show','edit','create']]);
      Route::resource('/types','AdminTypesController',['except'=>['show','edit','create']]);
  

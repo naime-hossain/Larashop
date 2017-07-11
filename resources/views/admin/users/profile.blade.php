@@ -6,7 +6,17 @@
   </div>
   <div class="row">
   	 <div class="col-md-6">
-  	 	<img src="/{{ $user->photo->image }}" class="img-responsive img-rounded" alt="">
+  	 	 @if ($user->photos)
+                  
+         @foreach ($user->photos as $photo)
+            @if ($loop->index==0)
+               <img  class="img-rounded" src="/images/users/{{ $photo->path }}" alt="">
+            @endif
+         
+
+        @endforeach
+
+       @endif
   	 </div>
   	 <div class="col-md-6">
   	 	<h2><i class="fa fa-message"></i> {{ $user->email }} </h2>
