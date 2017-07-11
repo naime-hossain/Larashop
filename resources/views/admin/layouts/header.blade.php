@@ -127,7 +127,7 @@
                         <!-- second-level-items -->
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> &nbsp;categories<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> &nbsp;Product Categories<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <a href="{{ route('categories.index') }}">all categories</a>
@@ -138,18 +138,19 @@
                         </ul>
                         <!-- second-level-items -->
                     </li>
-                  {{--       <li>
-                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> &nbsp;product type<span class="fa arrow"></span></a>
+
+                        <li>
+                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> &nbsp;product types<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="{{ route('type.index') }}">all type</a>
+                                <a href="{{ route('types.index') }}">all type</a>
                             </li>
                             <li>
-                                <a href="{{ route('type.create') }}">add new category</a>
+                                <a href="{{ route('types.index') }}">add new type</a>
                             </li>
                         </ul>
                         <!-- second-level-items -->
-                    </li> --}}
+                    </li>
                  
 
                 </ul>

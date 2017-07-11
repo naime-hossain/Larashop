@@ -36,6 +36,7 @@ Route::group(['prefix' => 'admin','middleware'=>'auth'], function() {
     Route::resource('/products','AdminProductsController');
     Route::get('/products/{product_id}/removephoto/{photo_id}','AdminProductsController@remove_photo')->name('photo.remove');
     Route::resource('/categories','AdminCategoriesController',['except'=>['show','edit','create']]);
+     Route::resource('/types','AdminTypesController',['except'=>['show','edit','create']]);
  
 
 
