@@ -133,7 +133,7 @@
                                 <a href="{{ route('categories.index') }}">all categories</a>
                             </li>
                             <li>
-                                <a href="{{ route('categories.create') }}">add new category</a>
+                                <a href="{{ route('categories.index') }}">add new category</a>
                             </li>
                         </ul>
                         <!-- second-level-items -->
