@@ -7,6 +7,9 @@
 @section('content')
     {{-- expr --}}
       <div class="Products_wrap">
+         @if(Session::has('message'))
+           @include('alert.success')
+           @endif
       <div class="col-md-12">
            <ol class="breadcrumb">
                  

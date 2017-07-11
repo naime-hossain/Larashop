@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','is_active','role_id'
     ];
 
     /**
@@ -26,4 +26,54 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * User belongs to Role.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function role()
+    {
+        // belongsTo(RelatedModel, foreignKey = role_id, keyOnRelatedModel = id)
+        return $this->belongsTo(Role::class);
+
+
+    }
+
+    /**
+     * User morphs many photo.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function photos()
+    {
+        // morphMany(MorphedModel, morphableName, type = able_type, relatedKeyName = able_id, localKey = id)
+        return $this->morphMany(Photo::class, 'photoable');
+    }
+
+      public function isactive(){
+
+         if ($this->is_active==1) {
+             # code...
+            return true;
+         }else{
+            return false;
+         }
+      }
+
+    public function isadmin(){
+           if ($this->role) {
+               # code...
+              if ($this->role->name=='admin') {
+             # code...
+            return true;
+         }else{
+            return false;
+         }
+           }
+           return false;
+       
+      }
+
+
 }
