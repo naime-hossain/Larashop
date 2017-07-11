@@ -177,6 +177,15 @@ class AdminProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product=Product::findOrFail($id);
+        if ($product->photos) {
+            foreach ($product->photos as $photo) {
+                File::delete('images/products/'.$photo->path);
+            
+            }
+            $product->photos()->delete();
+        }
+        $product->delete();
+        return redirect(route('products.index'))->with(['message'=>'Product removed']);
     }
 }
