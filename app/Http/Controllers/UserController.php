@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
-use App\Photo;
-  use Illuminate\Support\Facades\File;
-class AdminUsersController extends Controller
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+class UserController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,8 +21,6 @@ class AdminUsersController extends Controller
     public function index()
     {
         //
-        $users=User::paginate(10);
-        return view('admin.users.index',compact('users'));
     }
 
     /**
@@ -29,11 +31,18 @@ class AdminUsersController extends Controller
     public function create()
     {
         //
-        $roles=Role::pluck('name','id')->all();
-        return view('admin.users.create',compact('roles'));
     }
 
-  
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
 
     /**
      * Display the specified resource.
@@ -44,8 +53,6 @@ class AdminUsersController extends Controller
     public function show($id)
     {
         //
-        $user=User::findOrFail($id);
-        return view('admin.users.profile',compact('user'));
     }
 
     /**
@@ -54,12 +61,22 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($name)
     {
-        //
-        $roles=Role::pluck('name','id')->all();
-        $user=User::findOrFail($id);
-        return view('admin.users.edit',compact('user','roles'));
+        // $roles=Role::pluck('name','id')->all();
+         $user=User::whereName($name)->first();
+         $auth_user=Auth::user();
+        // return $user->name;
+       if ($user) {
+             
+        if ($auth_user->id==$user->id) {
+            return view('user.edit',compact('user','roles'));
+        }else{
+            return redirect(route('user.edit',[$auth_user->name]));
+        }
+       }
+       return redirect(route('user.edit',[$auth_user->name]));
+        
     }
 
     /**
@@ -71,12 +88,13 @@ class AdminUsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+     //
            $this->validate($request,[
             'image'=>'image',
             ]);
         $user=User::findOrFail($id);
-        $input=$request->except(['image']);
+        $input=$request->except(['image','role_id','is_active']);
        
 
         if ($file=$request->file('image')) {
@@ -103,7 +121,7 @@ class AdminUsersController extends Controller
         $user->update($input);
         if ($user) {
             # code...
-            return redirect('/admin/users')->with('message', 'User Info updated  succefully');
+            return back()->with('message', 'User Info updated  succefully');
 
         }
     }
@@ -117,24 +135,5 @@ class AdminUsersController extends Controller
     public function destroy($id)
     {
         //
-        $user=User::findOrFail($id);
-       
-        if ($user) {
-           //remove user photo
-             if ($user->photos) {
-              foreach ($user->photos as $photo) {
-            File::delete('images/users/'.$photo->path);
-          
-              }
-           $old_photo=$user->photos()->delete();
-          }
-
-       
-
-            //delete users Posts from database
-             $user_delete=$user->delete();
-
-        }
-        return back()->with('message', 'User  deleted succefully');
     }
 }

@@ -55,14 +55,14 @@
                          <li class="{{ $url==route('home')?'active':'' }}"><a href="{{route('home')}}" title="">home</a></li>
                            <li class="{{ $url==route('home.products')?'active':'' }}"><a href="{{route('home.products')}}" title="">products</a></li>
                         @if (Auth::check())
-                                 <li class="dropdown">
+                                 <li class="dropdown {{ $url==route('user.edit',Auth::user()->name)?'active':'' }}">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
                              
-                                        {{--  <li><a href="{{ route('user.show',Auth::user()->name) }}" title="">Profile</a></li> --}}
+                                         <li><a href="{{ route('user.edit',Auth::user()->name) }}" title="">Profile</a></li>
                                          
                                        
                                         <li>
