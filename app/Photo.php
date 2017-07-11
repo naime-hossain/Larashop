@@ -24,4 +24,6 @@ public function photoable()
   // requires photoable_type and photoable_id fields on $this->table
   return $this->morphTo();
 }
+
+
 }

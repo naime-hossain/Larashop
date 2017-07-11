@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
 use App\Type;
+use App\Photo;
+use Illuminate\Support\Facades\File;
 class AdminProductsController extends Controller
 {
     /**
@@ -99,7 +101,28 @@ class AdminProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+       $product=Product::findOrFail($id);
+        $categories=Category::pluck('name','id');
+        $types=Type::pluck('name','id');
+       return view('admin.products.edit',compact('product','categories','types'));
+    }
+
+ /**
+     * detatch a specific photo from product.
+     *
+     * @param  product id
+     * @param  int photo $id
+     * @return \Illuminate\Http\Response
+     */
+    public function remove_photo($product_id,$photo_id){
+        $product=Product::findorFail($product_id);
+        $photo=Photo::findOrFail($photo_id);
+        if ($photo->photoable->id==$product->id) {
+           File::delete('images/products/'.$photo->path);
+           $product->photos()->whereId($photo->id)->delete();
+           return back()->with(['message'=>'photo removed']);
+        }
+    
     }
 
     /**

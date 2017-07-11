@@ -472,8 +472,7 @@ left: 0;
     text-transform: capitalize;
     font-size: 10px;
     margin: 0px;
-    background: #fff;
-    color: #333;
+
     left:0px;
    opacity: 1;
 }
@@ -487,12 +486,19 @@ left: 0;
 #single_product .item {
     max-height: 500px;
     min-height: 500px;
-    background: #6e8995;
+    background: transparent;
     border-radius: 10px;
     overflow: hidden;
 }
-
-#single_product .item img{
+#single_product .item img
+{
   max-height: 450px;
   width: 100%;
 }
+.carousel .left {
+    cursor: url(../images/arrow-left.png), url(../images/arrow-left.cur), default !important;
+}
+.carousel .right {
+    cursor: url(../images/arrow-right.png), url(../images/arrow-right.cur), default !important;
+}
+
