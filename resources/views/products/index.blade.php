@@ -27,10 +27,12 @@
                                 <a href="" class="btn btn-primary btn-block">add to cart</a>
                             </div>
                                  <div class="cat_button">
-                                <a href="" class="btn btn-primary cat_btn">{{ $product->category->name }}</a>
-                                 <a href="" class="btn btn-primary size_btn">{{ $product->size }}</a>
+                                <a href="{{ route('home.archive',['category',$product->category->name]) }}" class="btn btn-primary cat_btn">{{ $product->category->name }}</a>
+
+                                 <a href="{{ route('home.archive',['size',$product->size]) }}" class="btn btn-primary size_btn">{{ $product->size }}</a>
+
                                  @foreach ($product->types as $type)
-                                       <a href="" class="btn btn-primary type_btn">{{ 
+                                       <a href="{{ route('home.archive',['type',$type->name]) }}" class="btn btn-primary type_btn">{{ 
                                    $type->name
                                   }}</a>
                                  @endforeach
@@ -66,3 +68,6 @@
         </div>
 	</div>	
 @endsection
+@section('sidebar')
+@include('layouts.sidebar')
+ @endsection
