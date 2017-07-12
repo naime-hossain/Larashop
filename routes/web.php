@@ -23,6 +23,7 @@ Auth::routes();
 Route::get('/','HomeController@index')->name('home');
 Route::get('/products','HomeController@Products')->name('home.products');
 Route::get('/product/{id}','HomeController@product')->name('home.product');
+Route::get('/archive/{type}/{name}','HomeController@archive')->name('home.archive');
 Route::get('/user/{name}','UserController@edit')->name('user.edit');
 Route::put('/user/{id}','UserController@update')->name('user.update');
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Category;
+use App\Type;
 class HomeController extends Controller
 {
     /**
@@ -43,14 +45,45 @@ class HomeController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
+     * show resource for archove page.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  archive_type
+     * @param archive _name
      */
-    public function store(Request $request)
+    public function archive($archive_type,$archive_name)
     {
-        //
+       switch ($archive_type) {
+           case 'category':
+               $name=Category::whereName($archive_name)->first();
+                if ($name) {
+                     $products=$name->products;
+                }else{
+                 
+                }
+              
+               return view('archive.index',compact('name','products','archive_type','archive_name'));
+               break;
+                case 'type':
+               $name=Type::whereName($archive_name)->first();
+                if ($name) {
+                     $products=$name->products;
+                }else{
+                 
+                }
+               return view('archive.index',compact('name','products','archive_type','archive_name'));
+               break;
+                case 'size':
+                $name='';
+               $products=Product::whereSize($archive_name)->get();
+               
+               return view('archive.index',compact('archive_name','products','archive_type','name'));
+               break;
+
+           
+           default:
+               return back();
+               break;
+       }
     }
 
     /**
