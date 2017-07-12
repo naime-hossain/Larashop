@@ -9,7 +9,7 @@
                   <a href="/">Home</a>
               </li>
               <li>
-                  <a href="{{ url()->previous() }}">Previous</a>
+                  <a href="{{ url()->previous() }}">{{ str_replace(route('home').'/','', url()->previous()) }}</a>
               </li>
               <li class="active">{{ $product?$product->name:'' }}</li>
           </ol>
@@ -59,7 +59,7 @@
             
             <div class="caption">
                 <h4 class="pull-right">{{ $product->price }}</h4>
-                <h4><a href="{{ route('home.product',$product->id) }}">{{ $product->name }}</a>
+                <h4>{{ $product->name }}
                 </h4>
                 <p>{{ $product->description }}</p>
             </div>

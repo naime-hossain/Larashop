@@ -13,12 +13,12 @@
           </ol>
       </div>
 	<div class="col-md-9 all_products products_wrap">
-		   <div class="">
+		  
 
             @if ($products->count()>0)
                 @foreach ($products as $product)
                 
-                    <div class="col-sm-4 col-lg-4 col-md-4">
+                    <div class="col-sm-6 col-lg-4 col-md-4">
                        <div class="thumbnail img-raised img-rounded">
                         <div class="product_head">
                              @if (count($product->photos)>0)
@@ -75,7 +75,7 @@
 
 
         </div>
-	</div>	
+	
 @endsection
 @section('sidebar')
 @include('layouts.sidebar')
