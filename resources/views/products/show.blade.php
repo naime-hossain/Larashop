@@ -1,9 +1,22 @@
 @extends('layouts.app')
 @section('heading')
-	<h1>single Products</h1>
+	<h1>single Product</h1>
 @endsection
 @section('content')
-	<div class="col-md-7">
+ <div class="col-md-12">
+          <ol class="breadcrumb">
+              <li>
+                  <a href="/">Home</a>
+              </li>
+              <li>
+                  <a href="{{ url()->previous() }}">Previous</a>
+              </li>
+              <li class="active">{{ $product?$product->name:'' }}</li>
+          </ol>
+      </div>
+	
+       <div class="col-md-9">
+           <div class="col-md-7 col-sm-7">
 
          <div class="">
            
@@ -39,7 +52,7 @@
 
          </div>
         </div>
-    <div class="col-md-5">
+    <div class="col-md-5 col-sm-5">
                                 
             <div class=" single_product thumbnail">
 
@@ -65,18 +78,23 @@
                              <div class="cart_button">
                                 <a href="" class="btn btn-primary btn-block">add to cart</a>
                             </div>
-                                 <div class="cat_button">
-                                <a href="" class="btn btn-primary cat_btn">{{ $product->category->name }}</a>
-                                 <a href="" class="btn btn-primary size_btn">{{ $product->size }}</a>
+                              <div class="cat_button">
+                                <a href="{{ route('home.archive',['category',$product->category->name]) }}" class="btn btn-primary cat_btn">{{ $product->category->name }}</a>
+
+                                 <a href="{{ route('home.archive',['size',$product->size]) }}" class="btn btn-primary size_btn">{{ $product->size }}</a>
+
                                  @foreach ($product->types as $type)
-                                       <a href="" class="btn btn-primary type_btn">{{ 
+                                       <a href="{{ route('home.archive',['type',$type->name]) }}" class="btn btn-primary type_btn">{{ 
                                    $type->name
                                   }}</a>
                                  @endforeach
                                
                             </div>
         </div>
-                    
+       </div>             
 	</div>	
 
 @endsection
+@section('sidebar')
+@include('layouts.sidebar')
+ @endsection

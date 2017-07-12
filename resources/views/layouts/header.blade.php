@@ -53,7 +53,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                          <li class="{{ $url==route('home')?'active':'' }}"><a href="{{route('home')}}" title="">home</a></li>
-                           <li class="{{ $url==route('home.products')?'active':'' }}"><a href="{{route('home.products')}}" title="">products</a></li>
+                           <li class="{{ $url==route('products')?'active':'' }}"><a href="{{route('products')}}" title="">products</a></li>
                         @if (Auth::check())
                                  <li class="dropdown {{ $url==route('user.edit',Auth::user()->name)?'active':'' }}">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

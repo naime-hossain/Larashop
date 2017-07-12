@@ -15,6 +15,22 @@
 @endsection
  
  		@section('content')
+     <div class="col-md-12">
+           <ol class="breadcrumb">
+              <li>
+                  <a href="/">Home</a>
+              </li>
+              <li>
+                  <a href="{{ url()->current() }}">archive</a>
+              </li>
+               <li>
+                  <a href="{{ route('products') }}">{{ $archive_type }}</a>
+              </li>
+              
+              <li class="active">{{ $name?$name->name:$archive_name }}</li>
+          </ol>
+     </div>
+
  	
     <div class="col-md-9 all_products products_wrap">
        <div class="">

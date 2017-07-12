@@ -3,6 +3,15 @@
 	<h1>All Of Our Products</h1>
 @endsection
 @section('content')
+  <div class="col-md-12">
+          <ol class="breadcrumb">
+              <li>
+                  <a href="/">Home</a>
+              </li>
+              
+              <li class="active">{{ Route::currentRouteName() }}</li>
+          </ol>
+      </div>
 	<div class="col-md-9 all_products products_wrap">
 		   <div class="">
 
