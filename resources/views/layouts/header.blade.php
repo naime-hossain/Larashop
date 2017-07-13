@@ -91,7 +91,7 @@
                         <li class="{{ $url==route('register')?'active':'' }}"><a href="{{ route('register') }}">Register</a></li>
                         
                         @endif
-                         <li class="cart_menu_item"><a href=""> <i class="fa fa-shopping-cart"></i> Cart</a></li>
+                         <li class="cart_menu_item"><a href=""> <i class="fa fa-shopping-cart"></i> Cart<span class="btn btn-primary btn-fab btn-fab-mini btn-round">6</span></a></li>
 
 
                     </ul>

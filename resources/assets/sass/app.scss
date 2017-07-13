@@ -508,3 +508,12 @@ left: 0;
      0 4px 25px 0px rgba(0, 0, 0, 0.12), 
      0 8px 10px -5px rgba(0, 0, 0, 0.2);
 }
+.btn.btn-fab.btn-fab-mini, .btn-group-sm .btn.btn-fab, .navbar .navbar-nav > li > a.btn.btn-fab.btn-fab-mini, .btn-group-sm .navbar .navbar-nav > li > a.btn.btn-fab {
+    height: 30px;
+    min-width: 30px;
+    width: 30px;
+    line-height: 30px;
+    padding: 0px;
+    font-size: 12px;
+    margin-left: 4px;
+}
