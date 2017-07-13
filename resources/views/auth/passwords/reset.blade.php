@@ -4,6 +4,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
+         @if ($errors->count()>0)
+          @include('alert.error')
+        @endif
             <div class="panel panel-default">
                 <div class="panel-heading">Reset Password</div>
 
@@ -13,6 +16,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
+
 
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('password.request') }}">
                         {{ csrf_field() }}

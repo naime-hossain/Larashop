@@ -1,11 +1,17 @@
 @extends('layouts.app')
-
+@section('heading')
+    {{-- expr --}}
+    <h1>Registration Form</h1>
+@endsection
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
+          @if ($errors->count()>0)
+          @include('alert.error')
+        @endif
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading"></div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
