@@ -16,6 +16,11 @@
        <div class="body_wrap">
            <div class="container">
          <div class="row">
+          <div class="col-md-12">
+             @if(Session::has('message'))
+                           @include('alert.success')
+                           @endif
+          </div>
          @yield('content') 
   
           @yield('sidebar')  

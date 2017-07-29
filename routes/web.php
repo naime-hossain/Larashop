@@ -28,6 +28,10 @@ Route::get('/user/{name}','UserController@edit')->name('user.edit');
 Route::put('/user/{id}','UserController@update')->name('user.update');
 
 
+
+//cart
+Route::resource('cart', 'CartController');
+
 //Admin routes
 Route::group(['prefix' => 'admin','middleware'=>'admin'], function() {
     //

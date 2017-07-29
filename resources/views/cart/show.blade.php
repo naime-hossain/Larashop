@@ -75,8 +75,8 @@
             </div> --}}
             
                             
-                              <div class="cart_button">
-                                <a href="{{ route('cart.edit',$product->id) }}" class="btn btn-primary btn-block">add to cart</a>
+                             <div class="cart_button">
+                                <a href="" class="btn btn-primary btn-block">add to cart</a>
                             </div>
                               <div class="cat_button">
                                 <a href="{{ route('home.archive',['category',$product->category->name]) }}" class="btn btn-primary cat_btn">{{ $product->category->name }}</a>
