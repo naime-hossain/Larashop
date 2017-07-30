@@ -39,23 +39,36 @@
                          <p>tax: {{ $cartItem->tax()."( × ". $cartItem->qty.")" }}</p>
                          <p>with tax: {{ $cartItem->total() }}</p>
                        </td>
-                           <td>
+                  
                 {!! Form::open(['action'=>['CartController@update',$cartItem->rowId],'method'=>'put','class'=>'']) !!}
-                   {!! Form::number('qty',$cartItem->qty, []) !!}
-                    {!! Form::button("Update",
+                           <td width="50px">
+                           <div class="form-group">
+                           {!! Form::number('qty',$cartItem->qty, ['class'=>'form-control']) !!}
+                            </div>
+                   
+                  
+
+                           </td>
+                           <td>
+                <div class="form-group">
+
+
+              {!! Form::select('size',['small'=>'small','medium'=>'medium','large'=>'large'],$cartItem->options->size, ['class'=>'form-control']) !!}
+
+              </div>
+</td>
+                           <td>
+                     {!! Form::submit("Update",
                      [
                      'class'=>'btn btn-default ',
                    
-                     'type'=>'submit'
+                     
                      ]) !!}
                         
 
                   {!! Form::close() !!}
-
-                           </td>
-                           <td>{{ $cartItem->options->size }}</td>
-                           <td>
-                {!! Form::open(['action'=>['CartController@destroy',$cartItem->rowId],'method'=>'delete','class'=>'']) !!}
+                {!! Form::open(['action'=>['CartController@destroy',$cartItem->rowId],
+                'method'=>'delete','class'=>'']) !!}
                    
                     {!! Form::button("<i class='fa fa-trash-o'></i> ",
                      [

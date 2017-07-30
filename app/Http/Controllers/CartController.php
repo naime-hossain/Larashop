@@ -60,7 +60,7 @@ class CartController extends Controller
     {
        $product=Product::findOrFail($id);
        Cart::add($id,$product->name,1,$product->price,['size'=>$product->size]);
-       return back();
+       return back()->with('message','New item added to your cart');
     }
 
     /**
@@ -72,7 +72,8 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cartUpdate=Cart::update($id,$request->qty);
+       
+        $cartUpdate=Cart::update($id,['qty'=>$request->qty,'options'=>['size'=>"$request->size"]]);
         return back()->with('message','cart updated');
     }
 
