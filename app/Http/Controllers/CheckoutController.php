@@ -21,7 +21,13 @@ class CheckoutController extends Controller
     {
         if (
         Auth::check()) {
-            return view('checkout.shipingInfo');
+            $cartItems=Cart::content();
+            if (count($cartItems)>0) {
+                return view('checkout.shipingInfo',compact('cartItems'));
+            }else{
+                return redirect(route('home'))->with('message','your cart is empty!add some product :)');
+            }
+            
         } else {
             return view('auth.login');
         }
@@ -33,9 +39,14 @@ class CheckoutController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function paymentForm()
+    public function paymentForm(Request $request)
     {
-        return view('checkout.paymentform');
+
+        if ($request->session()->has('accessToPayment')) {
+            return view('checkout.paymentform');
+        }
+        return redirect(route('checkout'))->with('complete the checkout processs Please then procced to payment');
+       
     }
 
     /**
@@ -58,8 +69,17 @@ class CheckoutController extends Controller
       'amount'   => Cart::total()*100,
       'currency' => 'usd'
   ));
+// after making the payment
+// 01.empty cart
+// 02.destroy the accessToPayment session
+// make the order in order tabel
+// create a order token for each order for tracking
+//destroy the sessoon
+$request->session()->forget('accessToPayment');
+//make the cart empty
+  Cart::destroy();
+  return redirect()->route('home')->with('message','Your oder is placed plaese wait for the delivery');
 
-  return "Successfully charged  Cart::total()";
     }
 
     /**

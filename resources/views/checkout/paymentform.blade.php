@@ -18,6 +18,7 @@
                 data-key="{{config('services.stripe.key')}}"
                 data-amount="{{Cart::total()*100}}"
                 data-name="{{config('app.name')}}"
+                data-email="{{Auth::user()->email}}"
                 data-description="happy "
                 data-image="/images/123.jpg"
                 data-locale="auto">
