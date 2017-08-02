@@ -15,7 +15,7 @@
       </div>
        <div class="body_wrap">
            <div class="container">
-         <div class="row">
+         <div class="row main">
           <div class="col-md-12">
              @if(Session::has('message'))
                            @include('alert.success')

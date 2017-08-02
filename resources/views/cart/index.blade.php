@@ -100,7 +100,7 @@
                  </tbody>
                      </table>
                    </div>
-                   <a href="" title="" class="btn btn-primary center">Checkout</a>
+                   <a href="{{route('checkout')}}" title="" class="btn btn-primary center">Checkout</a>
                 
             @endif
 

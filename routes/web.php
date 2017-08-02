@@ -32,6 +32,20 @@ Route::put('/user/{id}','UserController@update')->name('user.update');
 //cart
 Route::resource('cart', 'CartController');
 
+//checkout route
+
+
+Route::get('/checkout','CheckoutController@checkout')->name('checkout');
+Route::post('/checkout','CheckoutController@store')->name('checkout.shiping');
+//procced to payment route and stroe address
+Route::post('/storeAddress','AddressController@store');
+Route::get('/payment','CheckoutController@paymentForm')->name('payment');
+Route::post('/payment','CheckoutController@storePayment')->name('storepayment');
+
+
+
+
+
 //Admin routes
 Route::group(['prefix' => 'admin','middleware'=>'admin'], function() {
     //
@@ -45,6 +59,7 @@ Route::group(['prefix' => 'admin','middleware'=>'admin'], function() {
 
     Route::resource('/categories','AdminCategoriesController',['except'=>['show','edit','create']]);
      Route::resource('/types','AdminTypesController',['except'=>['show','edit','create']]);
+
  
 
 

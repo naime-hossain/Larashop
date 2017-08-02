@@ -51,6 +51,11 @@ class User extends Authenticatable
         return $this->morphMany(Photo::class, 'photoable');
     }
 
+  public function addresses()
+  {
+      return $this->hasMany('App\Address');
+  }
+
       public function isactive(){
 
          if ($this->is_active==1) {
