@@ -2,38 +2,41 @@
 @section('heading')
     {{-- expr --}}
     <h1>All of your order</h1>
-    <p>SHOP LIKE THERE’S NO TOMORROW</p>
+    <p>Thanks for your interest</p>
 @endsection
 @section('content')
   <div class="col-lg-12">
-      <h1 class="page-header">Your orders</h1>
+      {{-- <h1 class="page-header">Your orders</h1> --}}
   </div>
   <!--End Page Header -->
 
   <div class="col-md-12 ">
                      <!--    Context Classes  -->
-      <div class="panel panel-default main main-raised">
+      <div class="panel panel-default order_page">
 
     
 
-      <div class="panel-body text-center">
+      
       @if(Session::has('message'))
       @include('alert.success')
       @endif
       @if(count($orders)>0)
          @foreach($orders as $order)
-         <div class="single_order_wrap">
-         
-           <h2>Order id:{{$order->id}}</h2>
-           <p>Order Status:{{$order->is_delivered?'Delivered':'Pending'}}</p>
-           <p>Order Token:{{$order->order_token}}</p>
-           <p>Order Cost:{{$order->total}}</p>
+         <div class="single_order_wrap main main-raised">
+          <div class="panel-heading text-center bg-info">
+             <h2 class="text-success">Order id : {{$order->id}}</h2>
+           <p class="">Order Status : {{$order->is_delivered?'Delivered':'Pending'}}</p>
+           <p class="">Order Token : {{$order->order_token}}</p>
+           <p>Order Cost : ${{$order->total}}</p>
+          </div>
+          <div class="panel-body text-center">
+          
            <h3>Order Details</h3>
            @php
            $products=$order->products;
            @endphp
             <div class="table-responsive">
-                     <table class="table">
+                     <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>product Id</th>
@@ -45,7 +48,7 @@
                 </tr>
             </thead>
           
-         
+        
     <tbody>
         @if (count($products)>0)
         @foreach ($products as $product)
@@ -69,13 +72,13 @@
 
             @endif
             </td>
-            <td>${{ $product->pivot->total  }}</td
+            <td>${{ $product->pivot->total  }}</td>
         
          </tr>
             @endforeach
                             
                                 @else
-                                    <tr>
+                                  <tr>
                                     <td>no data</td>
                                     <td>no data</td>
                                     <td>no data</td>
@@ -92,6 +95,7 @@
                             </tbody>
                         </table>
                 </div> 
+              </div>
               </div>   
          @endforeach
         
@@ -99,7 +103,8 @@
       @endif
 
      
-        </div>
+        
     </div>
+</div>
     <!--  end  Context Classes  -->
 @endsection

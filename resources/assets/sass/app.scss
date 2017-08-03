@@ -9,7 +9,7 @@
 // @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 body {
   color: #eee;
-  font-size: 12px;
+  font-size: 14px;
   font-family: "raleway", "Helvetica", "Arial", sans-serif;
   // background: #002c53;
   background:#fff;
@@ -525,4 +525,25 @@ left: 0;
 }
   option {
     background: #f5f5f5;
+}
+.single_order_wrap {
+    overflow: hidden;
+    padding: 10px;
+    border: 1px solid #e5e5e5;
+    margin-bottom: 50px;
+    background: #e7e7e7;
+}
+.panel.order_page {
+    background-color: #e7e7e7;
+    border: 1px solid transparent;
+    padding: 10px 0px;
+    margin-top: 50px;
+}
+.order_page .panel-heading {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    background: #cdcdcd;
+    border-radius: 10px;
 }

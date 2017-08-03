@@ -11,6 +11,8 @@ use Stripe\Stripe;
 use Stripe\Customer;
 use Cart;
 use App\User;
+use App\Mail\OrderConformation;
+use Illuminate\Support\Facades\Mail;
 class CheckoutController extends Controller
 {
 
@@ -61,6 +63,7 @@ public function __construct(){
      * @return \Illuminate\Http\Response
      */
     public function storePayment(Request $request)
+
     {
      
         Stripe::setApiKey(config('services.stripe.secret'));
@@ -94,8 +97,13 @@ foreach ($cartItems as $item) {
      $order->products()->attach($item->id,['qty'=>$item->qty,'total'=>$item->total()]);
 
      //now need reduce the product from in stock
-     //now need to send email to customr
+
+    
+     
+
 }
+ //now need to send email to customr
+Mail::to($user)->send(new OrderConformation($order));
 
 //destroy the accesstoPayment toekn
 $request->session()->forget('accessToPayment');
@@ -105,6 +113,8 @@ $request->session()->forget('accessToPayment');
 
 //destroy the addressID session after place order
   $request->session()->forget('addressId');
+
+
 
   return redirect()->route('home')->with('message','Your oder is placed plaese wait for the delivery');
 

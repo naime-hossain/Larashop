@@ -65,8 +65,10 @@ class AddressController extends Controller
             }
        
     }else{
-    $user=Auth::user();
-       $user->addresses()->create($request->all());
+
+        $user=Auth::user();
+       $address=$user->addresses()->create($request->all());
+       session(['addressId' =>$address->id]);
        //store a sesion for payment page to validte user go through checkout page
        session(['accessToPayment' =>rand(10,1000*29)]);
     }
