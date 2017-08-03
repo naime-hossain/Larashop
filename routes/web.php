@@ -26,7 +26,8 @@ Route::get('/product/{id}','HomeController@product')->name('home.product');
 Route::get('/archive/{type}/{name}','HomeController@archive')->name('home.archive');
 Route::get('/user/{name}','UserController@edit')->name('user.edit');
 Route::put('/user/{id}','UserController@update')->name('user.update');
-
+//user order route
+ Route::get('/orders','UserController@order')->name('order');
 
 
 //cart
@@ -54,6 +55,7 @@ Route::group(['prefix' => 'admin','middleware'=>'admin'], function() {
 });
 
     Route::resource('/users','AdminUsersController',['except'=>['create']]);
+   
     Route::resource('/products','AdminProductsController');
     Route::get('/products/{product_id}/removephoto/{photo_id}','AdminProductsController@remove_photo')->name('photo.remove');
 

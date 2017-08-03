@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
+use App\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 class UserController extends Controller
@@ -14,13 +15,15 @@ class UserController extends Controller
         $this->middleware('auth');
     }
     /**
-     * Display a listing of the resource.
+     * Display a listing of the orders.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function order()
     {
-        //
+        $user=Auth::user();
+        $orders=$user->orders;
+        return view('user.order',compact('orders'));
     }
 
     /**

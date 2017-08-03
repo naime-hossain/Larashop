@@ -62,9 +62,12 @@
 
                                 <ul class="dropdown-menu" role="menu">
                              
-                                         <li><a href="{{ route('user.edit',Auth::user()->name) }}" title="">Profile</a></li>
+                                         <li><a href="{{ route('user.edit',Auth::user()->name) }}" title="">Profile</a>
+                                         </li>
                                          
-                                       
+                                         <li>
+                                         <a href="{{ route('order') }}" title="">Orders</a>
+                                         </li>
                                         <li>
                                             <a href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();
