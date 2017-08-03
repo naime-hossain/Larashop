@@ -54,5 +54,16 @@ public function photos()
 	return $this->morphMany(Photo::class, 'photoable');
 }
 
+/**
+ * Product belongs to Many Orders.
+ *
+ * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+ */
+public function orders()
+{
+	// belongsTo(RelatedModel, foreignKey = orders_id, keyOnRelatedModel = id)
+	return $this->belongsToMany(Order::class)-withPivot('qty','total');
+}
+
 
 }

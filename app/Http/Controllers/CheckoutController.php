@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
+use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Stripe\Stripe;
 use Stripe\Charge;
- use Stripe\Customer;
-
- use Cart;
-use App\Product;
+use Stripe\Stripe;
+use Stripe\Customer;
+use Cart;
+use App\User;
 class CheckoutController extends Controller
 {
 
@@ -61,7 +62,7 @@ public function __construct(){
      */
     public function storePayment(Request $request)
     {
-       
+     
         Stripe::setApiKey(config('services.stripe.secret'));
        $customer =Customer::create(array(
       'email' => $request->stripeEmail,
@@ -79,10 +80,32 @@ public function __construct(){
 // make the order in order tabel
 // create a order token for each order for tracking
 //destroy the sessoon
+
+$cartItems=Cart::content();
+$addressId=$request->session()->get('addressId');
+$user=Auth::user();
+//crrate random token for each order
+$ordrToken=bcrypt($user->name.str_random(100000*10));
+//make an order
+$order=$user->orders()->create(['address_id'=>$addressId,'order_token'=>$ordrToken,'total'=>Cart::total()]);
+
+foreach ($cartItems as $item) {
+     $product=Product::findOrFail($item->id);
+     $order->products()->attach($item->id,['qty'=>$item->qty,'total'=>$item->total()]);
+
+     //now need reduce the product from in stock
+     //now need to send email to customr
+}
+
+//destroy the accesstoPayment toekn
 $request->session()->forget('accessToPayment');
+
 //make the cart empty
   Cart::destroy();
-  //destroy the addressID session after palse order
+
+//destroy the addressID session after place order
+  $request->session()->forget('addressId');
+
   return redirect()->route('home')->with('message','Your oder is placed plaese wait for the delivery');
 
     }

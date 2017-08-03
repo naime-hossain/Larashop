@@ -17,8 +17,9 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('address_id');
-            $table->integer('is_deliver');
+            $table->integer('is_deliver')->default(0);
             $table->string('order_token');
+            $table->float('total');
             $table->timestamps();
         });
     }

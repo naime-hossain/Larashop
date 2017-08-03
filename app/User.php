@@ -79,6 +79,17 @@ class User extends Authenticatable
            return false;
        
       }
+
+      /**
+       * User has many Orders.
+       *
+       * @return \Illuminate\Database\Eloquent\Relations\HasMany
+       */
+      public function orders()
+      {
+          // hasMany(RelatedModel, foreignKeyOnRelatedModel = user_id, localKey = id)
+          return $this->hasMany(Order::class);
+      }
       
 
 }
