@@ -8,98 +8,120 @@
         @include('alert.error')
         @endif
         
-        {!! Form::open(['action'=>'AddressController@store','method'=>'post']) !!}
-        
-            
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <!--SHIPPING METHOD-->
+<div class="section section-tabs">
+
+	<div class="col-md-6">
+		<div class="title">
+			<h3>Address tab</h3>
+		</div>
+
+		<!-- Tabs with icons on Card -->
+		<div class="card card-nav-tabs">
+			<div class="header header-success">
+				<!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+				<div class="nav-tabs-navigation">
+					<div class="nav-tabs-wrapper">
+						<ul class="nav nav-tabs" data-tabs="tabs">
+							<li class="active">
+							<a href="#newaddress" data-toggle="tab">
+									
+									add new address
+								</a>
+							</li>
+                            @if (count($addresses)>0)
+                                @foreach ($addresses as $address)
+                             <li>
+                                <a href="#address{{ $address->id }}" data-toggle="tab">
+                                    address {{ $address->id }}
+                                </a>
+                            </li>
+                                @endforeach
+                            @endif
+                           
+							
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="content">
+				<div class="tab-content text-center">
+					<div class="tab-pane active" id="newaddress">
+                         @include('checkout.adressform')
+					</div>
+                     @if (count($addresses)>0)
+                        @foreach ($addresses as $address)
+                           <div class="tab-pane" id="address{{ $address->id }}">
+                           @include('checkout.adressformmodel')
+
+                           </div> 
+                        @endforeach
+                     @endif
+					
+					
+				</div>
+			</div>
+		</div>
+        </div>
+        </div>
+						<!-- End Tabs with icons on Card -->
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <!--REVIEW ORDER-->
                     <div class="panel panel-info">
-                        <div class="panel-heading">Address</div>
+                        <div class="panel-heading">
+                            Review Order <div class="pull-right"><small><a class="btn btn-primary" href="{{route('cart.index')}}">Edit Cart</a></small></div>
+                        </div>
                         <div class="panel-body">
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <h4>Shipping Address</h4>
-                                </div>
-                            </div>
-                            <div class="form-group {{ $errors->has('country') ? ' has-error' : '' }}">
+                         
+                         @foreach ($cartItems as $item)
+                                <div class="col-sm-12">
+                                <div class="col-sm-3 col-xs-3">
+                                  @php
                                 
-                                <div class="col-md-12 ">
-                                    
-                                
-                                {!! Form::label('country', 'Country name') !!}
-                                
-                                {!! Form::text('country','', ['class'=>'form-control','value'=>old('country')]) !!}
-                                
+                                   $product=App\Product::find(1);
+                                  @endphp
+                                    @if (count($product->photos)>0)
+                                        @foreach ($product->photos as $photo)
+                                            @if ($loop->index==0)
+                                                <img class="img-rounded" src="/images/products/{{  $photo->path }}" alt="{{ $product->name }}">
+                                            @endif
+                                            
+                                        @endforeach
+                                            @else
+                                            <img class="img-responsive" src="//c1.staticflickr.com/1/466/19681864394_c332ae87df_t.jpg" />
+                                    @endif
+                                   
+                                </div>
+                                <div class="col-sm-6 col-xs-6">
+                                    <div class="col-xs-12">{{$item->id}}</div>
+                                    <div class="col-xs-12"><small>Quantity:<span>{{$item->qty}}</span></small></div>
+                                </div>
+                                <div class="col-sm-3 col-xs-3 text-right">
+                                    <h6><span>$</span>{{$item->price}}</h6>
                                 </div>
                             </div>
-                            <div class="form-group {{ $errors->has('first_name') ? ' has-error' : '' }}">
-                                <div class="col-md-6 col-xs-12">
-                                    {!! Form::label('first_name', 'first name') !!}
-                                   
-                                    {!! Form::text('first_name','', ['class'=>'form-control','value'=>old('first_name')]) !!}
+                               
+                         @endforeach
+                         
+                         <div class="col-sm-12"><hr /></div>
+                            <div class="col-sm-12">
+                                <div class="col-xs-12">
+                                    <strong>Subtotal</strong>
+                                    <div class="pull-right"><span>$</span><span>{{ Cart::subtotal() }}</span></div>
                                 </div>
-                               </div>
-                               <div class="form-group {{ $errors->has('last_name') ? ' has-error' : '' }}">
-                                <div class="col-md-6 col-xs-12">
-                                    {!! Form::label('last_name', 'last name') !!}
-                                   
-                                    {!! Form::text('last_name','', ['class'=>'form-control','value'=>old('last_name')]) !!}
-                                </div>
-                            </div>
-                            <div class="form-group {{ $errors->has('address') ? ' has-error' : '' }}">
-                            <div class="col-md-12">
-                               {!! Form::label('address', 'address') !!}
-                                   
-                                    {!! Form::text('address','', ['class'=>'form-control','value'=>old('address')]) !!}
-                                    </div>
-                            </div>
-                            <div class="form-group {{ $errors->has('city') ? ' has-error' : '' }}">
-                            <div class="col-md-12">
-                                  {!! Form::label('city', 'city') !!}
-                                   
-                                    {!! Form::text('city','', ['class'=>'form-control','value'=>old('city')]) !!}
-                                    </div>
-                            </div>
-                            <div class="form-group {{ $errors->has('state') ? ' has-error' : '' }}">
-                            <div class="col-md-12">
-                                 {!! Form::label('state', 'state') !!}
-                                   
-                                    {!! Form::text('state','', ['class'=>'form-control','value'=>old('state')]) !!}
-                                    </div>
-                            </div>
-                            <div class="form-group {{ $errors->has('zip') ? ' has-error' : '' }}">
-                               <div class="col-md-12">
-                                  {!! Form::label('zip', 'zip/postal code') !!}
-                                   
-                                    {!! Form::text('zip','', ['class'=>'form-control','value'=>old('zip')]) !!}
-                                    </div>
-                            </div>
-                            <div class="form-group {{ $errors->has('phone') ? ' has-error' : '' }}">
-                                <div class="col-md-12">
-                                  {!! Form::label('phone', 'phone') !!}
-                                   
-                                    {!! Form::text('phone','', ['class'=>'form-control','value'=>old('phone')]) !!}
-                                    </div>
-                            </div>
-                            <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
-                                <div class="col-md-12">
-                                  {!! Form::label('email', 'email') !!}
-                                   
-                                    {!! Form::email('email','', ['class'=>'form-control','value'=>old('email')]) !!}
+                                <div class="col-xs-12">
+                                    <small>Tax</small>
+                                    <div class="pull-right"><span>{{ Cart::tax() }}</span></div>
                                 </div>
                             </div>
-                              <div class="form-group">
-                                <div class="col-md-12">
-                                 
-                                   
-                                    {!! Form::submit('procced to payment', ['class'=>'btn btn-primary']) !!}
+                            <div class="col-sm-12"><hr /></div>
+                            <div class="col-sm-12">
+                                <div class="col-xs-12">
+                                    <strong>Order Total</strong>
+                                    <div class="pull-right"><span>$</span><span>{{ Cart::total() }}</span></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!--SHIPPING METHOD END-->
-                  
+                    <!--REVIEW ORDER END-->
                 </div>
-                
-                </form>
 @endsection

@@ -12,6 +12,11 @@ use Stripe\Charge;
 use App\Product;
 class CheckoutController extends Controller
 {
+
+public function __construct(){
+    $this->middleware('auth');
+}
+
     /**
      * check a user log in or not
      *
@@ -19,18 +24,16 @@ class CheckoutController extends Controller
      */
     public function checkout()
     {
-        if (
-        Auth::check()) {
+        
             $cartItems=Cart::content();
             if (count($cartItems)>0) {
-                return view('checkout.shipingInfo',compact('cartItems'));
+                $addresses=Auth::user()->addresses;
+                return view('checkout.shipingInfo',compact('cartItems','addresses'));
             }else{
                 return redirect(route('home'))->with('message','your cart is empty!add some product :)');
             }
             
-        } else {
-            return view('auth.login');
-        }
+       
         
     }
 
@@ -43,7 +46,8 @@ class CheckoutController extends Controller
     {
 
         if ($request->session()->has('accessToPayment')) {
-            return view('checkout.paymentform');
+             $cartItems=Cart::content();
+            return view('checkout.paymentform',compact('cartItems'));
         }
         return redirect(route('checkout'))->with('complete the checkout processs Please then procced to payment');
        
@@ -78,6 +82,7 @@ class CheckoutController extends Controller
 $request->session()->forget('accessToPayment');
 //make the cart empty
   Cart::destroy();
+  //destroy the addressID session after palse order
   return redirect()->route('home')->with('message','Your oder is placed plaese wait for the delivery');
 
     }

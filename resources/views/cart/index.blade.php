@@ -101,7 +101,14 @@
                      </table>
                    </div>
                    <a href="{{route('checkout')}}" title="" class="btn btn-primary center">Checkout</a>
-                
+                @else
+                     <div class="col-md-8 col-md-offset-2">
+                        <h4>your cart is empty
+                         
+                        </h4>
+                        <p>If you like Our products, then check out <a target="_blank" href="{{ route('products') }}">All products</a> And choose from variety</p>
+                        <a class="btn btn-primary" target="" href="{{ route('products') }}">All products</a>
+                    </div>
             @endif
 
 
