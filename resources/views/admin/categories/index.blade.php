@@ -13,7 +13,7 @@
    </div>
                      <!--    Context Classes  -->
                     <div class="panel panel-default">
-
+                     
                         <div class="panel-heading">
                           categories Database
                         </div>

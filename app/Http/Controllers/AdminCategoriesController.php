@@ -40,7 +40,7 @@ class AdminCategoriesController extends Controller
             ]);
         $input=$request->all();
         Category::create($input);
-        return back()->with(['message'=>'Category created']);
+        return back()->with('message','Category created');
     }
 
     /**
@@ -81,7 +81,7 @@ class AdminCategoriesController extends Controller
             ]);
         $input=$request->all();
         $category->update($input);
-        return back()->with(['message'=>'Category updated']);
+        return back()->with('message','Category updated');
     }
 
     /**
@@ -94,6 +94,6 @@ class AdminCategoriesController extends Controller
     {
         $category=Category::findOrFail($id);
         $category->delete();
-        return back()->with(['message'=>'Category deleted']);
+        return back()->with('message','Category deleted');
     }
 }
