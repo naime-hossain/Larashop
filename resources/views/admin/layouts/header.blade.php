@@ -165,6 +165,22 @@
                         </ul>
                         <!-- second-level-items -->
                     </li>
+
+                         <li>
+                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> &nbsp;Orders<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="{{ route('admin.orders') }}">all Orders</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('order.pending') }}">Pending orders</a>
+                            </li>
+                             <li>
+                                <a href="{{ route('order.delivered') }}">Delivered orders</a>
+                            </li>
+                        </ul>
+                        <!-- second-level-items -->
+                    </li>
                  
 
                 </ul>

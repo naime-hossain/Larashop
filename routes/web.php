@@ -61,6 +61,11 @@ Route::group(['prefix' => 'admin','middleware'=>'admin'], function() {
 
     Route::resource('/categories','AdminCategoriesController',['except'=>['show','edit','create']]);
      Route::resource('/types','AdminTypesController',['except'=>['show','edit','create']]);
+   Route::get('/orders','AdminOrderController@index')->name('admin.orders');
+   Route::get('/orders/pending','AdminOrderController@pending')->name('order.pending');
+   Route::get('/orders/delivered','AdminOrderController@delivered')->name('order.delivered');
+
+
 
  
 

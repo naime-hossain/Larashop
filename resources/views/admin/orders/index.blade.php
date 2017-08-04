@@ -1,13 +1,11 @@
-@extends('layouts.app')
-@section('heading')
-    {{-- expr --}}
-    <h1>All of your order</h1>
-    <p>Thanks for your interest</p>
-@endsection
-@section('content')
+@extends('admin.layouts.admin')
+
+@section('contents')
   <div class="col-lg-12">
-      {{-- <h1 class="page-header">Your orders</h1> --}}
+      <h1 class="page-header">All Orders</h1>
   </div>
+  
+
   <!--End Page Header -->
 
   <div class="col-md-12 ">
@@ -21,13 +19,68 @@
       @include('alert.success')
       @endif
       @if(count($orders)>0)
+      {{ $orders->links() }}
          @foreach($orders as $order)
-         <div class="single_order_wrap main main-raised">
-          <div class="panel-heading text-center bg-info">
-             <h2 class="text-success">Order id : {{$order->id}}</h2>
-           <p class="">Order Status : {{$order->is_deliver==1?'Delivered':'Pending'}}</p>
-           <p class="">Order Token : {{$order->order_token}}</p>
-           <p>Order Cost : ${{$order->total}}</p>
+         <div class="single_order_wrap img-raised">
+          <div class="panel-heading text-center">
+          <div class="table-responsive bg-info">
+           <h3>Order Info</h3>
+             <table class="table table-bordered ">
+               <thead>
+                 <tr>
+                   <th>Order No</th>
+                   <th>Order status</th>
+                   <th>Order token</th>
+                   <th>Order by</th>
+                   
+                   <th>Order Paid</th>
+                   <th>Actions</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td>{{$order->id}}</td>
+                   <td>{{$order->is_deliver==1?'Delivered':'Pending'}}</td>
+                   <td>{{$order->order_token}}</td>
+                   <td>{{ $order->user->name }}</td>
+                   
+                   <td>${{$order->total}}</td>
+                 </tr>
+               </tbody>
+             </table>
+            </div>
+            {{-- customer address --}}
+             <div class="table-responsive bg-success">
+           <h3>Shiping Address</h3>
+             <table class="table table-bordered ">
+               <thead>
+                 <tr>
+                   <th>Firstname</th>
+                   <th>Last Name</th>
+                   <th>Country</th>
+                   <th>city</th>
+                   
+                   <th>address</th>
+                   <th>Zip</th>
+                   <th>phone</th>
+                   <th>email</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td>{{$order->address->first_name}}</td>
+                   <td>{{$order->address->last_name}}</td>
+                   <td>{{$order->address->country}}</td>
+                   <td>{{$order->address->city}}</td>
+                   <td>{{$order->address->address}}</td>
+                   <td>{{$order->address->zip}}</td>
+                   <td>{{$order->address->phone}}</td>
+                   <td>{{$order->address->email}}</td>
+                  
+                 </tr>
+               </tbody>
+             </table>
+            </div>
           </div>
           <div class="panel-body text-center">
           
@@ -44,6 +97,7 @@
                     <th>product quantity</th>
                     <th>product photo</th>
                     <th>product Price</th>
+                    
                   
                 </tr>
             </thead>
