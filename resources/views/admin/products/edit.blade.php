@@ -9,7 +9,7 @@
   @foreach ($product->photos as $photo)
     <div class="col-md-2 product_image">
 
-    <img class="img-responsive img-rounded admin_product_edit" height="100" src="/images/products/{{ $photo->path }}" alt="">
+    <img class="img-responsive img-rounded admin_product_edit" height="100" src="{{ $photo->thumb() }}" alt="">
     <span href="" data-toggle="modal" data-target="#deletephoto{{ $photo->id }}" class="close-icon btn btn-danger" title=""><i class="fa fa-trash-o"></i></span>
              <!-- deletephoto Modal Core -->
           <div class="modal fade" id="deletephoto{{ $photo->id }}" tabindex="-1" role="dialog" aria-labelledby="deletephoto{{ $photo->id }}Label" aria-hidden="true">

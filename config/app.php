@@ -164,6 +164,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -230,7 +231,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
          'Html' => Collective\Html\HtmlFacade::class,
          'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
-
+         'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 

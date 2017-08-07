@@ -48,7 +48,7 @@
                   
                              @foreach ($product->photos as $photo)
                               @if ($loop->index==0)
-                                 <img height="50" width="150" class="img-rounded" src="/images/products/{{ $photo->path }}" alt="">
+                                 <img height="50" width="150" class="img-rounded" src="{{ $photo->thumb() }}" alt="">
                               @endif
                              
 

@@ -8,6 +8,7 @@ use App\Category;
 use App\Type;
 use App\Photo;
 use Illuminate\Support\Facades\File;
+use Image;
 class AdminProductsController extends Controller
 {
     /**
@@ -38,12 +39,7 @@ class AdminProductsController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
-     * $table->string('name');
-            $table->text('description');
-            $table->string('price');
-            $table->integer('category_id');
-            $table->string('size');
-            $table->integer('is_available')->default(1);
+     * 
      */
     public function store(Request $request)
     {
@@ -67,10 +63,14 @@ class AdminProductsController extends Controller
          if ($request->hasFile('image')) {
             foreach ($request->image as $file)
              {
-           $filename=rand(0,time()).$file->getClientOriginalName();
-           $file->move('images/products',$filename);
+           
+
+             // use intervention image to crop the images
+             $filename= $product->name.rand(0,time()).$file->getClientOriginalName();
+          Image::make($file)->fit(360, 300)->save('images/products/thumbs/'.$filename);
+          Image::make($file)->fit(700, 500)->save('images/products/'.$filename);
            $product->photos()->create(['path'=>$filename]);
-       }
+         }
         }
         $type=Type::find($request->type_id);
         if ($type) {
@@ -119,6 +119,7 @@ class AdminProductsController extends Controller
         $photo=Photo::findOrFail($photo_id);
         if ($photo->photoable->id==$product->id) {
            File::delete('images/products/'.$photo->path);
+           File::delete('images/products/thumbs/'.$photo->path);
            $product->photos()->whereId($photo->id)->delete();
            return back()->with(['message'=>'photo removed']);
         }
@@ -146,11 +147,14 @@ class AdminProductsController extends Controller
          if ($request->hasFile('image')) {
             foreach ($request->image as $file)
              {
-           $filename=rand(0,time()).$file->getClientOriginalName();
-           $file->move('images/products',$filename);
+            // use intervention image to crop the images
+             $filename= $product->name.rand(0,time()).$file->getClientOriginalName();
+          Image::make($file)->fit(360, 300)->save('images/products/thumbs/'.$filename);
+          Image::make($file)->fit(700, 500)->save('images/products/'.$filename);
            $product->photos()->create(['path'=>$filename]);
        }
         }
+
         $typeToAdd=Type::find($request->type_id);
         if ($typeToAdd) {
              foreach ($product->types as $type) {
@@ -180,7 +184,8 @@ class AdminProductsController extends Controller
         $product=Product::findOrFail($id);
         if ($product->photos) {
             foreach ($product->photos as $photo) {
-                File::delete('images/products/'.$photo->path);
+               File::delete('images/products/'.$photo->path);
+               File::delete('images/products/thumbs/'.$photo->path);
             
             }
             $product->photos()->delete();

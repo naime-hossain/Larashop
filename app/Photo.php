@@ -25,5 +25,25 @@ public function photoable()
   return $this->morphTo();
 }
 
+/**
+ * Function for shows the cover photo directory
+ *
+ * 
+ */
+
+public function cover(){
+	return '/images/products/'.$this->path;
+}
+
+/**
+ * Function for shows the thumb photo directory
+ *
+ * 
+ */
+
+public function thumb(){
+	return '/images/products/thumbs/'.$this->path;
+}
+
 
 }

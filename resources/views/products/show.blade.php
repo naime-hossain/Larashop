@@ -36,7 +36,7 @@
                      <div class="carousel-inner">
                        @foreach ($product->photos as $photo)
                          <div class="item {{ $loop->index==0?'active':'' }}">
-                             <img class="img-rounded" src="/images/products/{{  $photo->path }}" alt="{{ $product->name }}">
+                             <img class="img-rounded" src="{{  $photo->cover() }}" alt="{{ $product->name }}">
                          </div>
                          @endforeach
                   
