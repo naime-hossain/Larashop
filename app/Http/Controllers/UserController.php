@@ -22,7 +22,7 @@ class UserController extends Controller
     public function order()
     {
         $user=Auth::user();
-        $orders=$user->orders;
+        $orders=$user->orders()->with('products','address')->get();
         return view('user.order',compact('orders'));
     }
 
@@ -67,7 +67,7 @@ class UserController extends Controller
     public function edit($name)
     {
         // $roles=Role::pluck('name','id')->all();
-         $user=User::whereName($name)->first();
+         $user=User::with('photos')->whereName($name)->first();
          $auth_user=Auth::user();
         // return $user->name;
        if ($user) {

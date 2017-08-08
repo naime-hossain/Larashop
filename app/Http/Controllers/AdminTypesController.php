@@ -13,7 +13,7 @@ class AdminTypesController extends Controller
      */
     public function index()
     {
-        $types=Type::paginate(10);
+        $types=Type::with('products')->paginate(10);
         return view('admin.types.index',compact('types'));
     }
 

@@ -31,15 +31,22 @@
         {!! Form::close() !!} --}}
                   </div>
                  <div class="cat_button">
-                      <a href="{{ route('home.archive',['category',$product->category->name]) }}" class="btn btn-primary cat_btn">{{ $product->category->name }}</a>
-
-                       <a href="{{ route('home.archive',['size',$product->size]) }}" class="btn btn-primary size_btn">{{ $product->size }}</a>
-
-                       @foreach ($product->types as $type)
-                             <a href="{{ route('home.archive',['type',$type->name]) }}" class="btn btn-primary type_btn">{{ 
-                         $type->name
-                        }}</a>
-                       @endforeach
+                      @if ($product->category)
+                         <a href="{{ route('home.archive',['category',$product->category->name]) }}" class="btn btn-primary cat_btn">{{ $product->category->name }}</a>
+                      @endif
+                     
+                        @if ($product->size)
+                           <a href="{{ route('home.archive',['size',$product->size]) }}" class="btn btn-primary size_btn">{{ $product->size }}</a>
+                        @endif
+                      
+                       @if (count($product->types)>0)
+                           @foreach ($product->types as $type)
+                               <a href="{{ route('home.archive',['type',$type->name]) }}" class="btn btn-primary type_btn">{{ 
+                           $type->name
+                          }}</a>
+                         @endforeach
+                       @endif
+                     
                      
                   </div>
               </div>

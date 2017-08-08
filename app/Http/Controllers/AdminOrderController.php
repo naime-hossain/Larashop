@@ -13,7 +13,7 @@ class AdminOrderController extends Controller
      */
     public function index()
     {
-        $orders=Order::paginate(5);
+        $orders=Order::with('products','address','user')->paginate(5);
         return view('admin.orders.index',compact('orders'));
     }
 
@@ -24,7 +24,7 @@ class AdminOrderController extends Controller
      */
     public function pending()
     {
-        $orders=Order::whereIs_deliver(0)->paginate(5);
+        $orders=Order::with('products','address','user')->whereIs_deliver(0)->paginate(5);
         return view('admin.orders.pending',compact('orders'));
     }
 
@@ -35,7 +35,7 @@ class AdminOrderController extends Controller
      */
     public function delivered()
     {
-        $orders=Order::whereIs_deliver(1)->paginate(5);
+        $orders=Order::with('products','address','user')->whereIs_deliver(1)->paginate(5);
         return view('admin.orders.delivered',compact('orders'));
     }
 
