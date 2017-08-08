@@ -15,7 +15,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products=Product::latest()->take(5)->get();
+        $products=Product::with('category','types')->latest()->take(5)->get();
+
         return view('welcome',compact('products'));
     }
 
@@ -27,7 +28,7 @@ class HomeController extends Controller
     public function Products()
     {
         //
-        $products=Product::paginate(6);
+        $products=Product::with('category','types')->paginate(6);
         return view('products.index',compact('products'));
     }
 
@@ -39,7 +40,7 @@ class HomeController extends Controller
     public function Product($id)
     {
         //
-        $product=Product::findOrFail($id);
+        $product=Product::with('category','types')->findOrFail($id);
         return view('products.show',compact('product'));
     }
 
@@ -54,9 +55,9 @@ class HomeController extends Controller
     {
        switch ($archive_type) {
            case 'category':
-               $name=Category::whereName($archive_name)->first();
+               $name=Category::whereName($archive_name)->firstOrfail();
                 if ($name) {
-                     $products=$name->products;
+                     $products=$name->products()->with('category','types')->get();
                 }else{
                  
                 }
@@ -66,7 +67,7 @@ class HomeController extends Controller
                 case 'type':
                $name=Type::whereName($archive_name)->first();
                 if ($name) {
-                     $products=$name->products;
+                     $products=$name->products()->with('category','types')->get();
                 }else{
                  
                 }
@@ -74,7 +75,7 @@ class HomeController extends Controller
                break;
                 case 'size':
                 $name='';
-               $products=Product::whereSize($archive_name)->get();
+               $products=Product::with('category','types')->whereSize($archive_name)->get();
                
                return view('archive.index',compact('archive_name','products','archive_type','name'));
                break;

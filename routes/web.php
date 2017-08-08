@@ -15,6 +15,11 @@
 //     return view('welcome');
 // })->name('home');
 
+
+Event::listen('illuminate.query',function($sql)
+{
+  var_dump($sql);
+});
 Auth::routes();
 
 
