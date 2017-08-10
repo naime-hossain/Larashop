@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendOrderConfirmationEmail;
+use App\Mail\OrderConformation;
 use App\Order;
 use App\Product;
+use App\User;
+use Carbon\Carbon;
+use Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Stripe\Charge;
-use Stripe\Stripe;
-use Stripe\Customer;
-use Cart;
-use App\User;
-use App\Mail\OrderConformation;
 use Illuminate\Support\Facades\Mail;
+use Stripe\Charge;
+use Stripe\Customer;
+use Stripe\Stripe;
 class CheckoutController extends Controller
 {
 
@@ -103,7 +105,10 @@ foreach ($cartItems as $item) {
 
 }
  //now need to send email to customr
-Mail::to($user)->send(new OrderConformation($order));
+
+$job = (new SendOrderConfirmationEmail($order,$user))
+                    ->delay(Carbon::now()->addSeconds(10));
+    dispatch($job);
 
 //destroy the accesstoPayment toekn
 $request->session()->forget('accessToPayment');

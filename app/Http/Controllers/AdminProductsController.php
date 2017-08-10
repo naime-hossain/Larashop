@@ -50,6 +50,7 @@ class AdminProductsController extends Controller
              'category_id'=>'required',
              'type_id'=>'required',
              'size'=>'required',
+             'inStock'=>'required',
 
             ]);
 

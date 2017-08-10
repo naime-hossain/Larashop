@@ -78,6 +78,11 @@
        {!! Form::label('size','Select size for product', []) !!}
      {!! Form::select('size',['small'=>'small','medium'=>'medium','large'=>'large'],null, ['placeholder' => 'Pick a size...','class'=>'form-control']) !!}
    </div>
+
+   <div class="form-group col-md-6">
+       {!! Form::label('inStock','Set stock Level for this product', []) !!}
+         {!! Form::number('inStock',null,['class'=>'form-control']) !!}
+   </div>
     <div class=" col-md-6">
        {!! Form::label('image[]','add  another  Photo', ['class'=>'btn btn-info']) !!}
      {!! Form::file('image[]', ['class'=>'form-control','multiple'=>true]) !!}

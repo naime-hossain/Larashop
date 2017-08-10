@@ -63,7 +63,7 @@
 		</div>
         </div>
         </div>
-						<!-- End Tabs with icons on Card -->
+<!-- End Tabs with icons on Card -->
                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <!--REVIEW ORDER-->
                     <div class="panel panel-info">

@@ -55,7 +55,7 @@
                       <h4 class="pull-right">{{ $product->price }}</h4>
                       <h4><a href="{{ route('home.product',$product->id) }}">{{ $product->name }}</a>
                       </h4>
-                      <p>{{ str_limit($product->description,50)  }}</p>
+                      <p>{{ str_limit($product->description,20)  }}</p>
                   </div>
                 {{--   <div class="ratings">
                       <p class="pull-right">15 reviews</p>

@@ -16,10 +16,7 @@
 // })->name('home');
 
 
-Event::listen('illuminate.query',function($sql)
-{
-  var_dump($sql);
-});
+
 Auth::routes();
 
 
@@ -48,7 +45,8 @@ Route::post('/storeAddress','AddressController@store');
 Route::get('/payment','CheckoutController@paymentForm')->name('payment');
 Route::post('/payment','CheckoutController@storePayment')->name('storepayment');
 
-
+// add review
+   Route::post('/review/{product_id}','ReviewController@store');
 
 
 
@@ -69,6 +67,9 @@ Route::group(['prefix' => 'admin','middleware'=>'admin'], function() {
    Route::get('/orders','AdminOrderController@index')->name('admin.orders');
    Route::get('/orders/pending','AdminOrderController@pending')->name('order.pending');
    Route::get('/orders/delivered','AdminOrderController@delivered')->name('order.delivered');
+
+
+
 
 
 

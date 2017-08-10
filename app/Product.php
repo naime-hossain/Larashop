@@ -17,7 +17,7 @@ class Product extends Model
 'price',
 'category_id',
 'size',
-'is_available'];
+'is_available','inStock'];
 
 /**
  * Product belongs to Category.
@@ -65,5 +65,14 @@ public function orders()
 	return $this->belongsToMany(Order::class)-withPivot('qty','total');
 }
 
-
+/**
+ * Product has many Reviews.
+ *
+ * @return \Illuminate\Database\Eloquent\Relations\HasMany
+ */
+public function reviews()
+{
+	// hasMany(RelatedModel, foreignKeyOnRelatedModel = product_id, localKey = id)
+	return $this->hasMany(Review::class);
+}
 }
