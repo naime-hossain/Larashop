@@ -43,7 +43,7 @@
                 {!! Form::open(['action'=>['CartController@update',$cartItem->rowId],'method'=>'put','class'=>'']) !!}
                            <td width="50px">
                            <div class="form-group">
-                           {!! Form::number('qty',$cartItem->qty, ['class'=>'form-control']) !!}
+                           {!! Form::number('qty',$cartItem->qty, ['class'=>'form-control','min'=>1,'max'=>$cartItem->options->stock]) !!}
                             </div>
                    
                   

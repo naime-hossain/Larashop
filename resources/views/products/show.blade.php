@@ -14,6 +14,7 @@
               <li class="active">{{ $product?$product->name:'' }}</li>
           </ol>
       </div>
+
 	
        <div class="col-md-9">
            <div class="col-md-7 col-sm-7">
@@ -61,18 +62,29 @@
               <h4 class="pull-right">{{ $product->price }}</h4>
               <h4>{{ $product->name }}
               </h4>
-              <p>{{ $product->description }}</p>
-          </div>
-        {{--   <div class="ratings">
-              <p class="pull-right">15 reviews</p>
+              @if ($product->reviews()->count()>0)
+            <div class="ratings">
+              <p class="pull-right">{{ $product->reviews()->count() }} reviews</p>
               <p>
- <span class="glyphicon glyphicon-star"></span>
-                  <span class="glyphicon glyphicon-star"></span>
-                  <span class="glyphicon glyphicon-star"></span>
-                  <span class="glyphicon glyphicon-star"></span>
-                  <span class="glyphicon glyphicon-star"></span>
+              @php
+                $rating=$product->reviews()->sum('rating')/$product->reviews()->count();
+              @endphp
+              @for ($i =1; $i<=$rating; $i++)
+                <span class="glyphicon glyphicon-star"></span>
+              @endfor
+              @if (is_float($rating))
+                
+                <span class="fa fa-star-half-o"></span>
+              @endif
+               <span class="label label-warning">{{ $rating }}</span>
               </p>
-          </div> --}}
+          </div>
+              @else
+              <p class="label label-default">No review</p>
+                @endif
+      
+          </div>
+       
           
                           
                 <div class="cart_button">
@@ -117,6 +129,12 @@
                       Give Review
                     </a>
                  </li>
+                   <li>
+                  <a href="#description" data-toggle="tab">
+                      
+                     Product Description
+                    </a>
+                 </li>
                   
                                
                   
@@ -127,19 +145,66 @@
                   <div class="content">
                       <div class="tab-content text-center">
                         <div class="tab-pane active" id="reviews">
-                         reviews
+                         @if ($product->reviews()->count()>0)
+                         <ul class="list-group">
+                           <li class="list-group-item">
+                                   <span class="badge bg-warning">Ratings</span>
+                                   Comments
+                            </li>
+                            @foreach ($product->reviews as $review)
+                               
+                                 <li class="list-group-item">
+                                   <span class="badge label label-warning">{{ $review->rating }}</span>
+                                   {{ $review->review }}
+
+                                 </li>
+                             
+                             
+                            @endforeach
+                              </ul>
+                            @else
+                         <h3>no review available</h3>
+                         @endif
+
                         </div>
                          <div class="tab-pane" id="addreviews">
-                          {!! Form::open(['action'=>['ReviewController@store',$product->id],'method'=>'post']) !!}
-                         <div class="form-group col-md-6">
+                           @if (Auth::check())
+                            {!! Form::open(['action'=>['ReviewController@store',$product->id],'method'=>'post']) !!}
+                        <div class="form-group col-md-12">
+                          {!! Form::label('rating','Your Rating', []) !!}
+                          <div class="stars">
+                            <input value="1" type="radio" name="rating" class="star-1" id="star-1" />
+                            <label class="star-1" for="star-1">1</label>
+                            <input value="2" type="radio" name="rating" class="star-2" id="star-2" />
+                            <label class="star-2" for="star-2">2</label>
+                            <input value="3" type="radio" name="rating" class="star-3" id="star-3" />
+                            <label class="star-3" for="star-3">3</label>
+                            <input value="4" type="radio" name="rating" class="star-4" id="star-4" />
+                            <label class="star-4" for="star-4">4</label>
+                            <input value="5" type="radio" name="rating" class="star-5" id="star-5" />
+                            <label class="star-5" for="star-5">5</label>
+                            <span></span>
+                          </div>
+                          </div>
+                         <div class="form-group col-md-12">
+                             
+
                              {!! Form::label('review','Your opinion', []) !!}
-                               {!! Form::text('review',null,['class'=>'form-control']) !!}
-                                <div class="form-group col-md-12">
+                               {!! Form::textarea('review',null,['class'=>'form-control','rows'=>3,'cols'=>5,'required']) !!}
+
+                            </div> 
+                        <div class="form-group col-md-12">
                          {!! Form::submit('submit', ['class'=>'btn btn-primary']) !!}
                        </div>
-                         </div>
+                         
 
                           {!! Form::close() !!}
+                             @else
+                              <h3>Login in to give review</h3>
+                           @endif
+                        </div>
+                        <div class="tab-pane" id="description">
+                          <p>{{ $product->description }}</p>
                         </div>
              
       

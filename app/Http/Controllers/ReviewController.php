@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
@@ -34,8 +36,23 @@ class ReviewController extends Controller
      */
     public function store(Request $request,$product_id)
     {
-        //
-        return $product_id;
+        
+     $this->validate($request,[
+        'rating'=>'required',
+        'review'=>'required',
+        ]);
+     $input=$request->all();
+     $product=Product::findOrFail($product_id);
+     $user=Auth::user();
+     // check if the user already give review or not
+     $user_review=$user->reviews()->whereProduct_id($product_id)->first();
+       if ($user_review) {
+           return back()->with('message','You already give review this product');
+       }
+     $input['user_id']=$user->id;
+     $product->reviews()->create($input);
+     return back()->with('message','review added');
+
     }
 
     /**

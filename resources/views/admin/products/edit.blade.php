@@ -81,7 +81,7 @@
 
    <div class="form-group col-md-6">
        {!! Form::label('inStock','Set stock Level for this product', []) !!}
-         {!! Form::number('inStock',null,['class'=>'form-control']) !!}
+         {!! Form::number('inStock',null,['class'=>'form-control','min'=>1]) !!}
    </div>
     <div class=" col-md-6">
        {!! Form::label('image[]','add  another  Photo', ['class'=>'btn btn-info']) !!}

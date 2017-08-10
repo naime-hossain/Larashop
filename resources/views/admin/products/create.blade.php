@@ -41,7 +41,7 @@
 
     <div class="form-group col-md-6">
        {!! Form::label('inStock','Set stock Level for this product', []) !!}
-         {!! Form::number('inStock','',['class'=>'form-control']) !!}
+         {!! Form::number('inStock','',['class'=>'form-control','min'=>1]) !!}
    </div>
 
 

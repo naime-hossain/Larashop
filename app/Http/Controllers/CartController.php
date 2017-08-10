@@ -59,7 +59,7 @@ class CartController extends Controller
     public function edit($id)
     {
        $product=Product::findOrFail($id);
-       Cart::add($id,$product->name,1,$product->price,['size'=>$product->size]);
+       Cart::add($id,$product->name,1,$product->price,['size'=>$product->size,'stock'=>$product->inStock]);
        return back()->with('message','New item added to your cart');
     }
 

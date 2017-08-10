@@ -90,6 +90,17 @@ class User extends Authenticatable
           // hasMany(RelatedModel, foreignKeyOnRelatedModel = user_id, localKey = id)
           return $this->hasMany(Order::class);
       }
+
+      /**
+       * User has many Reviews.
+       *
+       * @return \Illuminate\Database\Eloquent\Relations\HasMany
+       */
+      public function reviews()
+      {
+        // hasMany(RelatedModel, foreignKeyOnRelatedModel = user_id, localKey = id)
+        return $this->hasMany(Review::class);
+      }
       
 
 }
