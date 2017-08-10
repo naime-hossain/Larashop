@@ -15,22 +15,31 @@
                   {{-- dummy --}}
                   <img class="img-rounded" src="/images/products/{{ $product->name }}" alt="{{ $product->name }}">
                 @endif
-                  
+                  <div class="availability">
+                     @if ($product->inStock>5)
+                        <span class="label label-success">Available</span>
+                      @elseif($product->inStock<5)
+                      <span class="label label-warning">Low Stock</span>
+                      @elseif($product->inStock==0)
+                      <span class="label label-danger">Not Available</span>
+                     @endif
+                    
+                  </div>
                   <div class="cart_button">
-                      <a href="{{ route('cart.edit',$product->id) }}" class="btn btn-primary btn-block">add to cart</a>
-        {{--   {!! Form::open(['action'=>['CartController@edit',$product->id],'method'=>'post','class'=>'']) !!}
-         {!! Form::number('qty',$cartItem->qty, []) !!}
-          {!! Form::button("Update",
+                      {{-- <a href="{{ route('cart.edit',$product->id) }}" class="btn btn-primary btn-block">add to cart</a> --}}
+          {!! Form::open(['action'=>['CartController@add',$product->id],'method'=>'post','class'=>'']) !!}
+         {!! Form::number('qty','1', ['min'=>1,'max'=>$product->inStock,'required']) !!}
+          {!! Form::button("add to cart",
            [
-           'class'=>'btn btn-danger',
+           'class'=>'btn btn-primary ',
          
            'type'=>'add to cart'
            ]) !!}
               
 
-        {!! Form::close() !!} --}}
+        {!! Form::close() !!}
                   </div>
-                 <div class="cat_button">
+                     <div class="cat_button">
                       @if ($product->category)
                          <a href="{{ route('home.archive',['category',$product->category->name]) }}" class="btn btn-primary cat_btn">{{ $product->category->name }}</a>
                       @endif

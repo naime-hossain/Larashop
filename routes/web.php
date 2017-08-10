@@ -33,8 +33,8 @@ Route::put('/user/{id}','UserController@update')->name('user.update');
 
 
 //cart
-Route::resource('cart', 'CartController');
-
+Route::resource('cart', 'CartController',['except'=>['create','edit','store']]);
+Route::post('/cart/{product_id}','CartController@add')->name('cart.add');
 //checkout route
 
 

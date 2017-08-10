@@ -56,10 +56,11 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function add(Request $request,$id)
     {
+
        $product=Product::findOrFail($id);
-       Cart::add($id,$product->name,1,$product->price,['size'=>$product->size,'stock'=>$product->inStock]);
+       Cart::add($id,$product->name,$request->qty,$product->price,['size'=>$product->size,'stock'=>$product->inStock]);
        return back()->with('message','New item added to your cart');
     }
 
