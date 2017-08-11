@@ -31,7 +31,7 @@ h6,
   line-height: 2em;
 }
 img{
-  max-width: 100%;
+  width: 100%;
 }
 
 .navbar-default .navbar-brand {
@@ -635,4 +635,7 @@ form .stars span {
     right: 10px;
     bottom: 0;
     margin-bottom: 20px;
+}
+#single_product img{
+  max-width: auto;
 }
