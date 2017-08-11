@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->integer('category_id');
             $table->string('size');
             $table->integer('is_available')->default(1);
+            $table->integer('is_feature')->default(0);
             $table->integer('inStock')->unsigned()->nullable();
             $table->timestamps();
         });

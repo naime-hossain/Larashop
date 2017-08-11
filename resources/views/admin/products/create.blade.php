@@ -43,6 +43,17 @@
        {!! Form::label('inStock','Set stock Level for this product', []) !!}
          {!! Form::number('inStock','',['class'=>'form-control','min'=>1]) !!}
    </div>
+       <div class="form-group col-md-6">
+       {!! Form::label('is_feature','Feature this product', []) !!}
+         
+        <div class="checkbox">
+          <label>
+            {!! Form::checkbox('is_feature','1','', []) !!}
+            Want to feature it?
+          </label>
+        </div>
+        
+   </div>
 
 
     <div class=" col-md-6">

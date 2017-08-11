@@ -53,8 +53,15 @@ class AdminProductsController extends Controller
              'inStock'=>'required',
 
             ]);
+        $input=$request->except(['image','type_id']);
+        if (!$request->is_feature) {
+           $input['is_feature']=0;
+        }else{
+            // return $request->is_feature;
+        }
+       
 
-         $input=$request->except(['image','type_id']);
+         
          // return $request->all();
        if ($input['category_id']==0) {
            $category=Category::create(['name'=>'uncategorized']);
@@ -69,7 +76,7 @@ class AdminProductsController extends Controller
              // use intervention image to crop the images
              $filename= $product->name.rand(0,time()).$file->getClientOriginalName();
           Image::make($file)->fit(360, 300)->save('images/products/thumbs/'.$filename);
-          Image::make($file)->fit(700, 500)->save('images/products/'.$filename);
+          Image::make($file)->fit(1000, 800)->save('images/products/'.$filename);
            $product->photos()->create(['path'=>$filename]);
          }
         }
@@ -138,7 +145,12 @@ class AdminProductsController extends Controller
     {
 
        $product=Product::findOrFail($id);
-        $input=$request->except(['image','type_id','new_type']);
+          $input=$request->except(['image','type_id']);
+        if (!$request->is_feature) {
+           $input['is_feature']=0;
+        }else{
+            // return $request->is_feature;
+        }
          // return $request->all();
        if ($input['category_id']==0) {
            $category=Category::create(['name'=>'uncategorized']);
@@ -151,7 +163,7 @@ class AdminProductsController extends Controller
             // use intervention image to crop the images
              $filename= $product->name.rand(0,time()).$file->getClientOriginalName();
           Image::make($file)->fit(360, 300)->save('images/products/thumbs/'.$filename);
-          Image::make($file)->fit(700, 500)->save('images/products/'.$filename);
+          Image::make($file)->fit(1000, 800)->save('images/products/'.$filename);
            $product->photos()->create(['path'=>$filename]);
        }
         }

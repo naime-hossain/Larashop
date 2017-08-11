@@ -14,6 +14,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="/css/font-awesome.min.css" rel="stylesheet" />
 <link href="/css/material-kit.css" rel="stylesheet"/>
+@yield('extra_header')
     <link href="/css/style.css" rel="stylesheet"/>
 </head>
 <body>

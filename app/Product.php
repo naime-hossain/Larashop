@@ -17,7 +17,7 @@ class Product extends Model
 'price',
 'category_id',
 'size',
-'is_available','inStock'];
+'is_available','inStock','is_feature'];
 
 /**
  * Product belongs to Category.

@@ -2,6 +2,9 @@
 @section('heading')
 	<h1>single Product</h1>
 @endsection
+@section('extra_header')
+   <link href="{{ asset('css/zoomple.css') }}" rel="stylesheet" />
+@endsection
 @section('content')
  <div class="col-md-12">
           <ol class="breadcrumb">
@@ -26,7 +29,7 @@
                  
                     
                   
-                 <div id="single_product" class="carousel slide" data-ride="carousel">
+                 <div id="single_product" class="carousel slide" data-ride="carousel"  data-interval="false">
                      <ol class="carousel-indicators">
                      @foreach ($product->photos as $photo)
                            <li data-target="#single_product" data-slide-to="{{ $loop->index }}" class=""></li>
@@ -36,8 +39,20 @@
                      </ol>
                      <div class="carousel-inner">
                        @foreach ($product->photos as $photo)
-                         <div class="item {{ $loop->index==0?'active':'' }}">
-                             <img class="img-rounded" src="{{  $photo->cover() }}" alt="{{ $product->name }}">
+                        <div class="item {{ $loop->index==0?'active':'' }}">
+                        
+                        
+
+                            <a href="{{  $photo->cover() }}"  class="zoompleFixed">
+
+                           <img class="img-rounded" src="{{  $photo->thumb() }}" alt="{{ $product->name }}">
+                            </a>
+
+                        
+
+
+               {{--   <img class="img-rounded" src="{{  $photo->cover() }}" alt="{{ $product->name }}"> --}}
+                             
                          </div>
                          @endforeach
                   
@@ -244,4 +259,34 @@
 @endsection
 @section('sidebar')
 @include('layouts.sidebar')
+ @endsection
+
+ @section('extra_footer')
+   <script src="{{ asset('js/zoomple.js') }}"></script>
+   <script type="text/javascript" charset="utf-8" >
+     
+    $(document).ready(function() {
+
+    $('.zoompleFixed').zoomple({
+
+        blankURL : 'images/blank.gif',
+
+        bgColor : '#90D5D9',
+
+        loaderURL : 'images/loader.gif',
+
+        offset : {x:-150,y:-150},
+
+        zoomWidth : 300, 
+
+        zoomHeight : 300,
+
+        roundedCorners : true
+
+    });
+
+ });
+
+
+   </script>
  @endsection

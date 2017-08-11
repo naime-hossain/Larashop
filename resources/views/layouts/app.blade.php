@@ -18,8 +18,8 @@
          <div class="row main">
           <div class="col-md-12">
              @if(Session::has('message'))
-                           @include('alert.success')
-                           @endif
+             @include('alert.success')
+             @endif
           </div>
          @yield('content') 
   
@@ -32,4 +32,3 @@
     
  
 @include('layouts.footer')
-@yield('footer')

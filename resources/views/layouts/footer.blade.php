@@ -14,7 +14,7 @@
      <script src="/js/jquery.nicescroll.min.js">
     </script> 
         <script src="/js/material.min.js"></script>
-
+     @yield('extra_footer')
 
     <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
     <script src="/js/material-kit.js" type="text/javascript"></script>

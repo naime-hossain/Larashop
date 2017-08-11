@@ -15,9 +15,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products=Product::with('category','types')->latest()->take(5)->get();
+        $products=Product::with('category','types','reviews')->latest()->take(5)->get();
+        $feature_products=Product::with('category','types','reviews')->latest()->whereIs_feature(1)->take(5)->get();
+        
 
-        return view('welcome',compact('products'));
+        return view('welcome',compact('products','feature_products'));
     }
 
     /**
