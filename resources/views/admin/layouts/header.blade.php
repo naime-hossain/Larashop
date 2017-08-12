@@ -173,10 +173,10 @@
                                 <a href="{{ route('admin.orders') }}">all Orders</a>
                             </li>
                             <li>
-                                <a href="{{ route('order.pending') }}">Pending orders</a>
+                                <a href="{{ route('admin.orders','pending') }}">Pending orders</a>
                             </li>
                              <li>
-                                <a href="{{ route('order.delivered') }}">Delivered orders</a>
+                                <a href="{{ route('admin.orders','deliver') }}">Delivered orders</a>
                             </li>
                         </ul>
                         <!-- second-level-items -->

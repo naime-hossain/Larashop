@@ -11,7 +11,7 @@
   <!--End Page Header -->
 
   <div class="col-md-12 ">
-                     <!--    Context Classes  -->
+               <!--    Context Classes  -->
       <div class="panel panel-default order_page">
 
     
@@ -21,6 +21,13 @@
       @include('alert.success')
       @endif
       @if(count($orders)>0)
+      <div class="row">
+       <div class="col-md-12">
+         <a class="btn  btn-success" href="{{ route('order','deliver') }}" role="button">Delivered orders</a>
+         <a class="btn  btn-primary" href="{{ route('order','pending') }}" role="button">pending orders</a>
+       </div>
+       </div>  
+    
          @foreach($orders as $order)
          <div class="single_order_wrap main main-raised">
           <div class="panel-heading text-center bg-info">
@@ -59,7 +66,7 @@
             <td>{{ $product->name }}</td>
             {{-- <td>{{ substr($product->body, 0,20)  }}</td> --}}
             <td>{{ $product->pivot->qty  }}</td>
-            <td>
+            <td width='150'>
                 @if ($product->photos)
             
                         @foreach ($product->photos as $photo)

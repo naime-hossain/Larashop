@@ -20,6 +20,12 @@
       @endif
       @if(count($orders)>0)
       {{ $orders->links() }}
+        <div class="row">
+       <div class="col-md-12">
+         <a class="btn  btn-success" href="{{ route('admin.orders','deliver') }}" role="button">Delivered orders</a>
+         <a class="btn  btn-primary" href="{{ route('admin.orders','pending') }}" role="button">pending orders</a>
+       </div>
+       </div> 
          @foreach($orders as $order)
          <div class="single_order_wrap img-raised">
           <div class="panel-heading text-center">
@@ -45,6 +51,42 @@
                    <td>{{ $order->user->name }}</td>
                    
                    <td>${{$order->total}}</td>
+                   <td>
+                @if ($order->is_deliver==0)
+                            <span href="" data-toggle="modal" data-target="#deliveredorder{{ $order->id }}" class="close-icon btn btn-success" title="Mark as delivered"><i class="fa  fa-check "></i></span>
+             <!-- deliveredorder Modal Core -->
+          <div class="modal fade" id="deliveredorder{{ $order->id }}" tabindex="-1" role="dialog" aria-labelledby="deliveredorder{{ $order->id }}Label" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                
+                  <h4 class="modal-title text-center" id="deliveredorder{{ $order->id }}Label">Order Completed?</h4>
+                <div class="modal-body">
+                    <button type="button" class="btn btn-primary pull-right 3x" data-dismiss="modal" aria-hidden="true">No</button>
+                  {!! Form::open(['action'=>['AdminOrderController@update',$order->id],'method'=>'put','class'=>'sm-form']) !!}
+                    {!! Form::button("Yes",
+                     [
+                     'class'=>'btn btn-danger',
+                   
+                     'type'=>'submit'
+                     ]) !!}
+                        
+
+                  {!! Form::close() !!}
+              </div>
+                </div>
+            
+              </div>
+            </div>
+          </div>
+       {{-- model end --}} 
+                  @else
+                  {{-- <a href="{{ route('products.edit',$product->id) }}" title=""></a> --}}
+                  <i title="adjust stock" class="fa fa-adjust btn btn-warning"></i>
+                @endif
+
+
+                   </td>
                  </tr>
                </tbody>
              </table>

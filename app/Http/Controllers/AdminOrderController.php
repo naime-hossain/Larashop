@@ -11,9 +11,16 @@ class AdminOrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($status='')
     {
-        $orders=Order::with('products','address','user')->paginate(5);
+      
+           if ($status=='deliver') {
+             $orders=Order::with('products','address','user')->whereIs_deliver(1)->paginate(5);
+        }elseif($status=='pending'){
+          $orders=Order::with('products','address','user')->whereIs_deliver(0)->paginate(5);
+        }else{
+              $orders=Order::with('products','address','user')->paginate(5);
+        }
         return view('admin.orders.index',compact('orders'));
     }
 
@@ -91,7 +98,10 @@ class AdminOrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       $order=Order::findOrFail($id);
+       $order->is_deliver=1;
+       $order->save();
+       return back()->with('message','order marked as delivered');
     }
 
     /**

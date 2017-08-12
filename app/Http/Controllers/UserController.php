@@ -19,10 +19,19 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function order()
+    public function order($status='')
     {
+
+        
         $user=Auth::user();
-        $orders=$user->orders()->with('products','address')->get();
+        if ($status=='deliver') {
+            $orders=$user->orders()->with('products','address')->whereIs_deliver(1)->get();
+        }elseif($status=='pending'){
+          $orders=$user->orders()->with('products','address')->whereIs_deliver(0)->get();
+        }else{
+            $orders=$user->orders()->with('products','address')->get();
+        }
+       
         return view('user.order',compact('orders'));
     }
 

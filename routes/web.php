@@ -29,7 +29,8 @@ Route::get('/archive/{type}/{name}','HomeController@archive')->name('home.archiv
 Route::get('/user/{name}','UserController@edit')->name('user.edit');
 Route::put('/user/{id}','UserController@update')->name('user.update');
 //user order route
- Route::get('/orders','UserController@order')->name('order');
+ Route::get('/orders/{status?}','UserController@order')->name('order');
+ 
 
 
 //cart
@@ -64,9 +65,10 @@ Route::group(['prefix' => 'admin','middleware'=>'admin'], function() {
 
     Route::resource('/categories','AdminCategoriesController',['except'=>['show','edit','create']]);
      Route::resource('/types','AdminTypesController',['except'=>['show','edit','create']]);
-   Route::get('/orders','AdminOrderController@index')->name('admin.orders');
-   Route::get('/orders/pending','AdminOrderController@pending')->name('order.pending');
-   Route::get('/orders/delivered','AdminOrderController@delivered')->name('order.delivered');
+   Route::get('/orders/{status?}','AdminOrderController@index')->name('admin.orders');
+   // Route::get('/orders/pending','AdminOrderController@pending')->name('order.pending');
+   // Route::get('/orders/delivered','AdminOrderController@delivered')->name('order.delivered');
+    Route::put('/orders/{order_id}','AdminOrderController@update')->name('order.update');
 
 
 

@@ -60,7 +60,7 @@
                     <button type="button" class="btn btn-primary pull-right 3x" data-dismiss="modal" aria-hidden="true">No</button>
                   {!! Form::model($category,['action'=>['AdminCategoriesController@update',$category->id],'method'=>'put']) !!}
 
-               <div class="form-group col-md-12 {{ $errors->has('title') ? ' has-error' : '' }}">
+               <div class="form-group col-md-12 {{ $errors->has('name') ? ' has-error' : '' }}">
                  {!! Form::label('name','Category name', []) !!}
                  {!! Form::text('name',null, ['class'=>"form-control"]) !!}
                </div>
