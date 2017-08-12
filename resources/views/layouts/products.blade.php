@@ -18,7 +18,7 @@
                   <div class="availability">
                      @if ($product->inStock>5)
                         <span class="label label-success">Available</span>
-                      @elseif($product->inStock<=5)
+                      @elseif($product->inStock<=5 && $product->inStock>0)
                       <span class="label label-warning">Low Stock</span>
                       @elseif($product->inStock==0)
                       <span class="label label-danger">Not Available</span>

@@ -99,8 +99,10 @@ foreach ($cartItems as $item) {
      $order->products()->attach($item->id,['qty'=>$item->qty,'total'=>$item->total()]);
 
      //now need reduce the product from in stock
+    $remainingStock=($product->inStock-$item->qty);
 
-    
+    $product->inStock=$remainingStock;
+    $product->save();
      
 
 }
