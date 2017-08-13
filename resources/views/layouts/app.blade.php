@@ -20,6 +20,8 @@
              @if(Session::has('message'))
              @include('alert.success')
              @endif
+    <!-- Include this after the sweet alert js file -->
+    @include('sweet::alert')
           </div>
          @yield('content') 
   

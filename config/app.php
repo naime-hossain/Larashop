@@ -179,6 +179,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        UxWeb\SweetAlert\SweetAlertServiceProvider::class,
 
     ],
 
@@ -232,6 +233,7 @@ return [
          'Html' => Collective\Html\HtmlFacade::class,
          'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
          'Image' => Intervention\Image\Facades\Image::class,
+          'Alert' => UxWeb\SweetAlert\SweetAlert::class,
 
     ],
 

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Cart;
+use Alert;
 use App\Product;
+use Cart;
+use Illuminate\Http\Request;
 class CartController extends Controller
 {
     /**
@@ -64,7 +65,8 @@ class CartController extends Controller
            return back()->with('message','This  Product Quantity is not enough for your order.only '.$product->inStock.' piece available');
        }
        Cart::add($id,$product->name,$request->qty,$product->price,['size'=>$product->size,'stock'=>$product->inStock]);
-       return back()->with('message','New item added to your cart');
+       Alert::success('Good job!New item added to your cart')->autoclose(1000);
+       return redirect()->back()->with('message','New item added to your cart');
     }
 
     /**
