@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Alert;
 class ReviewController extends Controller
 {
     /**
@@ -47,10 +47,12 @@ class ReviewController extends Controller
      // check if the user already give review or not
      $user_review=$user->reviews()->whereProduct_id($product_id)->first();
        if ($user_review) {
+        Alert::warning('You already give review this product')->autoclose(1500);
            return back()->with('message','You already give review this product');
        }
      $input['user_id']=$user->id;
      $product->reviews()->create($input);
+     Alert::success('Good Job ! review added')->autoclose(1500);
      return back()->with('message','review added');
 
     }

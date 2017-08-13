@@ -8,6 +8,7 @@ use App\Role;
 use App\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Alert;
 class UserController extends Controller
 {
 
@@ -76,7 +77,7 @@ class UserController extends Controller
     public function edit($name)
     {
         // $roles=Role::pluck('name','id')->all();
-         $user=User::with('photos')->whereName($name)->first();
+         $user=User::with('photos')->whereName($name)->firstOrFail();
          $auth_user=Auth::user();
         // return $user->name;
        if ($user) {
@@ -84,6 +85,7 @@ class UserController extends Controller
         if ($auth_user->id==$user->id) {
             return view('user.edit',compact('user','roles'));
         }else{
+            Alert::warning('The User was not you.')->autoclose(1500);
             return redirect(route('user.edit',[$auth_user->name]));
         }
        }
@@ -132,7 +134,7 @@ class UserController extends Controller
         }
         $user->update($input);
         if ($user) {
-            # code...
+            Alert::success('Good job ! User Info updated  succefully')->autoclose(1500);
             return back()->with('message', 'User Info updated  succefully');
 
         }

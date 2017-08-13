@@ -80,6 +80,7 @@ class CartController extends Controller
     {
        
         $cartUpdate=Cart::update($id,['qty'=>$request->qty,'options'=>['size'=>"$request->size"]]);
+         Alert::success('Good job! cart updated')->autoclose(1000);
         return back()->with('message','cart updated');
     }
 
@@ -92,6 +93,7 @@ class CartController extends Controller
     public function destroy($id)
     {
         Cart::remove($id);
-        return back()->with('message','item remove from cart');
+         Alert::warning('Item removed from your cart')->autoclose(1000);
+        return back()->with('message','Item remove from cart');
     }
 }

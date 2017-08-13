@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -72,7 +73,7 @@ class AddressController extends Controller
        //store a sesion for payment page to validte user go through checkout page
        session(['accessToPayment' =>rand(10,1000*29)]);
     }
-   
+   Alert::success('You Are now alowed to Payment gateway')->autoclose(1500);
     // allow to payment gateway;
    return redirect(route('payment'));
   

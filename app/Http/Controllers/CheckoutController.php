@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Mail;
 use Stripe\Charge;
 use Stripe\Customer;
 use Stripe\Stripe;
+use Alert;
 class CheckoutController extends Controller
 {
 
@@ -122,7 +123,7 @@ $request->session()->forget('accessToPayment');
   $request->session()->forget('addressId');
 
 
-
+ Alert::success('Good job!Your oder is placed plaese wait for the delivery')->autoclose(1000);
   return redirect()->route('home')->with('message','Your oder is placed plaese wait for the delivery');
 
     }
