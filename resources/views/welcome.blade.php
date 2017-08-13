@@ -38,8 +38,10 @@
          </div>
           @if ($feature_products->count()>0)
 
-           
-                  @include('layouts.feature_products')
+                     @php
+                       $products=$feature_products;
+                     @endphp
+                  @include('layouts.products')
 
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <h4>Like Our products?

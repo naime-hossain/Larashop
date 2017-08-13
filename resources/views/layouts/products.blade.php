@@ -62,7 +62,7 @@
               
                   <div class="caption">
                       <h4 class="pull-right">{{ $product->price }}</h4>
-                      <h4><a href="{{ route('home.product',$product->id) }}">{{ $product->name }}</a>
+                      <h4><a href="{{ route('home.product',$product->slug) }}">{{ $product->name }}</a>
                       </h4>
                     @if ($product->reviews()->count()>0)
                     <div class="ratings">

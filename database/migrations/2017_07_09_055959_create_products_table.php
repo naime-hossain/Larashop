@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('price');
+            $table->string('slug');
             $table->integer('category_id');
             $table->string('size');
             $table->integer('is_available')->default(1);

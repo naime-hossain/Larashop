@@ -39,10 +39,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function Product($id)
+    public function Product($slug)
     {
         //
-        $product=Product::with('category','types')->findOrFail($id);
+        $product=Product::with('category','types')->whereSlug($slug)->firstOrFail();
         return view('products.show',compact('product'));
     }
 

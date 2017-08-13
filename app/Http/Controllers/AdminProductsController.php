@@ -67,6 +67,7 @@ class AdminProductsController extends Controller
            $category=Category::create(['name'=>'uncategorized']);
            $input['category_id']=$category->id;
        }
+       $input['slug']=str_slug($request->name,'-');
         $product=Product::create($input);
          if ($request->hasFile('image')) {
             foreach ($request->image as $file)
