@@ -32,6 +32,14 @@ public function __construct(){
     {
         
             $cartItems=Cart::content();
+            foreach ($cartItems as $item) {
+               $product=Product::find($item->id);
+               if ($item->qty>$product->inStock) {
+                  Alert::warning("$product->name has $product->inStock  piece available but you try to order $item->qty  piece")->autoclose(2000);
+                  return redirect('/cart')->with('message',"$product->name has $product->inStock  piece available but you try to order $item->qty  piece");
+               }
+            }
+
             if (count($cartItems)>0) {
                 $addresses=Auth::user()->addresses;
                 return view('checkout.shipingInfo',compact('cartItems','addresses'));
@@ -55,7 +63,7 @@ public function __construct(){
              $cartItems=Cart::content();
             return view('checkout.paymentform',compact('cartItems'));
         }
-        return redirect(route('checkout'))->with('complete the checkout processs Please then procced to payment');
+        return redirect(route('checkout'))->with('message','complete the checkout processs Please then procced to payment');
        
     }
 

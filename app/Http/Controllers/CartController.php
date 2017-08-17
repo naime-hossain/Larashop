@@ -61,9 +61,22 @@ class CartController extends Controller
     {
 
        $product=Product::findOrFail($id);
-       if ($product->inStock<$request->qty) {
-           return back()->with('message','This  Product Quantity is not enough for your order.only '.$product->inStock.' piece available');
-       }
+        $cartItems=Cart::content();
+            foreach ($cartItems as $item) {
+          
+               if ($item->id==$product->id) {
+                     $itemorder=$request->qty+$item->qty;
+                    if ($product->inStock<$itemorder) {
+            Alert::warning("$product->name has $product->inStock  piece available but you try to order $itemorder piece")->autoclose(2000);
+           return back()->with('message',"$product->name has $product->inStock  piece available but you try to order $itemorder  piece");
+              }
+
+                  
+                  
+               }
+            }
+
+      
        Cart::add($id,$product->name,$request->qty,$product->price,['size'=>$product->size,'stock'=>$product->inStock]);
        Alert::success('Good job!New item added to your cart')->autoclose(1000);
        return redirect()->back()->with('message','New item added to your cart');
