@@ -253,7 +253,21 @@
 <!-- End Tabs with icons on Card -->
              </div>
           </div>
-       </div>            
+       </div> 
+          <div class="row">
+      <div class="feature_product_wrap">
+         <div class="col-md-12">
+           <h2>You may also like</h2>
+         </div>
+          @if ($similar_products->count()>0)
+
+                     @php
+                       $products=$similar_products;
+                     @endphp
+                  @include('layouts.products')
+            @endif
+      </div>
+    </div>        
 	</div>	
 
 @endsection

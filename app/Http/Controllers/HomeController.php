@@ -43,7 +43,9 @@ class HomeController extends Controller
     {
         //
         $product=Product::with('category','types')->whereSlug($slug)->firstOrFail();
-        return view('products.show',compact('product'));
+         $category=$product->category;
+         $similar_products=$category->products()->with('category','types')->take(4)->inRandomOrder()->get();
+        return view('products.show',compact('product','similar_products'));
     }
 
 
