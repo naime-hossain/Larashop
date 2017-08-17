@@ -28,6 +28,7 @@
                     <th>photo</th>
                     <th>Type</th>
                     <th>category</th>
+                    <th>in Stock</th>
                     <th>Created At</th>
                     <th>Updated At</th>
                     <th>Actions</th>
@@ -70,6 +71,7 @@
                      
                      </td>
                 
+                      <td>{{ $product->inStock }}</td>
                       <td>{{ $product->created_at->diffForHumans() }}</td>
                       <td>{{ $product->updated_at->diffForHumans() }}</td>
                     <td>

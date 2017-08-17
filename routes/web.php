@@ -54,9 +54,7 @@ Route::post('/payment','CheckoutController@storePayment')->name('storepayment');
 //Admin routes
 Route::group(['prefix' => 'admin','middleware'=>'admin'], function() {
     //
-    Route::get('/', function () {
-    return view('admin.index');
-});
+    Route::get('/','AdminController@index');
 
     Route::resource('/users','AdminUsersController',['except'=>['create']]);
    

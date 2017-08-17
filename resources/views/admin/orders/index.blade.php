@@ -82,7 +82,7 @@
        {{-- model end --}} 
                   @else
                   {{-- <a href="{{ route('products.edit',$product->id) }}" title=""></a> --}}
-                  <i title="adjust stock" class="fa fa-adjust btn btn-warning"></i>
+                  <i title="adjust stock" class="fa fa-adjust btn btn-success"></i>
                 @endif
 
 
