@@ -16,6 +16,8 @@ class CartController extends Controller
     public function index()
     {
          $cartItems=Cart::content();
+
+
          return view('cart.index',compact('cartItems'));
     }
 
@@ -59,7 +61,11 @@ class CartController extends Controller
      */
     public function add(Request $request,$id)
     {
-
+       $this->validate($request,[
+        'size'=>'required',
+        'color'=>'required',
+        'qty'=>'required',
+        ]);
        $product=Product::findOrFail($id);
         $cartItems=Cart::content();
             foreach ($cartItems as $item) {
@@ -77,7 +83,7 @@ class CartController extends Controller
             }
 
       
-       Cart::add($id,$product->name,$request->qty,$product->price,['size'=>$request->size,'color'=>$product->inStock]);
+       Cart::add($id,$product->name,$request->qty,$product->price,['size'=>$request->size,'color'=>$request->color]);
        Alert::success('Good job!New item added to your cart')->autoclose(1000);
        return redirect()->back()->with('message','New item added to your cart');
     }
@@ -92,7 +98,7 @@ class CartController extends Controller
     public function update(Request $request, $id)
     {
        
-        $cartUpdate=Cart::update($id,['qty'=>$request->qty,'options'=>['size'=>"$request->size"]]);
+        $cartUpdate=Cart::update($id,['qty'=>$request->qty,'options'=>['size'=>"$request->size",'color'=>$request->color]]);
          Alert::success('Good job! cart updated')->autoclose(1000);
         return back()->with('message','cart updated');
     }

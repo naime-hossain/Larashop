@@ -77,7 +77,7 @@
                                 <div class="col-sm-3 col-xs-3">
                                   @php
                                 
-                                   $product=App\Product::find(1);
+                                   $product=App\Product::find($item->id);
                                   @endphp
                                     @if (count($product->photos)>0)
                                         @foreach ($product->photos as $photo)

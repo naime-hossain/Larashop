@@ -25,6 +25,7 @@
                            <th>sub total</th>
                            <th>quantity</th>
                            <th>size</th>
+                           <th>color</th>
                            <th>Actions</th>
                          </tr>
                        </thead>
@@ -50,13 +51,23 @@
 
                            </td>
                            <td>
-                <div class="form-group">
-
-
-              {!! Form::select('size',['small'=>'small','medium'=>'medium','large'=>'large'],$cartItem->options->size, ['class'=>'form-control']) !!}
-
-              </div>
+                           @php
+                             $product=App\Product::find($cartItem->id);
+                              $sizes=$product->sizes()->pluck('name');
+                              $colors=$product->colors()->pluck('name');
+                           @endphp
+              <div class="form-group">
+           
+         {!! Form::select('size',count($sizes)>0?$sizes:['uncategorized'],$cartItem->options->size, ['placeholder' => 'Pick a size...','class'=>'form-control']) !!}
+       </div>
+         
 </td>
+<td>  <div class="form-group">
+         
+         {!! Form::select('color',count($colors)>0?$colors:['uncategorized'],$cartItem->options->color, ['placeholder' => 'Pick a color...','class'=>'form-control']) !!}
+       </div>
+       </td>
+
                            <td>
                      {!! Form::submit("Update",
                      [
