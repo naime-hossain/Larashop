@@ -41,7 +41,7 @@
   @endforeach
   
 
- <div class="col-md-8 col-offset-2">
+ <div class="col-md-12 ">
  @if ($errors->count()>0)
   @include('alert.error')
 @endif
@@ -66,22 +66,38 @@
        {!! Form::label('category','Select Category for product', []) !!}
      {!! Form::select('category_id',count($categories)>0?$categories:[0=>'uncategorized'],null, ['placeholder' => 'Pick a category...','class'=>'form-control']) !!}
    </div>
-    <div class="form-group col-md-6">
-       {!! Form::label('type','Select type for product', []) !!}
-     {!! Form::select('type_id',count($types)>0?$types:[0=>'uncategorized'],null, ['placeholder' => 'Pick a type...','class'=>'form-control']) !!}
+  
+    <div class="form-group col-md-6 {{ $errors->has('type') ? ' has-error' : '' }}">
+       {!! Form::label('type','product type', []) !!}
+     {!! Form::text('type',$types, ['class'=>"form-control",'value'=>old('type'),'data-role'=>"tagsinput"]) !!}
    </div>
-    <div class="form-group col-md-6 {{ $errors->has('new_type') ? ' has-error' : '' }}">
-       {!! Form::label('new_type','Add a new Type', []) !!}
-     {!! Form::text('new_type',null, ['class'=>"form-control",'value'=>old('new_type')]) !!}
+  
+ <div class="form-group col-md-6 {{ $errors->has('size') ? ' has-error' : '' }}">
+       {!! Form::label('size','product size', []) !!}
+     {!! Form::text('size',$sizes, ['class'=>"form-control",'value'=>old('size'),'data-role'=>"tagsinput"]) !!}
    </div>
- <div class="form-group col-md-6">
-       {!! Form::label('size','Select size for product', []) !!}
-     {!! Form::select('size',['small'=>'small','medium'=>'medium','large'=>'large'],null, ['placeholder' => 'Pick a size...','class'=>'form-control']) !!}
+
+   <div class="form-group col-md-6 {{ $errors->has('color') ? ' has-error' : '' }}">
+       {!! Form::label('color','product color', []) !!}
+     {!! Form::text('color',$colors, ['class'=>"form-control",'value'=>old('size'),'data-role'=>"tagsinput"]) !!}
    </div>
+
 
    <div class="form-group col-md-6">
        {!! Form::label('inStock','Set stock Level for this product', []) !!}
          {!! Form::number('inStock',null,['class'=>'form-control','min'=>1]) !!}
+   </div>
+       <div class="form-group col-md-6">
+       {!! Form::label('is_feature','Feature this product', []) !!}
+         
+        <div class="checkbox">
+          <label>
+            {!! Form::checkbox('is_feature','1',$product->is_feature?'checked':'', []) !!}
+
+            Want to feature it?
+          </label>
+        </div>
+        
    </div>
     <div class=" col-md-6">
        {!! Form::label('image[]','add  another  Photo', ['class'=>'btn btn-info']) !!}

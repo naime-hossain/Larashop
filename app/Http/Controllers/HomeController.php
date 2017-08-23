@@ -17,9 +17,10 @@ class HomeController extends Controller
     {
         $products=Product::with('category','types','reviews')->latest()->take(5)->get();
         $feature_products=Product::with('category','types','reviews')->latest()->whereIs_feature(1)->take(5)->get();
+         $popular_products=Product::has('reviews', '>=', 2)->with('category','types','reviews')->latest()->take(5)->get();
         
 
-        return view('welcome',compact('products','feature_products'));
+        return view('welcome',compact('products','feature_products','popular_products'));
     }
 
     /**
@@ -44,7 +45,7 @@ class HomeController extends Controller
         //
         $product=Product::with('category','types')->whereSlug($slug)->firstOrFail();
          $category=$product->category;
-         $similar_products=$category->products()->with('category','types')->take(4)->inRandomOrder()->get();
+         $similar_products=$category->products()->with('category','types')->where('id','<>',$product->id)->take(4)->inRandomOrder()->get();
         return view('products.show',compact('product','similar_products'));
     }
 

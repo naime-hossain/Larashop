@@ -2,6 +2,7 @@
 {{-- <script src="/admin/plugins/jquery-1.10.2.js"></script>
 <script src="/admin/plugins/bootstrap/bootstrap.min.js"></script> --}}
 <script src="/js/app.js"></script>
+<script src="/js/bootstrap-tagsinput.js"></script>
 <script src="/admin_assets/scripts/jquery.metisMenu.js"></script>
 
 <script src="/admin_assets/scripts/siminta.js"></script>
@@ -17,7 +18,7 @@
          
 
 
-              $("html").niceScroll({
+             $("html").niceScroll({
                cursorcolor:"#002c53"
         });
         }); 

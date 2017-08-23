@@ -75,4 +75,28 @@ public function reviews()
 	// hasMany(RelatedModel, foreignKeyOnRelatedModel = product_id, localKey = id)
 	return $this->hasMany(Review::class);
 }
+
+
+  /**
+    * Products belongs to many Colors.
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+    */
+   public function colors()
+   {
+   
+   	return $this->belongsToMany(Color::class);
+   }
+
+     /**
+    * Products belongs to many sizes.
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+    */
+   public function sizes()
+   {
+   
+   	return $this->belongsToMany(Size::class);
+   }
+
 }

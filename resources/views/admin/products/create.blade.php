@@ -34,9 +34,15 @@
        {!! Form::label('type','Select type for product', []) !!}
      {!! Form::select('type_id',count($types)>0?$types:[0=>'uncategorized'],'', ['placeholder' => 'Pick a type...','class'=>'form-control']) !!}
    </div>
- <div class="form-group col-md-6">
-       {!! Form::label('size','Select size for product', []) !!}
-     {!! Form::select('size',['small'=>'small','medium'=>'medium','large'=>'large'],'', ['placeholder' => 'Pick a size...','class'=>'form-control']) !!}
+
+    <div class="form-group col-md-6 {{ $errors->has('size') ? ' has-error' : '' }}">
+       {!! Form::label('size','product size', []) !!}
+     {!! Form::text('size',$sizes, ['class'=>"form-control",'value'=>old('size'),'data-role'=>"tagsinput"]) !!}
+   </div>
+
+   <div class="form-group col-md-6 {{ $errors->has('color') ? ' has-error' : '' }}">
+       {!! Form::label('color','product color', []) !!}
+     {!! Form::text('color',$colors, ['class'=>"form-control",'value'=>old('size'),'data-role'=>"tagsinput"]) !!}
    </div>
 
     <div class="form-group col-md-6">

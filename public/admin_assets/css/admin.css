@@ -98,3 +98,9 @@ img.admin_product_edit {
     font-size: 5px;
     /* left: 4px; */
 }
+
+img {
+    
+    max-width: 100%;
+    
+}

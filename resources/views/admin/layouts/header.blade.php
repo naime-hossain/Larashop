@@ -6,6 +6,7 @@
     <title>Larashop</title>
     <!-- Core CSS - Include with every page -->
     <link href="/css/app.css" rel="stylesheet" />
+    <link href="/css/bootstrap-tagsinput.css" rel="stylesheet" />
     <link href="/css/font-awesome.min.css" rel="stylesheet" />
     
     <link href="/admin_assets/css/style.css" rel="stylesheet" />

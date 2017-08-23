@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('heading')
-	<h1>single Product</h1>
+	<h1>{{ $product->name }}</h1>
 @endsection
 @section('extra_header')
    <link href="{{ asset('css/zoomple.css') }}" rel="stylesheet" />
@@ -256,11 +256,11 @@
        </div> 
           <div class="row">
       <div class="feature_product_wrap">
-         <div class="col-md-12">
+         
+          @if ($similar_products->count()>0)
+              <div class="col-md-12">
            <h2>You may also like</h2>
          </div>
-          @if ($similar_products->count()>0)
-
                      @php
                        $products=$similar_products;
                      @endphp
