@@ -106,7 +106,7 @@ class AdminProductsController extends Controller
         // attach or create product size
         $sizes=explode(',',$request->size);
         foreach ($sizes as $name) {
-            $size=Size::whereName('$name')->first();
+            $size=Size::whereName($name)->first();
             if ($size) {
                 $product->sizes()->attach($size->id);
             }else{
@@ -117,7 +117,7 @@ class AdminProductsController extends Controller
           // attach or create product color
         $colors=explode(',',$request->color);
         foreach ($colors as $name) {
-            $color=Color::whereName('$name')->first();
+            $color=Color::whereName($name)->first();
             if ($color) {
                 $product->colors()->attach($color->id);
             }else{
@@ -230,7 +230,7 @@ class AdminProductsController extends Controller
         // attach or create product type
         $types=explode(',',$request->type);
         foreach ($types as $name) {
-            $type=Type::whereName('$name')->first();
+            $type=Type::whereName($name)->first();
             if ($type) {
                 $type_id[]=$type->id;
             }else{
@@ -244,7 +244,7 @@ class AdminProductsController extends Controller
                    // attach or create product size
         $sizes=explode(',',$request->size);
         foreach ($sizes as $name) {
-            $size=Size::whereName('$name')->first();
+            $size=Size::whereName($name)->first();
             if ($size) {
                 $size_id[]=$size->id;
             }else{
@@ -257,7 +257,7 @@ class AdminProductsController extends Controller
           // attach or create product color
         $colors=explode(',',$request->color);
         foreach ($colors as $name) {
-            $color=Color::whereName('$name')->first();
+            $color=Color::whereName($name)->first();
               if ($color) {
                 $color_id[]=$color->id;
             }else{

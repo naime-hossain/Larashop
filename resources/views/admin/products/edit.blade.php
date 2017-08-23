@@ -53,41 +53,41 @@
 
  {!! Form::model($product,['action'=>['AdminProductsController@update',$product->id],'method'=>'put','files' => true]) !!}
 
-   <div class="form-group col-md-6 {{ $errors->has('name') ? ' has-error' : '' }}">
+   <div class="form-group col-md-4 {{ $errors->has('name') ? ' has-error' : '' }}">
        {!! Form::label('name','product name', []) !!}
      {!! Form::text('name',null, ['class'=>"form-control",'value'=>old('name')]) !!}
    </div>
-     <div class="form-group col-md-6 {{ $errors->has('price') ? ' has-error' : '' }}">
+     <div class="form-group col-md-4 {{ $errors->has('price') ? ' has-error' : '' }}">
        {!! Form::label('price','product price', []) !!}
      {!! Form::text('price',null, ['class'=>"form-control",'value'=>old('price')]) !!}
    </div>
 
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-4">
        {!! Form::label('category','Select Category for product', []) !!}
      {!! Form::select('category_id',count($categories)>0?$categories:[0=>'uncategorized'],null, ['placeholder' => 'Pick a category...','class'=>'form-control']) !!}
    </div>
   
-    <div class="form-group col-md-6 {{ $errors->has('type') ? ' has-error' : '' }}">
+    <div class="form-group col-md-4 {{ $errors->has('type') ? ' has-error' : '' }}">
        {!! Form::label('type','product type', []) !!}
      {!! Form::text('type',$types, ['class'=>"form-control",'value'=>old('type'),'data-role'=>"tagsinput"]) !!}
    </div>
   
- <div class="form-group col-md-6 {{ $errors->has('size') ? ' has-error' : '' }}">
+ <div class="form-group col-md-4 {{ $errors->has('size') ? ' has-error' : '' }}">
        {!! Form::label('size','product size', []) !!}
      {!! Form::text('size',$sizes, ['class'=>"form-control",'value'=>old('size'),'data-role'=>"tagsinput"]) !!}
    </div>
 
-   <div class="form-group col-md-6 {{ $errors->has('color') ? ' has-error' : '' }}">
+   <div class="form-group col-md-4 {{ $errors->has('color') ? ' has-error' : '' }}">
        {!! Form::label('color','product color', []) !!}
      {!! Form::text('color',$colors, ['class'=>"form-control",'value'=>old('size'),'data-role'=>"tagsinput"]) !!}
    </div>
 
 
-   <div class="form-group col-md-6">
+   <div class="form-group col-md-4">
        {!! Form::label('inStock','Set stock Level for this product', []) !!}
          {!! Form::number('inStock',null,['class'=>'form-control','min'=>1]) !!}
    </div>
-       <div class="form-group col-md-6">
+       <div class="form-group col-md-4">
        {!! Form::label('is_feature','Feature this product', []) !!}
          
         <div class="checkbox">
@@ -99,7 +99,7 @@
         </div>
         
    </div>
-    <div class=" col-md-6">
+    <div class=" col-md-4">
        {!! Form::label('image[]','add  another  Photo', ['class'=>'btn btn-info']) !!}
      {!! Form::file('image[]', ['class'=>'form-control','multiple'=>true]) !!}
    </div>

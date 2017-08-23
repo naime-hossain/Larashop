@@ -105,13 +105,27 @@
                 <div class="cart_button">
                 {{--   <a href="{{ route('cart.add',$product->id) }}" class="btn btn-primary btn-block">add to cart</a> --}}
         {!! Form::open(['action'=>['CartController@add',$product->id],'method'=>'post','class'=>'']) !!}
+        <div class="form-group col-md-6">
+        {!! Form::label('qty','quantity', []) !!}
          {!! Form::number('qty','1', ['min'=>1,'max'=>$product->inStock,'required']) !!}
+         </div>
+         
+       <div class="form-group col-md-6">
+           
+         {!! Form::select('size',count($sizes)>0?$sizes:['uncategorized'],'', ['placeholder' => 'Pick a size...','class'=>'form-control']) !!}
+       </div>
+         <div class="form-group col-md-12">
+         
+         {!! Form::select('color',count($colors)>0?$colors:['uncategorized'],'', ['placeholder' => 'Pick a color...','class'=>'form-control']) !!}
+       </div>
+        <div class="form-group col-md-12">
           {!! Form::button("add to cart",
            [
            'class'=>'btn btn-primary ',
          
            'type'=>'add to cart'
            ]) !!}
+           </div>
               
 
         {!! Form::close() !!}
@@ -119,7 +133,7 @@
                 <div class="cat_button">
                   <a href="{{ route('home.archive',['category',$product->category->name]) }}" class="btn btn-primary cat_btn">{{ $product->category->name }}</a>
 
-                   <a href="{{ route('home.archive',['size',$product->size]) }}" class="btn btn-primary size_btn">{{ $product->size }}</a>
+                  
 
                    @foreach ($product->types as $type)
                          <a href="{{ route('home.archive',['type',$type->name]) }}" class="btn btn-primary type_btn">{{ 

@@ -77,7 +77,7 @@ class CartController extends Controller
             }
 
       
-       Cart::add($id,$product->name,$request->qty,$product->price,['size'=>$product->size,'stock'=>$product->inStock]);
+       Cart::add($id,$product->name,$request->qty,$product->price,['size'=>$request->size,'color'=>$product->inStock]);
        Alert::success('Good job!New item added to your cart')->autoclose(1000);
        return redirect()->back()->with('message','New item added to your cart');
     }
