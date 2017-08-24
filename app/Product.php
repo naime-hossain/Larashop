@@ -62,7 +62,7 @@ public function photos()
 public function orders()
 {
 	// belongsTo(RelatedModel, foreignKey = orders_id, keyOnRelatedModel = id)
-	return $this->belongsToMany(Order::class)-withPivot('qty','total');
+	return $this->belongsToMany(Order::class)-withPivot('qty','total','color','size');
 }
 
 /**

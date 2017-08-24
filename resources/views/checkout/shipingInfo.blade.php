@@ -4,9 +4,7 @@
 @endsection
 @section('content')
         
-      @if ($errors->count()>0)
-        @include('alert.error')
-        @endif
+     
         
 <div class="section section-tabs">
 

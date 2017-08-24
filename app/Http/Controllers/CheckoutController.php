@@ -105,7 +105,7 @@ $order=$user->orders()->create(['address_id'=>$addressId,'order_token'=>$ordrTok
 
 foreach ($cartItems as $item) {
      $product=Product::findOrFail($item->id);
-     $order->products()->attach($item->id,['qty'=>$item->qty,'total'=>$item->total()]);
+     $order->products()->attach($item->id,['qty'=>$item->qty,'total'=>$item->total(),'size'=>$item->size,'color'=>$item->color]);
 
      //now need reduce the product from in stock
     $remainingStock=($product->inStock-$item->qty);

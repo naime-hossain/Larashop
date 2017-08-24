@@ -18,6 +18,8 @@ class CreateOrderProductTable extends Migration
             $table->integer('order_id');
             $table->integer('product_id');
             $table->integer('qty');
+            $table->string('color');
+            $table->string('size');
             $table->float('total');
             $table->timestamps();
         });
