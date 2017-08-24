@@ -20,12 +20,16 @@ class AdminController extends Controller
     {
         $users=User::all()->count();
         $products=Product::all()->count();
+        $feature_products=Product::whereIsFeature(1)->get()->count();
+        $available_products=Product::where('inStock','>',5)->get()->count();
+        $notAvailable_products=Product::where('inStock','=',0)->get()->count();
+        $lowStock_products=Product::where('inStock','<=',5)->get()->count();
         $orders=Order::all()->count();
         $delivered=Order::whereIs_deliver(1)->get()->count();
         $pending=Order::whereIs_deliver(0)->get()->count();
         $categories=Category::all()->count();
         $types=Type::all()->count();
-        return view('admin.index',compact('users','categories','products','delivered','pending','types','orders'));
+        return view('admin.index',compact('users','categories','products','delivered','pending','types','orders','feature_products','available_products','notAvailable_products','lowStock_products'));
     }
 
     /**

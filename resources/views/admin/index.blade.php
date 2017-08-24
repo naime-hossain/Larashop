@@ -21,10 +21,10 @@
   <div class="row">
   <!--quick info section -->
   <div class="col-lg-3">
-      <div class="alert alert-danger text-center img-raised img-rounded">
+      <div class="alert alert-info text-center img-raised img-rounded">
           <i class="fa fa-user fa-3x"></i>&nbsp;<h2 class="text-lead">{{ $users }}</h2>
             <p>Users</p>
-             <a class="btn btn-danger" href="{{ route('users.index') }}" title="">View All Users</a>
+             <a class="btn btn-info" href="{{ route('users.index') }}" title="">View All Users</a>
       </div>
   </div>
 
@@ -34,6 +34,31 @@
           <i class="fa fa-user fa-3x"></i>&nbsp;<h2 class="text-lead">{{$products }}</h2>
             <p>products</p>
              <a class="btn btn-success" href="{{ route('products.index') }}" title="">View All products</a>
+      </div>
+  </div>
+    {{-- available products --}}
+  <div class="col-lg-3">
+      <div class="alert alert-info text-center img-raised img-rounded">
+          <i class="fa fa-user fa-3x"></i>&nbsp;<h2 class="text-lead">{{$available_products }}</h2>
+            <p>available products</p>
+             <a class="btn btn-info" href="{{ route('products.index','available') }}" title="">View available products</a>
+      </div>
+  </div>
+
+     {{-- lowStock products --}}
+  <div class="col-lg-3">
+      <div class="alert alert-warning text-center img-raised img-rounded">
+          <i class="fa fa-user fa-3x"></i>&nbsp;<h2 class="text-lead">{{$lowStock_products }}</h2>
+            <p>lowStock products</p>
+             <a class="btn btn-warning" href="{{ route('products.index','lowStock') }}" title="">View lowStock products</a>
+      </div>
+  </div>
+   {{-- notAvailable products --}}
+  <div class="col-lg-3">
+      <div class="alert alert-danger text-center img-raised img-rounded">
+          <i class="fa fa-user fa-3x"></i>&nbsp;<h2 class="text-lead">{{$notAvailable_products }}</h2>
+            <p>Not Available Products</p>
+             <a class="btn btn-danger" href="{{ route('products.index','notAvailable') }}" title="">View Not Available products</a>
       </div>
   </div>
     {{-- orders --}}

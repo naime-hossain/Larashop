@@ -18,10 +18,38 @@ class AdminProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($status='')
     {
-        $products=Product::with('photos','types','category')->paginate(10);
-        return view('admin.products.index',compact('products'));
+        
+       switch ($status) {
+           case 'feature':
+               $products=Product::whereIs_feature(1)->with('photos','types','category')->paginate(10);
+
+               break;
+               case 'lowStock':
+               $products=Product::where('inStock','<=',5)->with('photos','types','category')->paginate(10);
+
+               break;
+                case 'notAvailable':
+               $products=Product::where('inStock','=',0)->with('photos','types','category')->paginate(10);
+
+               break;
+                case 'available':
+               $products=Product::where('inStock','>',5)->with('photos','types','category')->paginate(10);
+
+               break;
+
+           
+            default:
+            $products=Product::with('photos','types','category')->paginate(10);
+          
+               break;
+       }
+      
+         return view('admin.products.index',compact('products'));
+
+       
+        
     }
 
     /**

@@ -58,7 +58,8 @@ Route::group(['prefix' => 'admin','middleware'=>'admin'], function() {
 
     Route::resource('/users','AdminUsersController',['except'=>['create']]);
    
-    Route::resource('/products','AdminProductsController');
+    Route::resource('/products','AdminProductsController',['except'=>['index','show']]);
+    Route::get('/products/{status?}','AdminProductsController@index')->name('products.index');
     Route::get('/products/{product_id}/removephoto/{photo_id}','AdminProductsController@remove_photo')->name('photo.remove');
 
     Route::resource('/categories','AdminCategoriesController',['except'=>['show','edit','create']]);

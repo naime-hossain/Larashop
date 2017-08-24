@@ -53,8 +53,14 @@
                            <td>
                            @php
                              $product=App\Product::find($cartItem->id);
-                              $sizes=$product->sizes()->pluck('name');
+                             if ($product) {
+                               $sizes=$product->sizes()->pluck('name');
                               $colors=$product->colors()->pluck('name');
+                             }else{
+                              $sizes='';
+                                 $colors='';
+                             }
+                              
                            @endphp
               <div class="form-group">
            
