@@ -50,6 +50,8 @@
                     <th>product name</th>
                     <th>product quantity</th>
                     <th>product photo</th>
+                    <th>product size</th>
+                    <th>product color</th>
                     <th>product Price</th>
                   
                 </tr>
@@ -79,6 +81,8 @@
 
             @endif
             </td>
+            <td>{{ $product->pivot->size  }}</td>
+            <td>{{ $product->pivot->color  }}</td>
             <td>${{ $product->pivot->total  }}</td>
         
          </tr>

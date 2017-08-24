@@ -52,6 +52,9 @@ class ReviewController extends Controller
        }
      $input['user_id']=$user->id;
      $product->reviews()->create($input);
+     $rating=$product->reviews()->sum('rating')/$product->reviews()->count();
+     $product->rating=$rating;
+     $product->save();
      Alert::success('Good Job ! review added')->autoclose(1500);
      return back()->with('message','review added');
 

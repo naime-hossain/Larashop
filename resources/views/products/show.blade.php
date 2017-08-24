@@ -77,26 +77,24 @@
               <h4 class="pull-right">{{ $product->price }}</h4>
               <h4>{{ $product->name }}
               </h4>
-              @if ($product->reviews()->count()>0)
-            <div class="ratings">
-              <p class="pull-right">{{ $product->reviews()->count() }} reviews</p>
-              <p>
-              @php
-                $rating=$product->reviews()->sum('rating')/$product->reviews()->count();
-              @endphp
-              @for ($i =1; $i<=$rating; $i++)
-                <span class="glyphicon glyphicon-star"></span>
-              @endfor
-              @if (is_float($rating))
+               @if ($product->reviews()->count()>0)
+                    <div class="ratings">
+                      <p class="pull-right">{{ $product->reviews()->count() }} reviews</p>
+                      <p>
+                    
+                      @for ($i =1; $i<=$product->rating; $i++)
+                        <span class="glyphicon glyphicon-star"></span>
+                      @endfor
+                       @if (is_float($product->rating))
                 
-                <span class="fa fa-star-half-o"></span>
-              @endif
-               <span class="label label-warning">{{ $rating }}</span>
-              </p>
-          </div>
-              @else
-              <p class="label label-default">No review</p>
-                @endif
+                     <span class="fa fa-star-half-o"></span>
+                       @endif
+                       <span class="label label-warning">{{ $product->rating }}</span>
+                      </p>
+                  </div>
+                  @else
+                  <p class="label label-default">No review available</p>
+                    @endif
       
           </div>
        

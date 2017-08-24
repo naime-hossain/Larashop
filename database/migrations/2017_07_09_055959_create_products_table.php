@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('price');
             $table->string('slug');
             $table->integer('category_id');
-            
+            $table->float('rating')->unsigned()->nullable();
             $table->integer('is_available')->default(1);
             $table->integer('is_feature')->default(0);
             $table->integer('inStock')->unsigned()->nullable();
