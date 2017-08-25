@@ -48,8 +48,8 @@ class HomeController extends Controller
         $product=Product::with('category','types','reviews','sizes')->whereSlug($slug)->firstOrFail();
         
          $category=$product->category;
-     $sizes=$product->sizes()->pluck('name');
-     $colors=$product->colors()->pluck('name');
+     $sizes=$product->sizes()->pluck('name','name');
+     $colors=$product->colors()->pluck('name','name');
 
          $similar_products=$category->products()->with('category','types','reviews','sizes')->where('id','<>',$product->id)->take(4)->inRandomOrder()->get();
         return view('products.show',compact('product','similar_products','sizes','colors'));

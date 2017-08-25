@@ -37,11 +37,17 @@
                                    
                                 </div>
                                 <div class="col-sm-6 col-xs-6">
+
                                     <div class="col-xs-12">{{$item->id}}</div>
-                                    <div class="col-xs-12"><small>Quantity:<span>{{$item->qty}}</span></small></div>
+                                    <div class="col-xs-12"><small>Quantity:
+                                    <span>{{$item->qty}}</span>
+                                    
+
+                                    </small></div>
                                 </div>
                                 <div class="col-sm-3 col-xs-3 text-right">
                                     <h6><span>$</span>{{$item->price}}</h6>
+
                                 </div>
                             </div>
                                
@@ -78,6 +84,7 @@
                 src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                 data-key="{{config('services.stripe.key')}}"
                 data-amount="{{Cart::total()*100}}"
+                data-currency="usd"
                 data-name="{{config('app.name')}}"
                 data-email="{{Auth::user()->email}}"
                 data-description="happy "

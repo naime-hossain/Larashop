@@ -34,6 +34,8 @@
                 
                        
                          <tr>
+                          <span>{{$cartItem->options->color}}</span>
+                                    <span>{{$cartItem->options->size}}</span>
                           <td>{{ $cartItem->name }}</td>
                        <td>{{ $cartItem->price}}</td>
                        <td>without tax:{{ $cartItem->subtotal}}
@@ -54,8 +56,8 @@
                            @php
                              $product=App\Product::find($cartItem->id);
                              if ($product) {
-                               $sizes=$product->sizes()->pluck('name');
-                              $colors=$product->colors()->pluck('name');
+                               $sizes=$product->sizes()->pluck('name','name');
+                              $colors=$product->colors()->pluck('name','name');
                              }else{
                               $sizes='';
                                  $colors='';

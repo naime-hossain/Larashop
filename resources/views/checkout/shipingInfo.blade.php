@@ -90,6 +90,7 @@
                                    
                                 </div>
                                 <div class="col-sm-6 col-xs-6">
+                                
                                     <div class="col-xs-12">{{$item->name}}</div>
                                     <div class="col-xs-12"><small>Quantity:<span>{{$item->qty}}</span></small></div>
                                 </div>

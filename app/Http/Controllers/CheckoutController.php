@@ -105,7 +105,7 @@ $order=$user->orders()->create(['address_id'=>$addressId,'order_token'=>$ordrTok
 
 foreach ($cartItems as $item) {
      $product=Product::findOrFail($item->id);
-     $order->products()->attach($item->id,['qty'=>$item->qty,'total'=>$item->total(),'size'=>$item->size,'color'=>$item->color]);
+     $order->products()->attach($item->id,['qty'=>$item->qty,'total'=>$item->total(),'size'=>$item->options->size,'color'=>$item->options->color]);
 
      //now need reduce the product from in stock
     $remainingStock=($product->inStock-$item->qty);
@@ -117,9 +117,11 @@ foreach ($cartItems as $item) {
 }
  //now need to send email to customr
 
-$job = (new SendOrderConfirmationEmail($order,$user))
-                    ->delay(Carbon::now()->addSeconds(10));
-    dispatch($job);
+// $job = (new SendOrderConfirmationEmail($order,$user))
+//                     ->delay(Carbon::now()->addSeconds(10));
+//     dispatch($job);
+
+  Mail::to($user)->send(new OrderConformation($order));
 
 //destroy the accesstoPayment toekn
 $request->session()->forget('accessToPayment');
