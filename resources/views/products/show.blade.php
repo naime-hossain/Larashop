@@ -252,7 +252,7 @@
                            @endif
                         </div>
                         <div class="tab-pane" id="description">
-                          <p>{{ $product->description }}</p>
+                          <p>{!! $product->description !!}</p>
                         </div>
              
       

@@ -41,7 +41,7 @@
                     <!-- Branding Image -->
                     <a class="navbar-brand fa fa-3x" href="{{ url('/') }}">
                        {{--  {{ config('app.name', 'Larashop') }} --}}
-                       <img src="images/logo2.png" alt="">
+                       <img src="/images/logo2.png" alt="">
                     </a>
                 </div>
 

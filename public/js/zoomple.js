@@ -110,10 +110,10 @@
 	
 	Zoomple.DEFAULTS = { 
 		attachWindowToMouse : true, 
-		blankURL : 'images/blank.gif',
+		blankURL : '/images/blank.gif',
 		bgColor : '#fff',
 		delay : 1,
-		loaderURL : 'images/loader.gif',
+		loaderURL : '/images/loader.gif',
 		offset : {x : 5,y : 5},
 		roundedCorners : false, 
 		source : 'href',
