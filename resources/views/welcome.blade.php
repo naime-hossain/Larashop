@@ -43,13 +43,7 @@
                      @endphp
                   @include('layouts.products')
 
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <h4>Like Our products?
-                         
-                        </h4>
-                        <p>If you like these product, then check out <a target="_blank" href="{{ route('products') }}">All feature products</a> And choose from variety</p>
-                        <a class="btn btn-primary" target="" href="{{ route('products') }}">All products</a>
-                    </div>
+               
               
             @endif
       </div>
@@ -66,13 +60,7 @@
                      @endphp
                   @include('layouts.products')
 
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <h4>Like Our products?
-                         
-                        </h4>
-                        <p>If you like these product, then check out <a target="_blank" href="{{ route('products') }}">All feature products</a> And choose from variety</p>
-                        <a class="btn btn-primary" target="" href="{{ route('products') }}">All products</a>
-                    </div>
+              
               
             @endif
       </div>

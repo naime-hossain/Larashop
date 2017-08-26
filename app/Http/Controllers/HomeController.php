@@ -85,10 +85,13 @@ class HomeController extends Controller
                return view('archive.index',compact('name','products','archive_type','archive_name'));
                break;
                 case 'size':
-                $name='';
-               $products=Product::with('category','types')->whereSize($archive_name)->get();
-               
-               return view('archive.index',compact('archive_name','products','archive_type','name'));
+                $name=Size::whereName($archive_name)->first();
+                 if ($name) {
+                     $products=$name->products()->with('category','types')->get();
+                }else{
+                 
+                }
+               return view('archive.index',compact('name','products','archive_type','archive_name'));
                break;
 
            
