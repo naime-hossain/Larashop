@@ -69,6 +69,18 @@ Route::group(['prefix' => 'admin','middleware'=>'admin'], function() {
    // Route::get('/orders/delivered','AdminOrderController@delivered')->name('order.delivered');
     Route::put('/orders/{order_id}','AdminOrderController@update')->name('order.update');
 
+    // app settings routes
+
+// general setting
+    Route::resource('settings/general','AdminGeneralSettingController',['except'=>['show','edit','create','destroy']]);
+  // Route::get('settings/general','AdminGeneralSettingController@index')->name('general.index');
+  //   Route::post('settings/general/{id?}','AdminGeneralSettingController@update')->name('general.update');
+    // social setting
+    Route::resource('settings/social','AdminSocialSettingController',['except'=>['show','edit','create','destroy']]);
+
+    // page setting
+    Route::resource('settings/page','AdminPageController',['except'=>['show','edit','create','destroy']]);
+
 
 
 

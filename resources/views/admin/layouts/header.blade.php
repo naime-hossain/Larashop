@@ -182,6 +182,22 @@
                         </ul>
                         <!-- second-level-items -->
                     </li>
+
+                        <li>
+                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> &nbsp;App Settings<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="{{ route('general.index') }}">Genegral Setting</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.orders','pending') }}">Social Setting</a>
+                            </li>
+                             <li>
+                                <a href="{{ route('admin.orders','deliver') }}">Page Setting</a>
+                            </li>
+                        </ul>
+                        <!-- second-level-items -->
+                    </li>
                  
 
                 </ul>
