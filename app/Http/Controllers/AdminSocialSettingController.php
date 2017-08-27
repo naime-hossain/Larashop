@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\SocialSetting;
 use Illuminate\Http\Request;
 
 class AdminSocialSettingController extends Controller
@@ -13,7 +14,8 @@ class AdminSocialSettingController extends Controller
      */
     public function index()
     {
-        //
+        $settings=SocialSetting::first();
+        return view('admin.settings.social.index',compact('settings'));
     }
 
     /**
@@ -34,7 +36,24 @@ class AdminSocialSettingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+          $this->validate($request,[
+        'facebook'=>'required',
+        'twitter'=>'required',
+        'linkedin'=>'required',
+        // 'googlePlus'=>'required',
+        // 'instagram'=>'required',
+        // 'tumblr'=>'required',
+        // 'whatsApp'=>'required',
+            ]);
+
+        $input=$request->all();
+
+
+
+         // create new settings
+
+         $setting=SocialSetting::create($input);
+         return redirect()->back()->with('message','general settings created');
     }
 
     /**
@@ -68,7 +87,17 @@ class AdminSocialSettingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        // return $request->all();
+        $setting=SocialSetting::findOrFail($id);
+        $input=$request->all();
+
+
+
+         // create new settings
+
+         $setting=$setting->update($input);
+         return redirect()->back()->with('message','general settings updated');
     }
 
     /**

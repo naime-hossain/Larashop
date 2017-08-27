@@ -190,10 +190,10 @@
                                 <a href="{{ route('general.index') }}">Genegral Setting</a>
                             </li>
                             <li>
-                                <a href="{{ route('admin.orders','pending') }}">Social Setting</a>
+                                <a href="{{ route('social.index') }}">Social Setting</a>
                             </li>
                              <li>
-                                <a href="{{ route('admin.orders','deliver') }}">Page Setting</a>
+                                <a href="{{ route('page.index') }}">Page Setting</a>
                             </li>
                         </ul>
                         <!-- second-level-items -->
