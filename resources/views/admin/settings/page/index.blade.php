@@ -2,7 +2,7 @@
 
 @section('contents')
   <div class="col-lg-12">
-      <h1 class="page-header">socaial Settings</h1>
+      <h1 class="page-header">Page Settings</h1>
   </div>
   <!--End Page Header -->
 

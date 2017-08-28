@@ -195,6 +195,9 @@
                              <li>
                                 <a href="{{ route('page.index') }}">Page Setting</a>
                             </li>
+                             <li>
+                                <a href="{{ route('shop.index') }}">Shop Setting</a>
+                            </li>
                         </ul>
                         <!-- second-level-items -->
                     </li>

@@ -80,6 +80,8 @@ Route::group(['prefix' => 'admin','middleware'=>'admin'], function() {
 
     // page setting
     Route::resource('settings/page','AdminPageController',['except'=>['show','edit','create','destroy']]);
+     // shop setting
+    Route::resource('settings/shop','AdminShopSettingController',['except'=>['show','edit','create','destroy']]);
 
 
 
