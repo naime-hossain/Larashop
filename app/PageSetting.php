@@ -11,7 +11,7 @@ class PageSetting extends Model
      *
      * @var array
      */
-    protected $fillable = [
+  protected $fillable = [
  'termsAndConditions',
 'returnPolicy',
 'contactUs',

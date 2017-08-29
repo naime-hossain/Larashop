@@ -19,7 +19,6 @@ class AppServiceProvider extends ServiceProvider
 
             $view->with('categories',\App\Category::has('products')->get());
      
-
             $view->with('types',\App\Type::has('products')->get());
         });
 

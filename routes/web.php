@@ -1,5 +1,7 @@
 <?php
 
+use App\PageSetting;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -84,11 +86,17 @@ Route::group(['prefix' => 'admin','middleware'=>'admin'], function() {
     Route::resource('settings/shop','AdminShopSettingController',['except'=>['show','edit','create','destroy']]);
 
 
-
-
-
-
- 
-
-
 });
+
+  // pages controller
+    $page=PageSetting::first();
+    if ($page->contactUs) {
+      Route::get('/contact','PageController@contact')->name('contact');
+    }
+     if ($page->returnPolicy) {
+      Route::get('/returnpolicy','PageController@returnPolicy')->name('returnPolicy');
+    }
+     if ($page->termsAndConditions) {
+      Route::get('/terms&conditions','PageController@termsAndConditions')->name('terms&conditions');
+    }
+
