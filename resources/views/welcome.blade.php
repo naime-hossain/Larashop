@@ -1,8 +1,10 @@
 @extends('layouts.app')
 @section('heading')
     {{-- expr --}}
-    <h1>welcome to Larashop</h1>
-    <p>SHOP LIKE THERE’S NO TOMORROW</p>
+    
+    <h1>{{ $GeneralSetting->site_title }}</h1>
+    <p>{{ $GeneralSetting->site_slogan }}</p>
+    
 @endsection
 @section('content')
 
@@ -31,7 +33,7 @@
             @endif
 
 
-    <div class="row">
+    
       <div class="feature_product_wrap">
         
           @if ($feature_products->count()>0)
@@ -47,8 +49,8 @@
               
             @endif
       </div>
-    </div>
-      <div class="row">
+    
+    
       <div class="feature_product_wrap">
         
           @if ($popular_products->count()>0)
@@ -64,7 +66,7 @@
               
             @endif
       </div>
-    </div>
+  
 
         </div>
 

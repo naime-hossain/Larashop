@@ -10,7 +10,7 @@
          
 
 
-              $("html").niceScroll({
-               cursorcolor:"#002c53"
-        });
+              // $("html").niceScroll({
+              //  cursorcolor:"#002c53"
+              //          });
         });   

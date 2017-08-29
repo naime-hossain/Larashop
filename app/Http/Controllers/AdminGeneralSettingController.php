@@ -6,6 +6,7 @@ use App\GeneralSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Image;
+use Config;
 class AdminGeneralSettingController extends Controller
 {
     /**
@@ -101,7 +102,8 @@ class AdminGeneralSettingController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+       
+    
         $setting=GeneralSetting::findOrFail($id);
            $input=$request->all();
 

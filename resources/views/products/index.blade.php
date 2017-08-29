@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('heading')
 	<h1>All Of Our Products</h1>
+  
 @endsection
 @section('content')
   <div class="col-md-12">

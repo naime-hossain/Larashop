@@ -40,8 +40,13 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand fa fa-3x" href="{{ url('/') }}">
-                       {{--  {{ config('app.name', 'Larashop') }} --}}
-                       <img src="/images/logo2.png" alt="">
+                    @if ($GeneralSetting->logo)
+                        <img src="/images/{{ $GeneralSetting->logo }}" alt="">
+                        @else
+                         {{ config('app.name', $GeneralSetting->site_name) }}
+                    @endif
+                       
+                       
                     </a>
                 </div>
 

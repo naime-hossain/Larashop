@@ -95,7 +95,7 @@
                   @else
                   <p class="label label-default">No review available</p>
                     @endif
-                      <p>{!! str_limit($product->description,20)  !!}</p>
+                     {{--  <p>{!! str_limit($product->description,20)  !!}</p> --}}
                   </div>
           
               </div>
