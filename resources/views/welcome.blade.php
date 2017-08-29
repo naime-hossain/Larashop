@@ -23,13 +23,7 @@
                   @include('layouts.products')
 
 
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <h4>Like Our products?
-                        
-                        </h4>
-                        <p>If you like these product, then check out <a target="_blank" href="{{ route('products') }}">All products</a> And choose from variety</p>
-                        <a class="btn btn-primary" target="" href="{{ route('products') }}">All products</a>
-                    </div>
+                
             @endif
 
 
@@ -57,13 +51,19 @@
      <div class="col-md-12">
            <h2>Our Popular Products</h2>
          </div>
-                     @php
+                  @php
                        $products=$popular_products;
                      @endphp
                   @include('layouts.products')
 
               
-              
+                  <div class="col-sm-4 col-lg-4 col-md-4">
+                        <h4>Like Our products?
+                        
+                        </h4>
+                        <p>If you like these product, then check out <a target="_blank" href="{{ route('products') }}">All products</a> And choose from variety</p>
+                        <a class="btn btn-primary" target="" href="{{ route('products') }}">All products</a>
+                    </div>
             @endif
       </div>
   

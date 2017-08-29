@@ -19,7 +19,8 @@ class HomeController extends Controller
     {
         $products=Product::with('category','types','reviews','sizes')->latest()->take(5)->get();
         $feature_products=Product::with('category','types','reviews','sizes')->latest()->whereIs_feature(1)->take(5)->get();
-         $popular_products=Product::has('reviews', '>=', 2)->with('category','types','reviews','sizes')->latest()->take(5)->get();
+         // $popular_products=Product::has('reviews', '>=', 2)->with('category','types','reviews','sizes')->latest()->take(5)->get();
+         $popular_products=Product::where('rating', '>=',4)->with('category','types','reviews','sizes')->latest()->take(5)->get();
         
 
         return view('welcome',compact('products','feature_products','popular_products'));
