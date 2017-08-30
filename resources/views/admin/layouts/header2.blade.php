@@ -130,7 +130,7 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="/admin"><i class="fa fa-link"></i> <span>Dashborad</span></a></li>
+        <li class="active"><a href="/admin"><i class="fa fa-dashboard"></i> <span>Dashborad</span></a></li>
         
         <li class="treeview">
           <a href="#"><i class="fa fa-user"></i> <span>Users</span>
@@ -145,7 +145,7 @@
         </li>
         {{-- products menu link --}}
            <li class="treeview">
-          <a href="#"><i class="fa fa-user"></i> <span>Products</span>
+          <a href="#"><i class="fa fa-edit"></i> <span>Products</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -161,7 +161,7 @@
 
         {{-- categories link --}}
              <li class="treeview">
-          <a href="#"><i class="fa fa-user"></i> <span>Categories</span>
+          <a href="#"><i class="fa fa-table"></i> <span>Categories</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -178,7 +178,7 @@
         </li>
           {{-- types link --}}
              <li class="treeview">
-          <a href="#"><i class="fa fa-user"></i> <span>Types</span>
+          <a href="#"><i class="fa fa-th"></i> <span>Types</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -195,7 +195,7 @@
         </li>
             {{-- orders link --}}
              <li class="treeview">
-          <a href="#"><i class="fa fa-user"></i> <span>Orders</span>
+          <a href="#"><i class="fa fa-shopping-cart"></i> <span>Orders</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -212,6 +212,13 @@
             </li>
             
           </ul>
+        </li>
+        {{-- message --}}
+           <li>
+          <a href="{{ route('message.index') }}">
+            <i class="fa fa-envelope"></i> <span>messages</span>
+       
+          </a>
         </li>
              {{-- app settings link --}}
              <li class="treeview">

@@ -26,9 +26,12 @@
              @endif
 
              {{-- alert --}}
-              @if ($errors->count()>0)
+             @if (isset($errors))
+                @if ($errors->count()>0)
               @include('alert.error')
             @endif
+             @endif
+             
     <!-- Include this after the sweet alert js file -->
     @include('sweet::alert')
           </div>
