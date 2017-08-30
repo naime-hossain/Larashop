@@ -111,23 +111,25 @@
                    
                    
                    
+
+
                       @if ($page->returnPolicy)
                           
-                             <a class="list-group-item" href="{{ $page->returnPolicy }}">
+                             <a class="list-group-item" href="{{ route('returnPolicy') }}">
                               return policy
                              </a>
                              
                        @endif 
                          @if ($page->termsAndConditions)
                           
-                             <a class="list-group-item" href="{{ $page->returnPolicy }}">
+                             <a class="list-group-item" href="{{ route('terms&conditions') }}">
                               Term and Conditions
                              </a>
                              
                        @endif 
                          @if ($page->contactUs)
                           
-                             <a class="list-group-item" href="{{ $page->returnPolicy }}">
+                             <a class="list-group-item" href="{{ route('contact') }}">
                               Contact Us
                              </a>
                              

@@ -85,7 +85,10 @@
                       @for ($i =1; $i<=$product->rating; $i++)
                         <span class="glyphicon glyphicon-star"></span>
                       @endfor
-                       @if (is_float($product->rating))
+                      @php
+                        $rating=$product->reviews()->sum('rating')/$product->reviews()->count();
+                      @endphp
+                       @if (is_float($rating))
                 
                      <span class="fa fa-star-half-o"></span>
                        @endif
