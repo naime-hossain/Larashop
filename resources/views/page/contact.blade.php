@@ -10,11 +10,11 @@
   	 
   	 	<div class="form-group col-md-6">
   	 		{!! Form::label('name','Your Name', []) !!}
-  	 		{!! Form::text('name',null, ['class'=>'form-control','required']) !!}
+  	 		{!! Form::text('name',Auth::check()?Auth::user()->name:null, ['class'=>'form-control','required']) !!}
   	 	</div>
   	 	<div class="form-group col-md-6">
   	 		{!! Form::label('email','Your email', []) !!}
-  	 		{!! Form::text('email',null, ['class'=>'form-control','required']) !!}
+  	 		{!! Form::text('email',Auth::check()?Auth::user()->email:null, ['class'=>'form-control','required']) !!}
   	 	</div>
   	 	 	<div class="form-group col-md-12">
   	 		{!! Form::label('message','Your message', []) !!}

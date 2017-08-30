@@ -104,3 +104,7 @@ img {
     max-width: 100%;
     
 }
+.alert, .alert.alert-default {
+    background-color: #607D8B;
+    color: #ffffff;
+}
