@@ -1,14 +1,19 @@
-@include('admin.layouts.header')
-        <!--  page-wrapper -->
-        <div id="page-wrapper">
+@include('admin.layouts.header2')
+  <div class="content-wrapper">
 
-          <div class="row">
+      <section class="content-header">
+       @yield('heading')
+      </section>
+    <section class="content container-fluid">
+
+         <div class="row">
                 <!-- Page Header -->
               @yield('contents')
 
 
         </div>
-        <!-- end page-wrapper -->
+    
+    </section>
 
     </div>
     <!-- end wrapper -->
@@ -18,7 +23,7 @@
     {{-- <script src="assets/plugins/morris/raphael-2.1.0.min.js"></script>
     <script src="assets/plugins/morris/morris.js"></script>
     <script src="assets/scripts/dashboard-demo.js"></script> --}}
-@include('admin.layouts.footer')
+@include('admin.layouts.footer2')
 @yield('footer')
 </body>
 

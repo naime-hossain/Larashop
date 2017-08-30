@@ -1,9 +1,11 @@
 @extends('admin.layouts.admin')
 
 @section('contents')
+<section class="content-header">
   <div class="col-lg-12">
       <h1 class="page-header">All categories</h1>
   </div>
+  </section>
   <!--End Page Header -->
 
   <div class="col-md-12">

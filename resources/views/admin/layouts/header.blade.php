@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Larashop</title>
+    <title>{{ config('app.name') }}</title>
     <!-- Core CSS - Include with every page -->
     <link href="/css/app.css" rel="stylesheet" />
     <link href="/css/bootstrap-tagsinput.css" rel="stylesheet" />
     <link href="/css/font-awesome.min.css" rel="stylesheet" />
-    
+    {{-- css for simanta --}}
     <link href="/admin_assets/css/style.css" rel="stylesheet" />
     <link href="/admin_assets/css/main-style.css" rel="stylesheet" />
     <!-- Page-Level CSS -->
