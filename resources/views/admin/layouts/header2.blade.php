@@ -113,7 +113,7 @@
       <div class="user-panel">
         <div class="pull-left image">
              @if (Auth::user()->photos)
-                 <img src="/images/users/{{ Auth::user()->photos()->first()->path }}" class="user-image" alt="User Image">
+                 <img src="/images/users/{{ Auth::user()->photos()->first()->path }}" class="user-image img-circle" alt="User Image">
               @endif
  
         </div>
