@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Alert;
+use App\Message;
 use App\PageSetting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
@@ -15,6 +18,31 @@ class PageController extends Controller
     public function contact()
     {
        return view('page.contact');
+    }
+
+
+    /**
+     * Display contact us page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function message(Request $request)
+    {
+       $this->validate($request,[
+         'name'=>'required',
+         'email'=>'required',
+         'message'=>'required',
+        ]);
+       $user=Auth::user();
+      
+       $input=$request->all();
+        if ($user) {
+          $input['user_id']=$user->id;
+       }
+
+       $message=Message::create($input);
+         Alert::success('Good job! Message recieved')->autoclose(1000);
+       return redirect('/')->with('message','Good job! Message recieved');
     }
 
       /**

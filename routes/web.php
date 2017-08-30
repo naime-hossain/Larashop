@@ -92,6 +92,7 @@ Route::group(['prefix' => 'admin','middleware'=>'admin'], function() {
     $page=PageSetting::first();
     if ($page->contactUs) {
       Route::get('/contact','PageController@contact')->name('contact');
+      Route::post('/contact','PageController@message')->name('contact');
     }
      if ($page->returnPolicy) {
       Route::get('/returnpolicy','PageController@returnPolicy')->name('returnPolicy');
