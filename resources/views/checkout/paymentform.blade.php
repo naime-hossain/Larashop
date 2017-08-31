@@ -84,7 +84,7 @@
                 src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                 data-key="{{config('services.stripe.key')}}"
                 data-amount="{{Cart::total()*100}}"
-                data-currency="usd"
+                data-currency="{{ App\ShopSetting::first()->currency }}"
                 data-name="{{config('app.name')}}"
                 data-email="{{Auth::user()->email}}"
                 data-description="happy "

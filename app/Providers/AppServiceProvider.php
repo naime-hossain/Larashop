@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use App\ShopSetting;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\ServiceProvider;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -37,14 +38,27 @@ class AppServiceProvider extends ServiceProvider
         $view->with('GeneralSetting',\App\GeneralSetting::first());
      });
 
-         $generalSettings=\App\GeneralSetting::first();
-         if ($generalSettings) {
-            config(['app.name'=>$generalSettings->site_name]);
-            // config(['cart.tax'=>10]);
+         $generalSetting=\App\GeneralSetting::first();
+         $shopSetting=\App\ShopSetting::first();
+         if ($generalSetting->site_name) {
+            config(['app.name'=>$generalSetting->site_name]);
+             }
+            if ($shopSetting->tax) {
+                 config(['cart.tax'=>$shopSetting->tax]);
+            }
+           
+             if ($shopSetting->stripe_key) {
+                 config(['services.stripe.key'=>$shopSetting->stripe_key]);
+            }
+
+            if ($shopSetting->stripe_secret) {
+                 config(['services.stripe.secret'=>$shopSetting->stripe_key]);
+            }
+           
             // config(['mail.from.address'=>$generalSettings->site_name]);
-            // config(['services.stripe.key'=>$generalSettings->site_name]);
+            
         
-         }
+        
 
  
     }

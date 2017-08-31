@@ -86,7 +86,7 @@ public function __construct(){
   $charge =Charge::create(array(
       'customer' => $customer->id,
       'amount'   => Cart::total()*100,
-      'currency' => 'usd'
+      'currency' =>App\ShopSetting::first()->currency,
   ));
 // after making the payment
 // 01.empty cart
