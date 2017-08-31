@@ -52,8 +52,10 @@
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              @if (Auth::user()->photos)
+              @if (Auth::user()->photos()->count()>0)
                  <img src="/images/users/{{ Auth::user()->photos()->first()->path }}" class="user-image" alt="User Image">
+                   @else
+                 <img src="/images/users/admin.png" class="user-image img-circle" alt="User Image">
               @endif
               
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
@@ -62,8 +64,10 @@
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                @if (Auth::user()->photos)
+                @if (Auth::user()->photos()->count()>0)
                  <img src="/images/users/{{ Auth::user()->photos()->first()->path }}" class="img-circle" alt="User Image">
+                   @else
+                 <img src="/images/users/admin.png" class="img-circle" alt="User Image">
               @endif
 
                 <p>
@@ -112,8 +116,11 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-             @if (Auth::user()->photos)
+             @if (Auth::user()->photos()->count()>0)
                  <img src="/images/users/{{ Auth::user()->photos()->first()->path }}" class="user-image img-circle" alt="User Image">
+                 @else
+                 <img src="/images/users/admin.png" class="user-image img-circle" alt="User Image">
+
               @endif
  
         </div>
@@ -128,7 +135,7 @@
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">HEADER</li>
+        <li class="header">All You need</li>
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="/admin"><i class="fa fa-dashboard"></i> <span>Dashborad</span></a></li>
         
