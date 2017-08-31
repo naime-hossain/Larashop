@@ -62,10 +62,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+           $users=User::all();
+           //make the first user admin bt default
+        if (count($users)==0) {
+           return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'is_active' => 1,
+            'role_id' => 1,
+            'password' => bcrypt($data['password']),
+        ]);  
+        }else{
+             return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-        ]);
+        ]); 
+        }
     }
 }
