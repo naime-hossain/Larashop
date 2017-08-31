@@ -62,8 +62,8 @@ class CartController extends Controller
     public function add(Request $request,$id)
     {
        $this->validate($request,[
-        'size'=>'required',
-        'color'=>'required',
+        // 'size'=>'required',
+        // 'color'=>'required',
         'qty'=>'required',
         ]);
        $product=Product::findOrFail($id);

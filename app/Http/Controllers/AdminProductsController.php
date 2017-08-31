@@ -89,8 +89,8 @@ class AdminProductsController extends Controller
              'image'=>'required', 
              'category_id'=>'required',
              'type_id'=>'required',
-             'size'=>'required',
-             'color'=>'required',
+             // 'size'=>'required',
+             // 'color'=>'required',
              'inStock'=>'required',
 
             ]);
@@ -132,26 +132,32 @@ class AdminProductsController extends Controller
 
         }
         // attach or create product size
-        $sizes=explode(',',$request->size);
-        foreach ($sizes as $name) {
-            $size=Size::whereName($name)->first();
-            if ($size) {
-                $product->sizes()->attach($size->id);
-            }else{
-                $product->sizes()->create(['name'=>$name]);
+        if ($request->size) {
+                $sizes=explode(',',$request->size);
+                foreach ($sizes as $name) {
+                $size=Size::whereName($name)->first();
+                if ($size) {
+                    $product->sizes()->attach($size->id);
+                }else{
+                    $product->sizes()->create(['name'=>$name]);
+                }
             }
         }
+    
 
           // attach or create product color
-        $colors=explode(',',$request->color);
-        foreach ($colors as $name) {
-            $color=Color::whereName($name)->first();
-            if ($color) {
-                $product->colors()->attach($color->id);
-            }else{
-                $product->colors()->create(['name'=>$name]);
-            }
+        if ($request->color) {
+             $colors=explode(',',$request->color);
+            foreach ($colors as $name) {
+                $color=Color::whereName($name)->first();
+                if ($color) {
+                    $product->colors()->attach($color->id);
+                }else{
+                    $product->colors()->create(['name'=>$name]);
+                }
+            } 
         }
+      
 
         return redirect(route('products.index'))->with(['message'=>'Product added succefully']);
         
@@ -270,30 +276,37 @@ class AdminProductsController extends Controller
 
 
                    // attach or create product size
-        $sizes=explode(',',$request->size);
-        foreach ($sizes as $name) {
-            $size=Size::whereName($name)->first();
-            if ($size) {
-                $size_id[]=$size->id;
-            }else{
-                $new_size=Size::create(['name'=>$name]);
-                $size_id[]=$new_size->id;
+        if ($request->size) {
+             $sizes=explode(',',$request->size);
+            foreach ($sizes as $name) {
+                $size=Size::whereName($name)->first();
+                if ($size) {
+                    $size_id[]=$size->id;
+                }else{
+                    $new_size=Size::create(['name'=>$name]);
+                    $size_id[]=$new_size->id;
+                }
+                $product->sizes()->sync($size_id);
             }
-            $product->sizes()->sync($size_id);
         }
+      
 
           // attach or create product color
-        $colors=explode(',',$request->color);
-        foreach ($colors as $name) {
-            $color=Color::whereName($name)->first();
-              if ($color) {
-                $color_id[]=$color->id;
-            }else{
-                $new_color=Color::create(['name'=>$name]);
-                $color_id[]=$new_color->id;
+
+        if ($request->color) {
+                $colors=explode(',',$request->color);
+            foreach ($colors as $name) {
+                $color=Color::whereName($name)->first();
+                  if ($color) {
+                    $color_id[]=$color->id;
+                }else{
+                    $new_color=Color::create(['name'=>$name]);
+                    $color_id[]=$new_color->id;
+                }
+                $product->colors()->sync($color_id);
             }
-            $product->colors()->sync($color_id);
         }
+       
 
         return redirect(route('products.index'))->with(['message'=>'Product Updated succefully']);
         

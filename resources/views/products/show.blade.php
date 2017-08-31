@@ -106,20 +106,24 @@
                 <div class="cart_button">
                 {{--   <a href="{{ route('cart.add',$product->id) }}" class="btn btn-primary btn-block">add to cart</a> --}}
         {!! Form::open(['action'=>['CartController@add',$product->id],'method'=>'post','class'=>'']) !!}
-        <div class="form-group col-md-6">
-        {!! Form::label('qty','quantity', []) !!}
-         {!! Form::number('qty','1', ['min'=>1,'max'=>$product->inStock,'required']) !!}
-         </div>
-         
-       <div class="form-group col-md-6">
+       
+         @if ($sizes->count()>0)
+           <div class="form-group col-md-12">
            
-         {!! Form::select('size',count($sizes)>0?$sizes:['uncategorized'],'', ['placeholder' => 'Pick a size...','class'=>'form-control']) !!}
+         {!! Form::select('size',$sizes,'', ['placeholder' => 'Pick a size...','class'=>'form-control']) !!}
        </div>
-         <div class="form-group col-md-12">
+         @endif
+       @if ($colors->count()>0)
+          <div class="form-group col-md-12">
          
-         {!! Form::select('color',count($colors)>0?$colors:['uncategorized'],'', ['placeholder' => 'Pick a color...','class'=>'form-control']) !!}
+         {!! Form::select('color',$colors,'', ['placeholder' => 'Pick a color...','class'=>'form-control']) !!}
        </div>
-        <div class="form-group col-md-12">
+       @endif
+       <div class="form-group col-md-4">
+        {!! Form::label('qty','quantity', ['class'=>'text-info']) !!}
+         {!! Form::number('qty','1', ['min'=>1,'max'=>$product->inStock,'required','class'=>'']) !!}
+         </div>
+        <div class="form-group col-md-8">
           {!! Form::button("add to cart",
            [
            'class'=>'btn btn-primary ',

@@ -68,17 +68,17 @@
    </div>
   
     <div class="form-group col-md-4 {{ $errors->has('type') ? ' has-error' : '' }}">
-       {!! Form::label('type','product type', []) !!}
+       {!! Form::label('type','product types ,enter the name and type enter or seperate with ,', []) !!}
      {!! Form::text('type',$types, ['class'=>"form-control",'value'=>old('type'),'data-role'=>"tagsinput"]) !!}
    </div>
   
  <div class="form-group col-md-4 {{ $errors->has('size') ? ' has-error' : '' }}">
-       {!! Form::label('size','product size', []) !!}
+       {!! Form::label('size','product size if product has size variations type the name and type enter or ,', []) !!}
      {!! Form::text('size',$sizes, ['class'=>"form-control",'value'=>old('size'),'data-role'=>"tagsinput"]) !!}
    </div>
 
    <div class="form-group col-md-4 {{ $errors->has('color') ? ' has-error' : '' }}">
-       {!! Form::label('color','product color', []) !!}
+       {!! Form::label('color','product color if product has color variations type the name and type enter or ,', []) !!}
      {!! Form::text('color',$colors, ['class'=>"form-control",'value'=>old('size'),'data-role'=>"tagsinput"]) !!}
    </div>
 
@@ -106,7 +106,7 @@
 
     <div class="form-group col-md-12 {{ $errors->has('body') ? ' has-error' : '' }}">
        {!! Form::label('description','product description', []) !!}
-     {!! Form::textarea('description',null,['class'=>'form-control','value'=>old('description'),'rows'=>5]) !!}
+     {!! Form::textarea('description',null,['class'=>'form-control','value'=>old('description'),'rows'=>15]) !!}
    </div>
 
 

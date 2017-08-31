@@ -58,8 +58,13 @@
                       {{-- <a href="{{ route('cart.edit',$product->id) }}" class="btn btn-primary btn-block">add to cart</a> --}}
           {!! Form::open(['action'=>['CartController@add',$product->id],'method'=>'post','class'=>'']) !!}
          {!! Form::number('qty','1', ['min'=>1,'max'=>$product->inStock,'required']) !!}
-         {!! Form::text('size',$first_size, ['hidden']) !!}
-         {!! Form::text('color',$product->colors()->first()->name, ['hidden']) !!}
+         @if (isset($first_size))
+           {!! Form::text('size',$first_size, ['hidden']) !!}
+         @endif
+         @if ($product->colors()->count()>0)
+           {!! Form::text('color',$product->colors()->first()->name, ['hidden']) !!}
+         @endif
+         
           {!! Form::button("add to cart",
            [
            'class'=>'btn btn-primary ',

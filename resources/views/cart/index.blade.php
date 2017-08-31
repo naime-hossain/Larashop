@@ -60,20 +60,28 @@
                               $colors=$product->colors()->pluck('name','name');
                              }else{
                               $sizes='';
-                                 $colors='';
+                              $colors='';
                              }
                               
                            @endphp
-              <div class="form-group">
-           
-         {!! Form::select('size',count($sizes)>0?$sizes:['uncategorized'],$cartItem->options->size, ['placeholder' => 'Pick a size...','class'=>'form-control']) !!}
-       </div>
+                            
+               @if ($sizes->count()>0)
+                     <div class="form-group">
+                    
+                   {!! Form::select('size',$sizes,$cartItem->options->size, ['placeholder' => 'Pick a size...','class'=>'form-control']) !!}
+                 </div>
+                 @endif            
+        
          
 </td>
-<td>  <div class="form-group">
-         
-         {!! Form::select('color',count($colors)>0?$colors:['uncategorized'],$cartItem->options->color, ['placeholder' => 'Pick a color...','class'=>'form-control']) !!}
-       </div>
+<td> 
+     @if ($colors->count()>0)
+       <div class="form-group">
+             
+             {!! Form::select('color',$colors,$cartItem->options->color, ['placeholder' => 'Pick a color...','class'=>'form-control']) !!}
+           </div>
+    @endif
+    
        </td>
 
                            <td>
