@@ -1,9 +1,14 @@
 @extends('layouts.app')
 @section('heading')
     {{-- expr --}}
-    
-    <h1>{{ $GeneralSetting->site_title }}</h1>
+    @if ($GeneralSetting)
+      <h1>{{ $GeneralSetting->site_title }}</h1>
     <p>{{ $GeneralSetting->site_slogan }}</p>
+    @else
+    <h1>welcome to Larashop</h1>
+    <p>shop like there is no tommorow</p>
+    @endif
+    
     
 @endsection
 @section('content')

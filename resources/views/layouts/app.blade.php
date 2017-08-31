@@ -1,9 +1,12 @@
   @include('layouts.header')
 
       <div class="welcome_wrap"
-    @if ($GeneralSetting->cover_pic)
+      @if ($GeneralSetting)
+          @if ($GeneralSetting->cover_pic)
        style="background-image: url(/images/{{ $GeneralSetting->cover_pic }});"
     @endif
+      @endif
+   
    >
       <div class="welcome_text">
          <div class="container">

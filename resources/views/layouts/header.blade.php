@@ -40,11 +40,18 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand fa fa-3x" href="{{ url('/') }}">
-                    @if ($GeneralSetting->logo)
+                    @if ($GeneralSetting)
+                          @if ($GeneralSetting->logo)
                         <img src="/images/{{ $GeneralSetting->logo }}" alt="">
                         @else
                          {{ config('app.name', $GeneralSetting->site_name) }}
+                        @endif
+
+                        @else
+                        {{ config('app.name') }}
+
                     @endif
+                 
                        
                        
                     </a>

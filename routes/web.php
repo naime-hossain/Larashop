@@ -92,7 +92,8 @@ Route::group(['prefix' => 'admin','middleware'=>'admin'], function() {
 
   // pages controller
     $page=PageSetting::first();
-    if ($page->contactUs) {
+    if ($page) {
+       if ($page->contactUs) {
       Route::get('/contact','PageController@contact')->name('contact');
       Route::post('/contact','PageController@message')->name('contact');
     }
@@ -102,4 +103,6 @@ Route::group(['prefix' => 'admin','middleware'=>'admin'], function() {
      if ($page->termsAndConditions) {
       Route::get('/terms&conditions','PageController@termsAndConditions')->name('terms&conditions');
     }
+    }
+   
 

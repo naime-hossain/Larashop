@@ -40,9 +40,12 @@ class AppServiceProvider extends ServiceProvider
 
          $generalSetting=\App\GeneralSetting::first();
          $shopSetting=\App\ShopSetting::first();
-         if ($generalSetting->site_name) {
+         if ($generalSetting) {
+              if ($generalSetting->site_name) {
             config(['app.name'=>$generalSetting->site_name]);
              }
+         }
+        if ($shopSetting) {
             if ($shopSetting->tax) {
                  config(['cart.tax'=>$shopSetting->tax]);
             }
@@ -54,6 +57,8 @@ class AppServiceProvider extends ServiceProvider
             if ($shopSetting->stripe_secret) {
                  config(['services.stripe.secret'=>$shopSetting->stripe_key]);
             }
+        }
+           
            
             // config(['mail.from.address'=>$generalSettings->site_name]);
             
