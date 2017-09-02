@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('heading')
     <h1>  Pymeant and order creation page  </h1>
+     <script src="https://www.paypalobjects.com/api/checkout.js"></script>
 @endsection
 @section('content')
         
@@ -84,14 +85,33 @@
                 src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                 data-key="{{config('services.stripe.key')}}"
                 data-amount="{{Cart::total()*100}}"
-                data-currency="{{ App\ShopSetting::first()->currency }}"
+                data-currency="{{ App\ShopSetting::first()?App\ShopSetting::first()->currency:'usd' }}"
                 data-name="{{config('app.name')}}"
                 data-email="{{Auth::user()->email}}"
                 data-description="happy "
                 data-image="/images/123.jpg"
                 data-locale="auto">
             </script>
+{{-- paypal button --}}
+<div id="paypal-button"></div>
 
+    <script>
+        paypal.Button.render({
+
+            env: 'production', // Or 'sandbox',
+
+            commit: true, // Show a 'Pay Now' button
+
+            payment: function() {
+                // Set up the payment here
+            },
+
+            onAuthorize: function(data, actions) {
+                // Execute the payment here
+           }
+
+        }, '#paypal-button');
+    </script>
                   
                 </div>
                 

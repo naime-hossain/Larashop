@@ -147,22 +147,4 @@
 @section('sidebar')
 @include('layouts.sidebar')
  @endsection
- {{-- @section('script')
-  <script  type="text/javascript">
-$(document).ready(function(){
-$(document).on('click','.pagination a', function (e) {
-  e.preventDefault();
-  var url=$(this).attr('href');
-  var pageNbr=url.split('page=')[1];
 
-$.get(url,function(data){
-   $('.all_products').html(data);
-   location.hash=pageNbr;
-})
-});
-
-});
-
-
-</script>
- @endsection --}}
