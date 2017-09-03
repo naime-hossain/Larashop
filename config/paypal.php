@@ -31,7 +31,7 @@
 	*/
 	'log.LogLevel' => 'FINE'
 	),
-);
+
  ]
 
  ?>

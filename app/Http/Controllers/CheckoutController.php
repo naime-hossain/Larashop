@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Alert;
 use App\Jobs\SendOrderConfirmationEmail;
 use App\Mail\OrderConformation;
 use App\Order;
 use App\Product;
+use App\ShopSetting;
 use App\User;
 use Carbon\Carbon;
 use Cart;
@@ -15,7 +17,6 @@ use Illuminate\Support\Facades\Mail;
 use Stripe\Charge;
 use Stripe\Customer;
 use Stripe\Stripe;
-use Alert;
 class CheckoutController extends Controller
 {
 
@@ -86,9 +87,25 @@ public function __construct(){
   $charge =Charge::create(array(
       'customer' => $customer->id,
       'amount'   => Cart::total()*100,
-      'currency' =>App\ShopSetting::first()->currency,
+      'currency' =>ShopSetting::first()?ShopSetting::first()->currency:'usd',
   ));
-// after making the payment
+    if ($charge) {
+        return redirect(route('order.store'));
+    }
+
+    }
+
+
+
+    /**
+     * Store details of order in databse.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function placeOrder(Request $request)
+    {
+       // after making the payment
 // 01.empty cart
 // 02.destroy the accessToPayment session
 // make the order in order tabel
@@ -135,18 +152,6 @@ $request->session()->forget('accessToPayment');
 
  Alert::success('Good job!Your oder is placed plaese wait for the delivery')->autoclose(1000);
   return redirect()->route('home')->with('message','Your oder is placed plaese wait for the delivery');
-
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**

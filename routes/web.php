@@ -46,8 +46,9 @@ Route::post('/checkout','CheckoutController@store')->name('checkout.shiping');
 //procced to payment route and stroe address
 Route::post('/storeAddress','AddressController@store');
 Route::get('/payment','CheckoutController@paymentForm')->name('payment');
-Route::post('/payment','CheckoutController@storePayment')->name('storepayment');
 
+Route::post('/payment','CheckoutController@storePayment')->name('storepayment');
+Route::get('/placeOrder','CheckoutController@placeOrder')->name('order.store');
 // add review
    Route::post('/review/{product_id}','ReviewController@store');
 
