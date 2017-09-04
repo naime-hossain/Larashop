@@ -45,9 +45,18 @@ Route::get('/checkout','CheckoutController@checkout')->name('checkout');
 Route::post('/checkout','CheckoutController@store')->name('checkout.shiping');
 //procced to payment route and stroe address
 Route::post('/storeAddress','AddressController@store');
-Route::get('/payment','CheckoutController@paymentForm')->name('payment');
+Route::get('/stripepayment','CheckoutController@paymentForm')->name('payment');
 
-Route::post('/payment','CheckoutController@storePayment')->name('storepayment');
+
+Route::post('/stripepayment','CheckoutController@storePayment')->name('storepayment');
+
+// route for view/blade file
+Route::get('paywithpaypal', array('as' => 'paywithpaypal','uses' => 'PaypalController@payWithPaypal',));
+// route for post request
+Route::post('paypal', array('as' => 'addmoney.paypal','uses' => 'PaypalController@postPaymentWithpaypal',));
+// route for check status responce
+Route::get('paypal', array('as' => 'status','uses' => 'PaypalController@getPaymentStatus',));
+
 Route::get('/placeOrder','CheckoutController@placeOrder')->name('order.store');
 // add review
    Route::post('/review/{product_id}','ReviewController@store');

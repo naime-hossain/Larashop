@@ -75,7 +75,7 @@ class AddressController extends Controller
     }
    Alert::success('You Are now alowed to Payment gateway')->autoclose(1500);
     // allow to payment gateway;
-   return redirect(route('payment'));
+   return redirect(route('paywithpaypal'));
   
     }
 
