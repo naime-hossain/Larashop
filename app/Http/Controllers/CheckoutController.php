@@ -90,6 +90,7 @@ public function __construct(){
       'currency' =>ShopSetting::first()?ShopSetting::first()->currency:'usd',
   ));
     if ($charge) {
+        Alert::success('Good job!Payment recieved')->autoclose(1000);
         return redirect(route('order.store'));
     }
 

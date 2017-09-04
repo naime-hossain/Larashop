@@ -4,10 +4,11 @@
 
 namespace App\Http\Controllers;
 
+use Alert;
 use App\Http\Requests;
 use Cart;
 use Illuminate\Http\Request;
-use Input;
+use Illuminate\Support\Facades\Input;
 use PayPal\Api\Amount;
 use PayPal\Api\Details;
 use PayPal\Api\ExecutePayment;
@@ -69,35 +70,36 @@ class PaypalController extends Controller
     	$cartItems=Cart::content();
         $payer = new Payer();
         $count=1;
+        $total=Cart::total();
         $payer->setPaymentMethod('paypal');
       foreach ($cartItems as $cartitem) {
 
 
-      	
-      	$count= new Item();
+      	$item_name='item'.$count;
+      	$item_name= new Item();
         $price=$cartitem->price+$cartitem->tax();
-        $count->setName($cartitem->id) /** item name **/
+        $item_name->setName($cartitem->id) /** item name **/
             ->setCurrency('USD')
             ->setQuantity($cartitem->qty)
             ->setPrice($price); /** unit price **/
            /** unit price **/
-            $item_list = new ItemList();
-        $item_list->setItems(array($count));
+       $item_array[]=$item_name;
+            $count=$count+1;
+      }
+    	     $item_list = new ItemList();
+        $item_list->setItems(array($item_array));
 
 
 
         $amount = new Amount();
         $amount->setCurrency('USD')
-            ->setTotal($count->price*$count->quantity);
+            ->setTotal($total);
 
 
         $transaction = new Transaction();
         $transaction->setAmount($amount)
             ->setItemList($item_list)
             ->setDescription('Your transaction description');
-            $count++;
-      }
-    	
 
         
 
@@ -176,6 +178,8 @@ class PaypalController extends Controller
             /** Here Write your database logic like that insert record or value in database if you want **/
 
             \Session::put('success','Payment success');
+            Alert::success('Good job!Payment success')->autoclose(1000);
+            return redirect(route('order.store'));
             return Redirect::route('paywithpaypal');
         }
         \Session::put('error','Payment failed');
