@@ -70,36 +70,42 @@ class PaypalController extends Controller
     	$cartItems=Cart::content();
         $payer = new Payer();
         $count=1;
-        $total=Cart::total();
+        $total=0;
         $payer->setPaymentMethod('paypal');
-      foreach ($cartItems as $cartitem) {
+     
 
 
-      	$item_name='item'.$count;
+      	
       	$item_name= new Item();
-        $price=$cartitem->price+$cartitem->tax();
-        $item_name->setName($cartitem->id) /** item name **/
+       
+        $item_name->setName('larashop') /** item name **/
             ->setCurrency('USD')
-            ->setQuantity($cartitem->qty)
-            ->setPrice($price); /** unit price **/
-           /** unit price **/
-       $item_array[]=$item_name;
-            $count=$count+1;
-      }
-    	     $item_list = new ItemList();
-        $item_list->setItems(array($item_array));
-
-
-
-        $amount = new Amount();
+            ->setQuantity(1)
+            ->setPrice(Cart::total()); /** unit price **/
+           
+           $amount = new Amount();
         $amount->setCurrency('USD')
-            ->setTotal($total);
+              ->setTotal($item_name->price);
 
+      
+
+    	$item_list = new ItemList();
+        $item_list->setItems(array($item_name));
+
+
+
+       
+        
 
         $transaction = new Transaction();
         $transaction->setAmount($amount)
             ->setItemList($item_list)
             ->setDescription('Your transaction description');
+         
+    
+    	     
+
+    
 
         
 

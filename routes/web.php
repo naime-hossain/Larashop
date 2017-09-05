@@ -45,7 +45,7 @@ Route::get('/checkout','CheckoutController@checkout')->name('checkout');
 Route::post('/checkout','CheckoutController@store')->name('checkout.shiping');
 //procced to payment route and stroe address
 Route::post('/storeAddress','AddressController@store');
-Route::get('/stripepayment','CheckoutController@paymentForm')->name('payment');
+Route::get('/payment','CheckoutController@paymentForm')->name('payment');
 
 
 Route::post('/stripepayment','CheckoutController@storePayment')->name('storepayment');

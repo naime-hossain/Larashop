@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('heading')
     <h1>  Pymeant and order creation page  </h1>
-     <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+     
 @endsection
 @section('content')
         
@@ -23,7 +23,7 @@
                                 <div class="col-sm-3 col-xs-3">
                                   @php
                                 
-                                   $product=App\Product::find(1);
+                                   $product=App\Product::find($item->id);
                                   @endphp
                                     @if (count($product->photos)>0)
                                         @foreach ($product->photos as $photo)
@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="col-sm-6 col-xs-6">
 
-                                    <div class="col-xs-12">{{$item->id}}</div>
+                                    <div class="col-xs-12">{{$product->name}}</div>
                                     <div class="col-xs-12"><small>Quantity:
                                     <span>{{$item->qty}}</span>
                                     
@@ -76,11 +76,11 @@
                     </div>
                     <!--REVIEW ORDER END-->
                 </div>
-                 {!! Form::open(['action'=>'CheckoutController@storePayment','method'=>'post']) !!}
+              
         
             
- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-lg-offset-3 col-md-offset-3">
-                  
+ <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 col-lg-offset-3 col-md-offset-3">
+    {!! Form::open(['action'=>'CheckoutController@storePayment','method'=>'post']) !!}   
             <script
                 src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                 data-key="{{config('services.stripe.key')}}"
@@ -92,28 +92,26 @@
                 data-image="/images/123.jpg"
                 data-locale="auto">
             </script>
-{{-- paypal button --}}
-<div id="paypal-button"></div>
 
-    <script>
-        paypal.Button.render({
 
-            env: 'production', // Or 'sandbox',
 
-            commit: true, // Show a 'Pay Now' button
-
-            payment: function() {
-                // Set up the payment here
-            },
-
-            onAuthorize: function(data, actions) {
-                // Execute the payment here
-           }
-
-        }, '#paypal-button');
-    </script>
+ 
                   
-                </div>
-                
-                </form>
+            </div>
+        {!! Form::close() !!}
+
+        {{-- paypal button --}}
+         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
+          
+        {!! Form::open(['action'=>'PaypalController@postPaymentWithpaypal','method'=>'post']) !!}
+
+      
+      
+                        
+                       
+            {!! Form::submit('pay With Paypal', ['class'=>'btn btn-primary']) !!}
+                        
+               
+                   {!! Form::close() !!}
+                    </div>
 @endsection
