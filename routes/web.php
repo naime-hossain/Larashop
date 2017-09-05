@@ -61,9 +61,25 @@ Route::get('/placeOrder','CheckoutController@placeOrder')->name('order.store');
 // add review
    Route::post('/review/{product_id}','ReviewController@store');
 
+// pages Routes
+    $page=PageSetting::first();
+    if ($page) {
+       if ($page->contactUs) {
+      Route::get('/contact','PageController@contact')->name('contact.show');
+      Route::post('/contact','PageController@message')->name('contact');
+    }
+     if ($page->returnPolicy) {
+      Route::get('/returnpolicy','PageController@returnPolicy')->name('returnPolicy');
+    }
+     if ($page->termsAndConditions) {
+      Route::get('/terms&conditions','PageController@termsAndConditions')->name('terms&conditions');
+    }
+    }
 
 
-//Admin routes
+
+
+//Admin routes are listing here
 Route::group(['prefix' => 'admin','middleware'=>'admin'], function() {
     //
     Route::get('/','AdminController@index');
@@ -96,23 +112,10 @@ Route::group(['prefix' => 'admin','middleware'=>'admin'], function() {
     Route::resource('settings/shop','AdminShopSettingController',['except'=>['show','edit','create','destroy']]);
     // message controller
     Route::resource('/message','AdminMessageController');
-
+Route::delete('/messaged','AdminMessageController@delete')->name('message.delete');
 
 });
 
-  // pages controller
-    $page=PageSetting::first();
-    if ($page) {
-       if ($page->contactUs) {
-      Route::get('/contact','PageController@contact')->name('contact');
-      Route::post('/contact','PageController@message')->name('contact');
-    }
-     if ($page->returnPolicy) {
-      Route::get('/returnpolicy','PageController@returnPolicy')->name('returnPolicy');
-    }
-     if ($page->termsAndConditions) {
-      Route::get('/terms&conditions','PageController@termsAndConditions')->name('terms&conditions');
-    }
-    }
+  
    
 

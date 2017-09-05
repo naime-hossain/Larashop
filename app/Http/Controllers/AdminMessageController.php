@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Alert;
 use App\Message;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -9,7 +10,7 @@ use Illuminate\Http\Request;
 class AdminMessageController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the message.
      *
      * @return \Illuminate\Http\Response
      */
@@ -21,69 +22,47 @@ class AdminMessageController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
+     * Display the specified message.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $message=Message::findOrFail($id);
+        $message=Message::with('user')->findOrFail($id);
         return view('admin.message.read',compact('message'));
     }
 
+   
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
+     * Remove the specified message from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+         $message=Message::findOrFail($id);
+
+           $message->delete();
+       Alert::warning('message deleted');
+       return redirect(Route('message.index'));
+    }
+     /**
+     * Remove the specified messages from storage via index page.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete( Request $request)
+    {
+       $input=$request->except('_method','_token');
+       foreach ($input as $item) {
+           $message=Message::findOrFail($item);
+
+           $message->delete();
+       }
+       Alert::warning('message deleted');
+       return redirect(Route('message.index'));
     }
 }

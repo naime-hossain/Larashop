@@ -7,8 +7,24 @@
     <section class="content container-fluid">
 
          <div class="row">
-                <!-- Page Header -->
-              @yield('contents')
+         <div class="col-md-8 col-md-offset-2">
+                  <!-- Include this after the sweet alert js file -->
+        @include('sweet::alert')
+        {{-- success alert --}}
+         @if(Session::has('message'))
+         @include('alert.success')
+         @endif
+           {{-- alert --}}
+             @if (isset($errors))
+                @if ($errors->count()>0)
+              @include('alert.error')
+            @endif
+             @endif
+         </div>
+         {{-- end of alert --}}
+   
+     <!-- Page Header -->
+          @yield('contents')
 
 
         </div>

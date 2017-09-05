@@ -39,7 +39,7 @@ class HomeController extends Controller
     }
 
      /**
-     * Show all the products.
+     * Show  the product.
      *
      * @return \Illuminate\Http\Response
      */
@@ -48,17 +48,18 @@ class HomeController extends Controller
         //
         $product=Product::with('category','types','reviews','sizes')->whereSlug($slug)->firstOrFail();
         
-         $category=$product->category;
+     $category=$product->category;
      $sizes=$product->sizes()->pluck('name','name');
      $colors=$product->colors()->pluck('name','name');
 
+// find the similar product for single page
          $similar_products=$category->products()->with('category','types','reviews','sizes')->where('id','<>',$product->id)->take(4)->inRandomOrder()->get();
         return view('products.show',compact('product','similar_products','sizes','colors'));
     }
 
 
     /**
-     * show resource for archove page.
+     * show resource for archive page.
      *
      * @param  archive_type
      * @param archive _name
@@ -102,48 +103,8 @@ class HomeController extends Controller
        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+  
+    
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    
 }

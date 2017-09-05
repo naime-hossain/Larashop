@@ -639,3 +639,30 @@ form .stars span {
 #single_product img{
   max-width: auto;
 }
+
+.feature_product_wrap {
+    overflow: hidden;
+    width: 100%;
+}
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #6e8995;
+    border: 1px solid #9E9E9E;
+}
+.single_product .cart_button {
+   
+    background: rgb(245, 248, 250);
+    
+}
+.navbar-brand {
+    height: 50px;
+    width: 190px;
+}
+.navbar-brand > img {
+    display: block;
+    height: 100%;
+    width: 100%;
+}

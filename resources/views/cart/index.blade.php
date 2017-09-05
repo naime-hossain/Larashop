@@ -32,7 +32,18 @@
                        <tbody>
                 @foreach ($cartItems as $cartItem)
                 
-                       
+                       @php
+                             $product=App\Product::find($cartItem->id);
+                             if ($product) {
+                               $sizes=$product->sizes()->pluck('name','name');
+                              $colors=$product->colors()->pluck('name','name');
+                             }else{
+                              $sizes='';
+                              $colors='';
+                             }
+                              
+                           @endphp
+
                          <tr>
                           <span>{{$cartItem->options->color}}</span>
                                     <span>{{$cartItem->options->size}}</span>
@@ -46,24 +57,14 @@
                 {!! Form::open(['action'=>['CartController@update',$cartItem->rowId],'method'=>'put','class'=>'']) !!}
                            <td width="50px">
                            <div class="form-group">
-                           {!! Form::number('qty',$cartItem->qty, ['class'=>'form-control','min'=>1,'max'=>$cartItem->options->stock]) !!}
+                           {!! Form::number('qty',$cartItem->qty, ['class'=>'form-control','min'=>1,'max'=>$product->inStock]) !!}
                             </div>
-                   
+                          
                   
 
                            </td>
                            <td>
-                           @php
-                             $product=App\Product::find($cartItem->id);
-                             if ($product) {
-                               $sizes=$product->sizes()->pluck('name','name');
-                              $colors=$product->colors()->pluck('name','name');
-                             }else{
-                              $sizes='';
-                              $colors='';
-                             }
-                              
-                           @endphp
+                           
                             
                @if ($sizes->count()>0)
                      <div class="form-group">
@@ -85,6 +86,7 @@
        </td>
 
                            <td>
+                      {!! Form::hidden('id', $product->id, []) !!}
                      {!! Form::submit("Update",
                      [
                      'class'=>'btn btn-default ',

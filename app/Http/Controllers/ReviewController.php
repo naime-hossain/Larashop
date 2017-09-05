@@ -8,28 +8,10 @@ use Illuminate\Support\Facades\Auth;
 use Alert;
 class ReviewController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+   
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Store a newly created review in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -52,6 +34,7 @@ class ReviewController extends Controller
        }
      $input['user_id']=$user->id;
      $product->reviews()->create($input);
+     // update product rating
      $rating=$product->reviews()->sum('rating')/$product->reviews()->count();
      $product->rating=$rating;
      $product->save();
@@ -60,19 +43,10 @@ class ReviewController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+   
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified review.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -83,7 +57,7 @@ class ReviewController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified review in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -95,7 +69,7 @@ class ReviewController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified review from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

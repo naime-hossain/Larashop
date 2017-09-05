@@ -39,14 +39,12 @@
               <h3 class="box-title">Inbox</h3>
 
           
-             {!! Form::open() !!}
+             {!! Form::open(['action'=>'AdminMessageController@delete','method'=>'delete']) !!}
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
               <div class="mailbox-controls">
-                <!-- Check all button -->
-                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
-                </button>
+               
                 <div class="btn-group">
                  
                   {!! Form::button("<i class='fa fa-trash-o'></i>", ['class'=>'btn btn-default btn-sm','type'=>'submit']) !!}

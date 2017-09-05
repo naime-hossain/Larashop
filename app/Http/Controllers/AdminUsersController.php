@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\User;
-use App\Role;
+use Alert;
 use App\Photo;
+use App\Role;
+use App\User;
+use Illuminate\Http\Request;
   use Illuminate\Support\Facades\File;
 class AdminUsersController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the user.
      *
      * @return \Illuminate\Http\Response
      */
@@ -22,13 +23,13 @@ class AdminUsersController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new user.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        //create a array of all roles with name and id
         $roles=Role::pluck('name','id')->all();
         return view('admin.users.create',compact('roles'));
     }
@@ -36,7 +37,7 @@ class AdminUsersController extends Controller
   
 
     /**
-     * Display the specified resource.
+     * Display the specified user.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -49,21 +50,21 @@ class AdminUsersController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified user.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        //create a array of all roles with name and id
         $roles=Role::pluck('name','id')->all();
         $user=User::findOrFail($id);
         return view('admin.users.edit',compact('user','roles'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified user in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -80,8 +81,7 @@ class AdminUsersController extends Controller
        
 
         if ($file=$request->file('image')) {
-          
-      
+
        
        $filename = rand(0,time()).$file->getClientOriginalName();
        //remove old history
@@ -100,16 +100,16 @@ class AdminUsersController extends Controller
         
         
         }
-        $user->update($input);
-        if ($user) {
-            # code...
+        
+        if ($user->update($input)) {
+            Alert::success('user Info Updated');
             return redirect('/admin/users')->with('message', 'User Info updated  succefully');
 
         }
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified user from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -131,10 +131,11 @@ class AdminUsersController extends Controller
 
        
 
-            //delete users Posts from database
+            //delete user  from database
              $user_delete=$user->delete();
 
         }
+        Alert::success('User removed from Database');
         return back()->with('message', 'User  deleted succefully');
     }
 }

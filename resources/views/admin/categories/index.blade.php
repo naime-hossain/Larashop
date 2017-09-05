@@ -21,9 +21,7 @@
                         </div>
 
                         <div class="panel-body">
-                            @if(Session::has('message'))
-                           @include('alert.success')
-                           @endif
+                           
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>

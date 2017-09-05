@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Alert;
 use App\Order;
+use Illuminate\Http\Request;
 class AdminOrderController extends Controller
 {
     /**
@@ -46,51 +47,10 @@ class AdminOrderController extends Controller
         return view('admin.orders.delivered',compact('orders'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
+     * Update the specified order in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -99,8 +59,10 @@ class AdminOrderController extends Controller
     public function update(Request $request, $id)
     {
        $order=Order::findOrFail($id);
+       // mark a order as delivered
        $order->is_deliver=1;
        $order->save();
+      Alert::success('order mark as delivered');
        return back()->with('message','order marked as delivered');
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Alert;
 use App\Category;
 use App\Color;
 use App\Photo;
@@ -14,7 +15,7 @@ use Image;
 class AdminProductsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the product.
      *
      * @return \Illuminate\Http\Response
      */
@@ -53,18 +54,23 @@ class AdminProductsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new product.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
+        // grab the all categories and make an array with name and id
         $categories=Category::pluck('name','id');
+        // grab the all types and make an array with name and id
         $types=Type::pluck('name','id');
-
+        // grab the all color and make an array
         $colors =Color::pluck('name')->toArray();
+        // make the array to a string
         $colors =implode(',',$colors);
+        // grab the all sizes and make an array
          $sizes =Size::pluck('name')->toArray();
+         // make the array to a string
          $sizes=implode(',',$sizes);
 
         return view('admin.products.create',compact('categories','types','colors','sizes'));
@@ -73,7 +79,7 @@ class AdminProductsController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created product in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -107,11 +113,15 @@ class AdminProductsController extends Controller
          
          // return $request->all();
        if ($input['category_id']==0) {
+        // create uncategorized if there is no category
            $category=Category::create(['name'=>'uncategorized']);
            $input['category_id']=$category->id;
        }
+       // make slug for product
        $input['slug']=str_slug($request->name,'-');
         $product=Product::create($input);
+
+        // process the images
          if ($request->hasFile('image')) {
             foreach ($request->image as $file)
              {
@@ -158,24 +168,15 @@ class AdminProductsController extends Controller
             } 
         }
       
-
+    Alert::success('Product Added Successfully');
         return redirect(route('products.index'))->with(['message'=>'Product added succefully']);
         
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+    
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified product.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -201,19 +202,23 @@ class AdminProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function remove_photo($product_id,$photo_id){
+
         $product=Product::findorFail($product_id);
+
         $photo=Photo::findOrFail($photo_id);
+
         if ($photo->photoable->id==$product->id) {
            File::delete('images/products/'.$photo->path);
            File::delete('images/products/thumbs/'.$photo->path);
            $product->photos()->whereId($photo->id)->delete();
+           Alert::success('photo removed');
            return back()->with(['message'=>'photo removed']);
         }
     
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified product in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -223,7 +228,9 @@ class AdminProductsController extends Controller
     {
 
        $product=Product::findOrFail($id);
+
           $input=$request->except(['image','type','size','color']);
+
         if (!$request->is_feature) {
            $input['is_feature']=0;
         }else{
@@ -235,6 +242,7 @@ class AdminProductsController extends Controller
            $input['category_id']=$category->id;
        }
           $product->update($input);
+
          if ($request->hasFile('image')) {
             foreach ($request->image as $file)
              {
@@ -307,13 +315,13 @@ class AdminProductsController extends Controller
             }
         }
        
-
+    Alert::success('product Updated');
         return redirect(route('products.index'))->with(['message'=>'Product Updated succefully']);
         
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified product from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -321,6 +329,7 @@ class AdminProductsController extends Controller
     public function destroy($id)
     {
         $product=Product::findOrFail($id);
+
         if ($product->photos) {
             foreach ($product->photos as $photo) {
                File::delete('images/products/'.$photo->path);
@@ -330,6 +339,7 @@ class AdminProductsController extends Controller
             $product->photos()->delete();
         }
         $product->delete();
+        Alert::warning('product deleted');
         return redirect(route('products.index'))->with(['message'=>'Product removed']);
     }
 }

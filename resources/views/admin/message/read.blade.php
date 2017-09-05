@@ -66,7 +66,10 @@
                 <button type="button" class="btn btn-default"><i class="fa fa-reply"></i> Reply</button>
             
               </div>
-              <button type="button" class="btn btn-default"><i class="fa fa-trash-o"></i> Delete</button>
+             
+                 {!! Form::open(['action'=>['AdminMessageController@destroy',$message->id],'method'=>'delete']) !!}
+             {!! Form::button("<i class='fa fa-trash-o'></i> Delete", ['class'=>'btn btn-danger','type'=>'submit']) !!}
+             {!! Form::close() !!}
               
             </div>
            

@@ -76,7 +76,7 @@ class UserController extends Controller
      */
     public function edit($name)
     {
-        // $roles=Role::pluck('name','id')->all();
+        
          $user=User::with('photos')->whereName($name)->firstOrFail();
          $auth_user=Auth::user();
         // return $user->name;
@@ -132,8 +132,8 @@ class UserController extends Controller
         
         
         }
-        $user->update($input);
-        if ($user) {
+        
+        if ($user->update($input)) {
             Alert::success('Good job ! User Info updated  succefully')->autoclose(1500);
             return back()->with('message', 'User Info updated  succefully');
 

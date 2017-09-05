@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Alert;
 use App\GeneralSetting;
+use Config;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Image;
-use Config;
 class AdminGeneralSettingController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the general setting.
      *
      * @return \Illuminate\Http\Response
      */
@@ -20,18 +21,9 @@ class AdminGeneralSettingController extends Controller
         return view('admin.settings.general.index',compact('settings'));
     }
 
+   
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Store a newly created general setting in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -48,7 +40,7 @@ class AdminGeneralSettingController extends Controller
 
         $input=$request->all();
 
-        //upload the logo and save collect the filename
+        //upload the logo and save ,collect the filename
          if ($request->hasFile('logo')) {
             $file=$request->logo;
              // use intervention image to crop the images
@@ -56,7 +48,7 @@ class AdminGeneralSettingController extends Controller
           Image::make($file)->fit(190, 40)->save('images/'.$filename);
           $input['logo']=$filename;
          }
-  //upload the cover pic and save collect the filename
+      //upload the cover pic and save collect the filename
            if ($request->hasFile('cover_pic')) {
             $file=$request->cover_pic;
              // use intervention image to crop the images
@@ -68,33 +60,14 @@ class AdminGeneralSettingController extends Controller
          // create new settings
 
          $setting=GeneralSetting::create($input);
+         Alert::success('General Settings created');
          return redirect()->back()->with('message','general settings created');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+    
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
+     * Update the specified general setting in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -117,7 +90,7 @@ class AdminGeneralSettingController extends Controller
           Image::make($file)->fit(190, 40)->save('images/'.$filename);
           $input['logo']=$filename;
          }
-  //upload the cover pic and save collect the filename
+      //upload the cover pic and save collect the filename
            if ($request->hasFile('cover_pic')) {
             $file=$request->cover_pic;
             //delete the old pic
@@ -128,20 +101,12 @@ class AdminGeneralSettingController extends Controller
           $input['cover_pic']=$filename;
          }
 
-         // create new settings
+         // update  settings
 
-         $setting=$setting->update($input);
+         $setting->update($input);
+         Alert::success('General Settings udated');
          return redirect()->back()->with('message','general settings updated');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+ 
 }

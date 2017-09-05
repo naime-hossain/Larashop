@@ -31,7 +31,7 @@ public function __construct(){
      */
     public function checkout()
     {
-        
+        // final check if the item is in stock limit or not
             $cartItems=Cart::content();
             foreach ($cartItems as $item) {
                $product=Product::find($item->id);
@@ -53,7 +53,7 @@ public function __construct(){
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new order by pay bill.
      *
      * @return \Illuminate\Http\Response
      */
@@ -64,7 +64,7 @@ public function __construct(){
              $cartItems=Cart::content();
             return view('checkout.paymentform',compact('cartItems'));
         }
-        return redirect(route('checkout'))->with('message','complete the checkout processs Please then procced to payment');
+        return redirect(route('checkout'))->with('message','complete the checkout processs first then procced to payment');
        
     }
 
@@ -156,37 +156,7 @@ $request->session()->forget('accessToPayment');
   return redirect()->route('home')->with('message','Your oder is placed plaese wait for the delivery');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+    
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    
 }

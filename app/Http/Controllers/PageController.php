@@ -22,7 +22,7 @@ class PageController extends Controller
 
 
     /**
-     * Display contact us page.
+     * send message to admin.
      *
      * @return \Illuminate\Http\Response
      */

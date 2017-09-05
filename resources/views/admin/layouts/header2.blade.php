@@ -8,9 +8,9 @@
     <link href="/css/app.css" rel="stylesheet" />
     <link href="/css/bootstrap-tagsinput.css" rel="stylesheet" />
     <link href="/css/font-awesome.min.css" rel="stylesheet" />
-    {{-- css for simanta --}}
-{{--     <link href="/admin_assets/css/style.css" rel="stylesheet" />
-    <link href="/admin_assets/css/main-style.css" rel="stylesheet" /> --}}
+    {{-- asset for sweetalert --}}
+<link href="/css/sweetalert.css" rel="stylesheet"/>
+     <script src="/js/sweetalert.min.js"></script>
     <!-- Page-Level CSS -->
       <!-- Theme style -->
   <link rel="stylesheet" href="/css/AdminLTE.min.css">
