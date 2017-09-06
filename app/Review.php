@@ -13,6 +13,8 @@ class Review extends Model
     */
    protected $fillable = ['rating','review','product_id','user_id'];
 
+
+
    /**
     * Review belongs to Product.
     *
@@ -23,6 +25,8 @@ class Review extends Model
    	// belongsTo(RelatedModel, foreignKey = product_id, keyOnRelatedModel = id)
    	return $this->belongsTo(Product::class);
    }
+
+
 
    /**
     * Review belongs to User.

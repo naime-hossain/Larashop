@@ -13,6 +13,8 @@ class Photo extends Model
      */
     protected $fillable = ['path','photoable_type','photoable_id'];
 
+
+
 /**
  * Photo morphs to models in photoable_type.
  *
@@ -25,6 +27,8 @@ public function photoable()
   return $this->morphTo();
 }
 
+
+
 /**
  * Function for shows the cover photo directory
  *
@@ -34,6 +38,7 @@ public function photoable()
 public function cover(){
 	return '/images/products/'.$this->path;
 }
+
 
 /**
  * Function for shows the thumb photo directory

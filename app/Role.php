@@ -13,6 +13,7 @@ class Role extends Model
      */
     protected $fillable = ['name'];
 
+    
     /**
      * Role has many Users.
      *

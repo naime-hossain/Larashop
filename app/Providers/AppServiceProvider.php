@@ -14,15 +14,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        //set default string length for db table field
         Schema::defaultStringLength(191);
+
+        // global variable for sidebar
         view()->composer('layouts.sidebar',function($view){
 
             $view->with('categories',\App\Category::has('products')->get());
      
             $view->with('types',\App\Type::has('products')->get());
         });
-
+ // global variable for footer
           view()->composer('layouts.footer',function($view){
 
             $view->with('categories',\App\Category::has('products')->latest()->take(5)->get());
@@ -32,12 +34,13 @@ class AppServiceProvider extends ServiceProvider
        
             $view->with('page',\App\PageSetting::first());
         });  
-
+  // global variable for all view
          view()->composer('*', function($view)
       {
         $view->with('GeneralSetting',\App\GeneralSetting::first());
      });
-
+ 
+ // set the .env/environment variable from database
          $generalSetting=\App\GeneralSetting::first();
          $shopSetting=\App\ShopSetting::first();
          if ($generalSetting) {

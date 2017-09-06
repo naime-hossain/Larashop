@@ -6,12 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+
+	/**
+	 * Fields that can be mass assigned.
+	 *
+	 * @var array
+	 */
+
     protected $fillable=[
-    'user_id',
-'address_id',
-'is_deliver',
-'order_token',
-'total',
+	 'user_id',
+	'address_id',
+	'is_deliver',
+	'order_token',
+	'total',
     ];
 
 

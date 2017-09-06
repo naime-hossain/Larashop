@@ -14,6 +14,8 @@ class Category extends Model
      */
     protected $fillable = ['name'];
 
+    
+
     /**
      * Category has many Products.
      *

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class Admin
 {
     /**
-     * Handle an incoming request.
+     * Handle an incoming request for admin area.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next

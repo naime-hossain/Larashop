@@ -12,12 +12,16 @@ class Product extends Model
      * @var array
      */
     protected $fillable = 
- ['name',
-'description',
-'price',
-'category_id',
-'size',
-'is_available','inStock','is_feature','slug'];
+ [
+    'name',
+    'description',
+    'price',
+    'category_id',
+    'size',
+    'is_available','inStock','is_feature','slug'
+];
+
+
 
 /**
  * Product belongs to Category.
@@ -43,6 +47,7 @@ public function types()
 	return $this->belongsToMany(Type::class);
 }
 
+
 /**
  * Product morphs many Photo.
  *
@@ -54,6 +59,7 @@ public function photos()
 	return $this->morphMany(Photo::class, 'photoable');
 }
 
+
 /**
  * Product belongs to Many Orders.
  *
@@ -64,6 +70,7 @@ public function orders()
 	// belongsTo(RelatedModel, foreignKey = orders_id, keyOnRelatedModel = id)
 	return $this->belongsToMany(Order::class)-withPivot('qty','total','color','size');
 }
+
 
 /**
  * Product has many Reviews.
@@ -77,6 +84,7 @@ public function reviews()
 }
 
 
+
   /**
     * Products belongs to many Colors.
     *
@@ -87,6 +95,7 @@ public function reviews()
    
    	return $this->belongsToMany(Color::class);
    }
+
 
      /**
     * Products belongs to many sizes.

@@ -27,6 +27,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+
     /**
      * User belongs to Role.
      *
@@ -51,11 +52,21 @@ class User extends Authenticatable
         return $this->morphMany(Photo::class, 'photoable');
     }
 
+/**
+ * User has many Addresses.
+ *
+ * @return \Illuminate\Database\Eloquent\Relations\HasMany
+ */
+
+  // hasMany(RelatedModel, foreignKeyOnRelatedModel = user_id, localKey = id)
+
   public function addresses()
   {
       return $this->hasMany('App\Address');
   }
 
+
+// check if the user is active or not
       public function isactive(){
 
          if ($this->is_active==1) {
@@ -65,6 +76,9 @@ class User extends Authenticatable
             return false;
          }
       }
+
+      
+      // check if the user is admin or not
 
     public function isadmin(){
            if ($this->role) {
