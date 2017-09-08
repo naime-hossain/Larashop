@@ -1,14 +1,16 @@
+{{-- include the header where all css and the menu exists --}}
 @include('admin.layouts.header2')
   <div class="content-wrapper">
 
       <section class="content-header">
+      {{-- heading of all page --}}
        @yield('heading')
       </section>
     <section class="content container-fluid">
 
          <div class="row">
          <div class="col-md-8 col-md-offset-2">
-                  <!-- Include this after the sweet alert js file -->
+      <!-- Include this after the sweet alert js file -->
         @include('sweet::alert')
         {{-- success alert --}}
          @if(Session::has('message'))
@@ -24,6 +26,8 @@
          {{-- end of alert --}}
    
      <!-- Page Header -->
+
+     {{-- the main content for all pages inject here --}}
           @yield('contents')
 
 
@@ -34,12 +38,9 @@
     </div>
     <!-- end wrapper -->
 
-
-    <!-- Page-Level Plugin Scripts-->
-    {{-- <script src="assets/plugins/morris/raphael-2.1.0.min.js"></script>
-    <script src="assets/plugins/morris/morris.js"></script>
-    <script src="assets/scripts/dashboard-demo.js"></script> --}}
+{{-- include the footer where all js exists --}}
 @include('admin.layouts.footer2')
+{{-- extra js for page lavel --}}
 @yield('footer')
 </body>
 

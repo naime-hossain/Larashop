@@ -5,21 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ config('app.name') }}</title>
     <!-- Core CSS - Include with every page -->
-    <link href="/css/app.css" rel="stylesheet" />
-    <link href="/css/bootstrap-tagsinput.css" rel="stylesheet" />
-    <link href="/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="{{ asset('css/admin_app.css') }}" rel="stylesheet" />
+    {{-- <link href="/css/bootstrap-tagsinput.css" rel="stylesheet" />
+    <link href="/css/font-awesome.min.css" rel="stylesheet" /> --}}
     {{-- asset for sweetalert --}}
-<link href="/css/sweetalert.css" rel="stylesheet"/>
+{{-- <link href="/css/sweetalert.css" rel="stylesheet"/> --}}
      <script src="/js/sweetalert.min.js"></script>
     <!-- Page-Level CSS -->
       <!-- Theme style -->
-  <link rel="stylesheet" href="/css/AdminLTE.min.css">
+  {{-- <link rel="stylesheet" href="/css/AdminLTE.min.css"> --}}
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
-  <link rel="stylesheet" href="/css/skin-blue.min.css">
+ {{--  <link rel="stylesheet" href="/css/skin-blue.min.css">
     <link href="/css/material-kit.css" rel="stylesheet"/>
-    <link href="/admin_assets/css/admin.css" rel="stylesheet" />
+    <link href="/admin_assets/css/admin.css" rel="stylesheet" /> --}}
     
    </head>
 <body class="hold-transition skin-blue sidebar-mini">

@@ -12,12 +12,12 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="/css/font-awesome.min.css" rel="stylesheet" />
+{{--     <link href="/css/font-awesome.min.css" rel="stylesheet" />
 <link href="/css/material-kit.css" rel="stylesheet"/>
-<link href="/css/sweetalert.css" rel="stylesheet"/>
+<link href="/css/sweetalert.css" rel="stylesheet"/> --}}
      <script src="/js/sweetalert.min.js"></script>
 @yield('extra_header')
-    <link href="/css/style.css" rel="stylesheet"/>
+   {{--  <link href="/css/style.css" rel="stylesheet"/> --}}
 </head>
 <body>
  <div id="preloader">

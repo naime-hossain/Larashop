@@ -1,4 +1,6 @@
 @extends('admin.layouts.admin')
+
+{{-- start contents --}}
 @section('contents')
 
 
@@ -6,13 +8,9 @@
       <h1 class="page-header">Create New Category</h1>
   </div>
 
+{{-- col for main contents --}}
  <div class="col-md-8 col-offset-2">
- @if ($errors->count()>0)
-  @include('alert.error')
-@endif
-   @if(Session::has('message'))
-        @include('alert.success')
-    @endif
+
 
 
  {!! Form::open(['action'=>'AdminCategoriesController@store','method'=>'post']) !!}
@@ -29,6 +27,9 @@
    
 
  {!! Form::close() !!}
+ {{-- end of form --}}
 
  </div>
+ {{-- end of main col --}}
 @endsection
+{{-- end of contnets --}}
