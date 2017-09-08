@@ -5,16 +5,10 @@
   <div class="col-lg-12">
       <h1 class="page-header">Update Category</h1>
   </div>
-
+{{-- end of header --}}
  <div class="col-md-8 col-offset-2">
- @if ($errors->count()>0)
-  @include('alert.error')
-@endif
-   @if(Session::has('message'))
-        @include('alert.success')
-    @endif
 
-
+{{-- form for create --}}
  {!! Form::model($category,['action'=>['AdminCategoriesController@update',$category->id],'method'=>'put']) !!}
 
    <div class="form-group col-md-12 {{ $errors->has('title') ? ' has-error' : '' }}">

@@ -7,6 +7,7 @@
   <!--End Page Header -->
 
   <div class="col-md-12">
+  {{-- button for create new type --}}
    <div class="create_type">
      <span href="" data-toggle="modal" data-target="#createtype" class="close-icon btn btn-success" title="">Create New type</span>
        
@@ -19,9 +20,7 @@
         </div>
 
         <div class="panel-body">
-            @if(Session::has('message'))
-           @include('alert.success')
-           @endif
+        {{-- show all types --}}
             <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -47,7 +46,7 @@
                               <td>{{ $type->created_at?$type->created_at->diffForHumans():'no time' }}</td>
                               <td>{{ $type->updated_at?$type->updated_at->diffForHumans():'no time' }}</td>
                             <td>
-                         
+                 {{-- button for edit type --}}
             <span href="" data-toggle="modal" data-target="#edittype{{ $type->id }}" class="close-icon btn btn-info" title=""><i class="fa fa-edit"></i></span>
             <!-- edittype Modal Core -->
             <div class="modal fade" id="edittype{{ $type->id }}" tabindex="-1" role="dialog" aria-labelledby="edittype{{ $type->id }}Label" aria-hidden="true">
@@ -72,14 +71,16 @@
 
 
             {!! Form::close() !!}
+            {{-- end of edit type form --}}
             </div>
             </div>
 
             </div>
             </div>
             </div>
-            {{-- model end --}} 
+            {{-- edit type model end --}} 
 
+{{-- button for delete type --}}
         <span href="" data-toggle="modal" data-target="#deletetype{{ $type->id }}" class="close-icon btn btn-danger" title=""><i class="fa fa-trash-o"></i></span>
         <!-- deletetype Modal Core -->
         <div class="modal fade" id="deletetype{{ $type->id }}" tabindex="-1" role="dialog" aria-labelledby="deletetype{{ $type->id }}Label" aria-hidden="true">
@@ -100,19 +101,21 @@
             
 
         {!! Form::close() !!}
+        {{-- end form for delete type --}}
         </div>
         </div>
 
         </div>
         </div>
         </div>
-        {{-- model end --}} 
+        {{-- delete type model end --}} 
                             
 
                              
                             </td>
                         </tr>
                         @endforeach
+                        {{-- show the pagination link --}}
                         {{ $types->links() }}
                         @else
                           <tr>
@@ -131,11 +134,12 @@
 
                     </tbody>
                 </table>
+                {{-- end of table --}}
             </div>
         </div>
     </div>
                     <!--  end  Context Classes  -->
-                      <!-- createtype Modal Core -->
+        <!-- createtype Modal Core -->
           <div class="modal fade" id="createtype" tabindex="-1" role="dialog" aria-labelledby="createtypeLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -158,6 +162,7 @@
    
 
  {!! Form::close() !!}
+ {{-- end of crete type from --}}
 
                </div>
                 </div>
@@ -165,7 +170,8 @@
               </div>
             </div>
           </div>
-       {{-- model end --}} 
-                    </div>
+       {{-- create type model end --}} 
+  </div>
+  {{-- end of col 12 --}}
 
 @endsection

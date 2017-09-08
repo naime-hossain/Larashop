@@ -8,65 +8,59 @@
 
   <div class="col-md-12">
                      <!--    Context Classes  -->
-                    <div class="panel panel-default">
+<div class="panel panel-default">
 
-                        <div class="panel-heading">
-                          Users Database
-                        </div>
+<div class="panel-heading">
+Users Database
+</div>
 
-                        <div class="panel-body">
-                            @if(Session::has('message'))
-                           @include('alert.success')
-                           @endif
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Name</th>
-                                            <th>image</th>
-                                            <th>Email</th>
-                                            <th>Role</th>
-                                            <th>Status</th>
-                                            <th>Created At</th>
-                                            <th>Updated At</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                     @if (count($users)>0)
-                                      @foreach ($users as $user)
-                                        <tr class="{{$user->is_active==1?'success':'warning' }}">
-                                          <td>{{ $user->id }}</td>
-                                            <td>{{ $user->name }}</td>
-                                            <td>
-                                            @if ($user->photos)
-                  
-                                             @foreach ($user->photos as $photo)
-                                                @if ($loop->index==0)
-                                                   <img height="50" width="150" class="img-rounded" src="/images/users/{{ $photo->path }}" alt="">
-                                                @endif
-                                             
+<div class="panel-body">
 
-                                            @endforeach
-        
-                                           @endif
+<div class="table-responsive">
+  <table class="table">
+      <thead>
+          <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>image</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Status</th>
+              <th>Created At</th>
+              <th>Updated At</th>
+              <th>Actions</th>
+          </tr>
+      </thead>
+      <tbody>
+       @if (count($users)>0)
+        @foreach ($users as $user)
+          <tr class="{{$user->is_active==1?'success':'warning' }}">
+            <td>{{ $user->id }}</td>
+              <td>{{ $user->name }}</td>
+              <td>
+              @if ($user->photos->count()>0)
 
-                                            </td>
-                                            <td>{{ $user->email }}</td>
-                                            <td> @if($user->role){{ $user->role->name }}@endif</td>
-                                            {{-- <td>@if ($user->is_active)
-                                              {{ 'active' }}
-                                            @else{{ 'not active' }}
-                                            @endif</td> --}}
-                                          <td>  {{$user->is_active==1?'Active':'Not Active' }}</td>
-                                              <td>{{ $user->created_at->diffForHumans() }}</td>
-                                              <td>{{ $user->updated_at->diffForHumans() }}</td>
-                                            <td>
-                                            <a class="btn btn-info" href="{{ route('users.edit',$user->id) }}">  <i class="fa fa-edit"></i> 
-                                            </a>
+               
+                     <img height="50" width="150" class="img-rounded" src="{{ asset('images/users/'.$user->photos()->first()->path) }}" alt="">
+               
+               
 
-                    <span href="" data-toggle="modal" data-target="#deleteuser{{ $user->id }}" class="close-icon btn btn-danger" title=""><i class="fa fa-trash-o"></i></span>
+            
+
+             @endif
+
+              </td>
+              <td>{{ $user->email }}</td>
+              <td> @if($user->role){{ $user->role->name }}@endif</td>
+              
+            <td>  {{$user->is_active==1?'Active':'Not Active' }}</td>
+                <td>{{ $user->created_at->diffForHumans() }}</td>
+                <td>{{ $user->updated_at->diffForHumans() }}</td>
+              <td>
+              <a class="btn btn-info" href="{{ route('users.edit',$user->id) }}">  <i class="fa fa-edit"></i> 
+              </a>
+
+              <span href="" data-toggle="modal" data-target="#deleteuser{{ $user->id }}" class="close-icon btn btn-danger" title=""><i class="fa fa-trash-o"></i></span>
              <!-- deleteuser Modal Core -->
           <div class="modal fade" id="deleteuser{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteuser{{ $user->id }}Label" aria-hidden="true">
             <div class="modal-dialog">
@@ -95,19 +89,19 @@
               </div>
             </div>
           </div>
-       {{-- model end --}}  
-                                            </td>
-                                        </tr>
-                                      @endforeach
-                                      {{ $users->links() }}
-                                      @endif
+{{-- model end --}}  
+                          </td>
+                      </tr>
+                    @endforeach
+                    {{ $users->links() }}
+                    @endif
 
 
 
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <!--  end  Context Classes  -->
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+  <!--  end  Context Classes  -->
 @endsection

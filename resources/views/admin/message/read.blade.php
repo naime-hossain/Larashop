@@ -1,9 +1,13 @@
   @php
+  // import the carbon class to show time
   use Carbon\Carbon;
  
 @endphp
+
 @extends('admin.layouts.admin')
 
+
+{{-- start the contents --}}
 @section('contents')
   <div class="col-lg-12">
       
@@ -66,7 +70,7 @@
                 <button type="button" class="btn btn-default"><i class="fa fa-reply"></i> Reply</button>
             
               </div>
-             
+             {{-- form for delete message --}}
                  {!! Form::open(['action'=>['AdminMessageController@destroy',$message->id],'method'=>'delete']) !!}
              {!! Form::button("<i class='fa fa-trash-o'></i> Delete", ['class'=>'btn btn-danger','type'=>'submit']) !!}
              {!! Form::close() !!}

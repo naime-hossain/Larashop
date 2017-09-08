@@ -9,16 +9,12 @@
   <!--End Page Header -->
 
   <div class="col-md-12 ">
-                     <!--    Context Classes  -->
+      <!--    panel Class start -->
       <div class="panel panel-default order_page">
 
-    
-
-      
-      @if(Session::has('message'))
-      @include('alert.success')
-      @endif
       @if(count($orders)>0)
+
+      {{-- show th pagination --}}
       {{ $orders->links() }}
         <div class="row">
        <div class="col-md-12">
@@ -52,8 +48,10 @@
                    
                    <td>${{$order->total}}</td>
                    <td>
+                   {{-- if the order is pending show this button --}}
                 @if ($order->is_deliver==0)
-                            <span href="" data-toggle="modal" data-target="#deliveredorder{{ $order->id }}" class="close-icon btn btn-success" title="Mark as delivered"><i class="fa  fa-check "></i></span>
+                {{-- button for make the mark the order as deliver --}}
+                  <span href="" data-toggle="modal" data-target="#deliveredorder{{ $order->id }}" class="close-icon btn btn-success" title="Mark as delivered"><i class="fa  fa-check "></i></span>
              <!-- deliveredorder Modal Core -->
           <div class="modal fade" id="deliveredorder{{ $order->id }}" tabindex="-1" role="dialog" aria-labelledby="deliveredorder{{ $order->id }}Label" aria-hidden="true">
             <div class="modal-dialog">
@@ -90,6 +88,7 @@
                  </tr>
                </tbody>
              </table>
+             {{-- order info table end --}}
             </div>
             {{-- customer address --}}
              <div class="table-responsive bg-success">
@@ -122,6 +121,7 @@
                  </tr>
                </tbody>
              </table>
+             {{-- shiping address table end --}}
             </div>
           </div>
           <div class="panel-body text-center">
@@ -162,7 +162,7 @@
             
                         @foreach ($product->photos as $photo)
                         @if ($loop->index==0)
-                            <img height="50" width="150" class="img-rounded" src="/images/products/{{ $photo->path }}" alt="">
+                            <img height="50" width="150" class="img-rounded" src="{{ asset('images/products/'.$photo->path ) }}" alt="">
                         @endif
                         
 
@@ -193,6 +193,7 @@
 
                             </tbody>
                         </table>
+                        {{-- product detail table end --}}
                 </div> 
               </div>
               </div>   

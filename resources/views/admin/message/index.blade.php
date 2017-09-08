@@ -1,11 +1,12 @@
 @extends('admin.layouts.admin')
 
+
+{{-- start the contents --}}
 @section('contents')
   <div class="col-lg-12">
       <h1 class="page-header">All messages</h1>
   </div>
   
-
   <!--End Page Header -->
 
           <div class="col-md-3">
@@ -29,7 +30,7 @@
             </div>
             <!-- /.box-body -->
           </div>
-          <!-- /. box -->
+          <!-- /. end of folder -->
          
         </div>
         <!-- /.col -->
@@ -38,7 +39,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Inbox</h3>
 
-          
+          {{-- form for delete message --}}
              {!! Form::open(['action'=>'AdminMessageController@delete','method'=>'delete']) !!}
             </div>
             <!-- /.box-header -->
@@ -61,6 +62,7 @@
                     @foreach ($messages as $message)
                       <tr>
                     <td>
+                    
                        {!! Form::checkbox('id'.$message->id,$message->id,'', []) !!}
                     </td>
                     <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
@@ -88,5 +90,5 @@
         </div>
   
 
-    <!--  end  Context Classes  -->
+    <!--  end  col Class  -->
 @endsection

@@ -6,15 +6,10 @@
   </div>
   <div class="row">
   	 <div class="col-md-6">
-  	 	 @if ($user->photos)
-                  
-         @foreach ($user->photos as $photo)
-            @if ($loop->index==0)
-               <img  class="img-rounded" src="/images/users/{{ $photo->path }}" alt="">
-            @endif
-         
-
-        @endforeach
+  	 	 @if ($user->photos->count()>0)
+      
+               <img  class="img-rounded" src="{{ asset('images/users/'.$user->photos()->first()->path) }}" alt="">
+        
 
        @endif
   	 </div>

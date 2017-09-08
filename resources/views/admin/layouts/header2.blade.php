@@ -10,7 +10,7 @@
     <link href="/css/font-awesome.min.css" rel="stylesheet" /> --}}
     {{-- asset for sweetalert --}}
 {{-- <link href="/css/sweetalert.css" rel="stylesheet"/> --}}
-     <script src="/js/sweetalert.min.js"></script>
+     <script src="{{ asset('js/sweetalert.min.js') }}"></script>
     <!-- Page-Level CSS -->
       <!-- Theme style -->
   {{-- <link rel="stylesheet" href="/css/AdminLTE.min.css"> --}}
@@ -53,9 +53,9 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
               @if (Auth::user()->photos()->count()>0)
-                 <img src="/images/users/{{ Auth::user()->photos()->first()->path }}" class="user-image" alt="User Image">
+                 <img src="{{ asset('images/users/'.Auth::user()->photos()->first()->path) }}" class="user-image" alt="User Image">
                    @else
-                 <img src="/images/users/admin.png" class="user-image img-circle" alt="User Image">
+                 <img src="{{ asset('images/users/admin.png') }}" class="user-image img-circle" alt="User Image">
               @endif
               
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
@@ -65,9 +65,9 @@
               <!-- The user image in the menu -->
               <li class="user-header">
                 @if (Auth::user()->photos()->count()>0)
-                 <img src="/images/users/{{ Auth::user()->photos()->first()->path }}" class="img-circle" alt="User Image">
+                 <img src="{{ asset('images/users/'.Auth::user()->photos()->first()->path) }}" class="img-circle" alt="User Image">
                    @else
-                 <img src="/images/users/admin.png" class="img-circle" alt="User Image">
+                 <img src="{{ asset('images/users/admin.png') }}" class="img-circle" alt="User Image">
               @endif
 
                 <p>
@@ -117,9 +117,9 @@
       <div class="user-panel">
         <div class="pull-left image">
              @if (Auth::user()->photos()->count()>0)
-                 <img src="/images/users/{{ Auth::user()->photos()->first()->path }}" class="user-image img-circle" alt="User Image">
+                 <img src="{{ asset('images/users/'.Auth::user()->photos()->first()->path) }}" class="user-image img-circle" alt="User Image">
                  @else
-                 <img src="/images/users/admin.png" class="user-image img-circle" alt="User Image">
+                 <img src="{{ asset('images/users/admin.png') }}" class="user-image img-circle" alt="User Image">
 
               @endif
  
