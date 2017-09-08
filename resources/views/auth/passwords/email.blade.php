@@ -1,12 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
+
         <div class="col-md-8 col-md-offset-2">
-           @if ($errors->count()>0)
-              @include('alert.error')
-            @endif
+         
             <div class="panel panel-default">
                 <div class="panel-heading">Reset Password</div>
                 <div class="panel-body">
@@ -43,8 +40,10 @@
                         </div>
                     </form>
                 </div>
+                {{-- end of panel body --}}
             </div>
+            {{-- end of panel --}}
         </div>
-    </div>
-</div>
+        {{-- end of col --}}
+    
 @endsection
