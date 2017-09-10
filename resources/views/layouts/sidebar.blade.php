@@ -11,40 +11,45 @@
             {{-- expr --}}
                   <div class="sidebar-module">
             <h4>Categories</h4>
-            <ol class="list-unstyled">
+           
 
          
               @foreach ($categories as $category)
-                {{-- expr --}}
-                 <li>
-                 <a class="" href="{{ route('home.archive',['category',$category->name]) }}">
+                <div class="list-group">
+                 
+                  
+                 
+                 <a class="list-group-item" href="{{ route('home.archive',['category',$category->name]) }}">
                  {{$category->name." ( ".count($category->products)." ) "}}
                  </a>
-                 </li>
+                 
+                </div>
+             
               @endforeach
              
              
-            </ol>
+           
           </div>
           @endif
            @if (count($types)>0)
             {{-- expr --}}
-                  <div class="sidebar-module">
+          <div class="sidebar-module">
             <h4>types</h4>
-            <ol class="list-unstyled">
+            
 
          
               @foreach ($types as $type)
-                {{-- expr --}}
-                 <li>
-                 <a class="" href="{{ route('home.archive',['type',$type->name]) }}">
-                 {{$type->name." ( ".count($type->products)." ) "}}
-                 </a>
-                 </li>
+                 <div class="list-group">
+               
+                   <a class="list-group-item" href="{{ route('home.archive',['type',$type->name]) }}">
+                   {{$type->name." ( ".count($type->products)." ) "}}
+                   </a>
+                 
+                 </div>
               @endforeach
              
              
-            </ol>
+           
           </div>
           @endif
         
