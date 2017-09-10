@@ -54,13 +54,13 @@
                          <tr>
                              
                            <td>{{ $cartItem->name }}</td>
-                           <td>{{ $cartItem->price}}</td>
+                           <td>${{ $cartItem->price}}</td>
                        <td>
-                          without tax:{{ $cartItem->subtotal}}
+                          without tax:${{ $cartItem->subtotal}}
                          <p>
-                          tax: {{ $cartItem->tax()."( × ". $cartItem->qty.")" }}
+                          tax: ${{ $cartItem->tax()."( × ". $cartItem->qty.")" }}
                          </p>
-                         <p>with tax: {{ $cartItem->total() }}</p>
+                         <p>with tax: ${{ $cartItem->total() }}</p>
                        </td>
                       {{-- form for update cart --}}
                     {!! Form::open(['action'=>['CartController@update',$cartItem->rowId],'method'=>'put','class'=>'']) !!}
@@ -127,9 +127,9 @@
                  <tr>
                    <td></td>
                    <td>
-                   <p>sub total : {{ Cart::subtotal() }}</p>
-                   <p>tax : {{ Cart::tax() }}</p>
-                   Grand total: {{ Cart::total() }}
+                   <p>sub total : ${{ Cart::subtotal() }}</p>
+                   <p>tax : ${{ Cart::tax() }}</p>
+                   Grand total: ${{ Cart::total() }}
 
                    </td>
                    <td></td>

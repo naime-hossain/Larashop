@@ -83,7 +83,7 @@
 
           
           <div class="caption">
-              <h4 class="pull-right">{{ $product->price }}</h4>
+              <h4 class="pull-right">${{ $product->price }}</h4>
               <h4>{{ $product->name }}
               </h4>
 

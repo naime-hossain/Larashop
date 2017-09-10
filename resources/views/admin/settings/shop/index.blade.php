@@ -28,7 +28,8 @@
 {{-- currency field --}}
    <div class="form-group col-md-6 {{ $errors->has('currency') ? ' has-error' : '' }}">
        {!! Form::label('currency','what currency you want? such if us dollar then usd', []) !!}
-     {!! Form::text('currency',null, ['class'=>"form-control",'value'=>old('currency')]) !!}
+     {!! Form::select('currency',array('usd'=>'Dollar(usa)','cad'=>'Canada  Dollar'  ),null, ['class'=>"form-control",'value'=>old('currency')]) !!}
+
    </div>
 
 
@@ -44,6 +45,20 @@
        {!! Form::label('stripe_secret','what is your stripe secret key', []) !!}
      {!! Form::text('stripe_secret',null, ['class'=>"form-control",'value'=>old('stripe_secret')]) !!}
    </div>
+
+   {{-- paypal key --}}
+ <div class="form-group col-md-6 {{ $errors->has('paypal_client_id') ? ' has-error' : '' }}">
+       {!! Form::label('paypal_client_id','what is your paypal client id  ', []) !!}
+     {!! Form::text('paypal_client_id',null, ['class'=>"form-control",'value'=>old('paypal_client_id')]) !!}
+   </div>
+
+
+{{-- paypal secret key --}}
+    <div class="form-group col-md-6 {{ $errors->has('paypal_secret') ? ' has-error' : '' }}">
+       {!! Form::label('paypal_secret','what is your paypal secret key', []) !!}
+     {!! Form::text('paypal_secret',null, ['class'=>"form-control",'value'=>old('paypal_secret')]) !!}
+   </div>
+
 
   
 

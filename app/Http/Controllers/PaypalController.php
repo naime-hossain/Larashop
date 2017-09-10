@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use Alert;
 use App\Http\Requests;
+use App\ShopSetting;
 use Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -74,17 +75,17 @@ class PaypalController extends Controller
         $payer->setPaymentMethod('paypal');
      
 
-
+         $shopSetting=ShopSetting::first();
       	
       	$item_name= new Item();
        
         $item_name->setName('larashop') /** item name **/
-            ->setCurrency('USD')
+            ->setCurrency($shopSetting?strtoupper($shopSetting->currency):'USD')
             ->setQuantity(1)
             ->setPrice(Cart::total()); /** unit price **/
            
            $amount = new Amount();
-        $amount->setCurrency('USD')
+        $amount->setCurrency($shopSetting?strtoupper($shopSetting->currency):'USD')
               ->setTotal($item_name->price);
 
       
