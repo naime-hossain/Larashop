@@ -1,33 +1,31 @@
-    <div class="footer_wrap ">
+  {{-- start footer wrap --}}
+  <div class="footer_wrap ">
     	<div class="container">
     		<div class="row">
+        {{-- show categories if exists --}}
               @if ($categories->count()>0)
                   <div class="col-md-3">
                       <h4>Products by categories</h4>
-            <div class="list-group">
-
-
-              @foreach ($categories as $category)
-
-                 
-                 <a class="list-group-item" href="{{ route('home.archive',['category',$category->name]) }}">
-                 {{$category->name}}
-                 </a>
-                 
-              @endforeach
-             
-             
-            </div>
+                    <div class="list-group">
+                      @foreach ($categories as $category)
+                         <a class="list-group-item" href="{{ route('home.archive',['category',$category->name]) }}">
+                         {{$category->name}}
+                         </a>
+                         
+                      @endforeach
+                    </div>
+                    {{-- end of list group--}}
                   </div>
+                  {{-- end of col-3 --}}
               @endif
     			{{-- end of category list --}}
+
+          {{-- show social icon if exists --}}
                 @if ($social)
                    <div class="col-md-3">
-                   <h4>Our Social identity</h4>
+                     <h4>Our Social identity</h4>
                    <div class="list-group">
-                   
-                   
-                   
+                       {{-- facebook --}}
                       @if ($social->facebook)
                           
                              <a class="list-group-item" href="{{ $social->facebook }}">
@@ -35,6 +33,7 @@
                              </a>
                              
                        @endif 
+                       {{-- twiiter --}}
                           @if ($social->twitter)
                          
                              <a class="list-group-item " href="{{ $social->twitter }}">
@@ -42,6 +41,7 @@
                              </a>
                              
                        @endif
+                       {{-- linkedin --}}
                           @if ($social->linkedin)
                            
                              <a class="list-group-item " href="{{ $social->linkedin }}">
@@ -49,6 +49,7 @@
                              </a>
                              
                        @endif 
+                       {{-- google plus --}}
                         @if ($social->googlePlus)
                           
                              <a class="list-group-item " href="{{ $social->googlePlus }}">
@@ -56,6 +57,8 @@
                              </a>
                               
                        @endif 
+
+                       {{-- instragram --}}
                          @if ($social->instagram)
                           
                              <a class="list-group-item " href="{{ $social->instagram }}">
@@ -63,6 +66,8 @@
                              </a>
                               
                        @endif
+
+                       {{-- tumbler --}}
                           @if ($social->tumblr)
                           
                              <a class="list-group-item " href="{{ $social->tumblr }}">
@@ -70,6 +75,8 @@
                              </a>
                               
                        @endif
+
+                       {{-- whatd app --}}
                               @if ($social->whatsApp)
                           
                              <a class="list-group-item " href="{{ $social->whatsapp }}">
@@ -78,69 +85,78 @@
                               
                        @endif  
                        </div>
+                       {{-- end of list-group --}}
 
                    </div> 
                 @endif
                 {{-- end of social --}}
                 
-
-            @if ($categories->count()>0)
+      {{-- show types if exists --}}
+            @if ($types->count()>0)
                   <div class="col-md-3">
                       <h4>Products by Types</h4>
-            <div class="list-group">
+                      <div class="list-group">
 
-              @foreach ($types as $type)
-                {{-- expr --}}
-                
-                 <a class="list-group-item" href="{{ route('home.archive',['type',$type->name]) }}">
-                 {{$type->name}}
-                 </a>
-                
-              @endforeach
-             
-             
-            </div>
+                        @foreach ($types as $type)
+                          
+                           <a class="list-group-item" href="{{ route('home.archive',['type',$type->name]) }}">
+                           {{$type->name}}
+                           </a>
+                          
+                        @endforeach
+                      
+                      </div>
+                      {{-- end of list group --}}
                   </div>
+                  {{-- end of col --}}
               @endif
                 {{-- end of type list --}}
+              
 
+          {{-- show pages if exists --}}
                 @if ($page)
                    <div class="col-md-3">
                    <h4>Pages</h4>
-                   <div class="list-group">
-                   
-                   
-                   
-
-
-                      @if ($page->returnPolicy)
-                          
-                             <a class="list-group-item" href="{{ route('returnPolicy') }}">
-                              return policy
-                             </a>
-                             
-                       @endif 
-                         @if ($page->termsAndConditions)
-                          
-                             <a class="list-group-item" href="{{ route('terms&conditions') }}">
-                              Term and Conditions
-                             </a>
-                             
-                       @endif 
-                         @if ($page->contactUs)
-                          
-                             <a class="list-group-item" href="{{ route('contact') }}">
-                              Contact Us
-                             </a>
-                             
-                       @endif 
-                    </div> 
+                       <div class="list-group">
+                       
+                       {{-- return policy if exists --}}
+                          @if ($page->returnPolicy)
+                              
+                                 <a class="list-group-item" href="{{ route('returnPolicy') }}">
+                                  return policy
+                                 </a>
+                                 
+                           @endif 
+                           {{-- terms and condition if exists --}}
+                             @if ($page->termsAndConditions)
+                              
+                                 <a class="list-group-item" href="{{ route('terms&conditions') }}">
+                                  Term and Conditions
+                                 </a>
+                                 
+                           @endif
+                            {{--  contact us--}}
+                             @if ($page->contactUs)
+                              
+                                 <a class="list-group-item" href="{{ route('contact') }}">
+                                  Contact Us
+                                 </a>
+                                 
+                           @endif 
+                        </div> 
+                        {{-- end of list group --}}
                     </div>
+                    {{-- end of col --}}
                 @endif
                
     		</div>
+        {{-- end of row --}}
     	</div>
+      {{-- end of container --}}
     </div>
+    {{-- end of footer wrap --}}
+
+
     <!-- Scripts -->
 
     <script src="{{ asset('js/app.js') }}"></script>
