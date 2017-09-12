@@ -30,6 +30,10 @@ Route::get('/product/{id}','HomeController@product')->name('home.product');
 Route::get('/archive/{type}/{name}','HomeController@archive')->name('home.archive');
 Route::get('/user/{name}','UserController@edit')->name('user.edit');
 Route::put('/user/{id}','UserController@update')->name('user.update');
+
+// search route
+// Route::get('/search','HomeController@searchpage');
+Route::get('/search','HomeController@search')->name('search');
 //user order route
  Route::get('/orders/{status?}','UserController@order')->name('order');
  

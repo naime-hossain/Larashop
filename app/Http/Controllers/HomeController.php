@@ -103,8 +103,21 @@ class HomeController extends Controller
        }
     }
 
+
+ /**
+     * search.
+     *
+     * 
+     * 
+     */
   
-    
+   public  function search(Request $request){
+      $search=$request->key;
+      $products = Product::search($search)->paginate(10);
+      
+      return view('products.search',compact('products','search'));
+
+   } 
 
     
 }

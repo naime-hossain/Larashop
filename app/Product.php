@@ -3,9 +3,24 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Product extends Model
 {
+
+  use Searchable;
+
+
+   /**
+     * Get the index name for the model.
+     *
+     * @return string
+     */
+    public function searchableAs()
+    {
+        return 'name';
+    }
+
     /**
      * Fields that can be mass assigned.
      *

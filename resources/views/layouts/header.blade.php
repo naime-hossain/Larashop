@@ -132,6 +132,7 @@
                 </li>
                 
                 @endif
+               
                 {{-- cart page link --}}
                  <li class="cart_menu_item">
                  <a href="{{ route('cart.index') }}"> 
@@ -143,6 +144,8 @@
 
             </ul>
             {{-- end of unorder list --}}
+      
+    
             </div>
             {{-- end navbar-collapse --}}
         </div>

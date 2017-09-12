@@ -1,5 +1,21 @@
    <div class="col-md-3 blog-sidebar">
-   
+      {{-- search from --}}
+       <div class="sidebar-module">
+            <h4>search for product</h4>
+        {!! Form::open(['action'=>'HomeController@search','method'=>'get']) !!}
+         <div class="input-group">
+  
+  
+  {!! Form::text('key',null, ['class'=>'form-control','placeholder'=>"search key",'required']) !!}
+  <span class="input-group-addon">
+  {!! Form::button("<i class='fa fa-search fa-fw'></i>", [
+
+  'type'=>'submit','class'=>'btn btn-success']) !!}
+  </span>
+</div>
+
+        {!! Form::close() !!}
+        </div>
          {{-- show categories --}}
            @if (count($categories)>0)
             {{-- expr --}}
