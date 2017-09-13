@@ -75,6 +75,7 @@ class AdminUsersController extends Controller
         //
            $this->validate($request,[
             'image'=>'image',
+            'password'=>'confirmed'
             ]);
         $user=User::findOrFail($id);
         $input=$request->except(['image']);
@@ -99,6 +100,10 @@ class AdminUsersController extends Controller
          $photo=$user->photos()->create(['path'=>$filename]);
         
         
+        }
+
+        if (!$request->password) {
+            unset($input['password']);
         }
         
         if ($user->update($input)) {

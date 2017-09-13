@@ -11,9 +11,7 @@
   <div class="col-md-3">
        @if ($user->photos->count()>0)
                   
-        
-               <img  class="img-rounded" src="{{ asset('images/users/'.$user->photos()->first()->path) }}" alt="">
-       
+        <img  class="img-rounded" src="{{ asset('images/users/'.$user->photos()->first()->path) }}" alt="">
 
        @endif
   </div>
@@ -35,9 +33,9 @@
  </div>
 
 
-{{--   <div class="form-group col-md-6 {{ $errors->has('password') ? ' has-error' : '' }}">
-     {!! Form::label('password',' user password', []) !!}
- 	 {!! Form::password('password', ['class'=>'form-control']) !!}
+  <div class="form-group col-md-6 {{ $errors->has('password') ? ' has-error' : '' }}">
+    {!! Form::label('password',' user password', []) !!}
+ 	  {!! Form::password('password', ['class'=>'form-control']) !!}
 
  </div>
 
@@ -45,7 +43,7 @@
   <div class="form-group col-md-6 {{ $errors->has('password') ? ' has-error' : '' }}">
      {!! Form::label('password','confirm password', []) !!}
  	 {!! Form::password('password_confirmation', ['class'=>'form-control']) !!}
- </div> --}}
+ </div>
 
 
   <div class="form-group col-md-6">

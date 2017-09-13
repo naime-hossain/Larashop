@@ -19,6 +19,9 @@ class CreateShopSettingsTable extends Migration
             $table->string('currency');
             $table->string('stripe_key')->nullable();
             $table->string('stripe_secret')->nullable();
+            $table->string('paypal_client_id')->nullable();
+            $table->string('paypal_secret')->nullable();
+            $table->string('paypal_option')->nullable();
             $table->timestamps();
         });
     }

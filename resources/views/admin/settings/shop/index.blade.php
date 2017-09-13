@@ -59,6 +59,12 @@
      {!! Form::text('paypal_secret',null, ['class'=>"form-control",'value'=>old('paypal_secret')]) !!}
    </div>
 
+   {{-- paypal options --}}
+    <div class="form-group col-md-6 {{ $errors->has('paypal_option') ? ' has-error' : '' }}">
+       {!! Form::label('paypal_option','select your paypal mode', []) !!}
+     {!! Form::select('paypal_option',array('sandbox'=>'sandbox','live'=>'live'),null, ['class'=>"form-control"]) !!}
+   </div>
+
 
   
 
