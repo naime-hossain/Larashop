@@ -18,6 +18,7 @@ class CreateMessageTable extends Migration
             $table->integer('user_id')->nullable()->unsigned();
             $table->string('name');
             $table->string('email');
+            $table->string('subject');
             $table->text('message');
             $table->timestamps();
         });

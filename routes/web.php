@@ -116,7 +116,9 @@ Route::group(['prefix' => 'admin','middleware'=>'admin'], function() {
     Route::resource('settings/shop','AdminShopSettingController',['except'=>['show','edit','create','destroy']]);
     // message controller
     Route::resource('/message','AdminMessageController');
-Route::delete('/messaged','AdminMessageController@delete')->name('message.delete');
+    Route::get('/sendreply/{messageid?}','AdminMessageController@replyform')->name('replyfrom');
+    Route::post('/sendreply','AdminMessageController@sendmessage')->name('reply');
+    Route::delete('/messaged','AdminMessageController@delete')->name('message.delete');
 
 });
 

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Alert;
+use App\Mail\SendUserReply;
 use App\Message;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class AdminMessageController extends Controller
 {
@@ -33,7 +35,37 @@ class AdminMessageController extends Controller
         return view('admin.message.read',compact('message'));
     }
 
-   
+      /**
+     * show message compose form .
+     *
+     * 
+     * 
+     */
+    public function replyform($id='')
+    {
+        if ($id) {
+            $message=Message::findOrFail($id);
+            return view('admin.message.compose',compact('message'));
+        }else{
+            return view('admin.message.compose');
+        }
+        
+    }
+
+   /**
+     * send message to user .
+     *
+     * 
+     * 
+     */
+    public function sendmessage(Request $request)
+    {
+        $message=$request->all();
+        Mail::to($message['to'])->send(new SendUserReply($message));
+       Alert::success('message send to user');
+       return redirect(Route('message.index'));
+    }
+
     /**
      * Remove the specified message from storage.
      *

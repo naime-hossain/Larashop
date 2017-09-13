@@ -17,7 +17,7 @@
   <!--End Page Header -->
 
           <div class="col-md-3">
-          <a href="compose.html" class="btn btn-primary btn-block margin-bottom">Compose</a>
+          <a href="{{ route('replyfrom') }}" class="btn btn-primary btn-block margin-bottom">Compose</a>
 
           <div class="box box-solid">
             <div class="box-header with-border">
@@ -67,7 +67,7 @@
          
             <div class="box-footer">
               <div class="pull-right">
-                <button type="button" class="btn btn-default"><i class="fa fa-reply"></i> Reply</button>
+                <a href="{{ route('replyfrom',$message->id) }}" class="btn btn-default"><i class="fa fa-reply"></i> Reply</a>
             
               </div>
              {{-- form for delete message --}}
@@ -79,6 +79,8 @@
            
           <!-- /. box -->
         </div>
+         </div>
+        <!-- /.col -->
   
 
     <!--  end  Context Classes  -->

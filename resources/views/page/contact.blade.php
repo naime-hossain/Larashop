@@ -20,6 +20,11 @@
   	 		{!! Form::label('email','Your email', []) !!}
   	 		{!! Form::text('email',Auth::check()?Auth::user()->email:null, ['class'=>'form-control','required']) !!}
   	 	</div>
+      {{-- subject --}}
+      <div class="form-group col-md-6 ">
+        {!! Form::label('subject','Your subject', []) !!}
+        {!! Form::text('subject',null, ['class'=>'form-control','required']) !!}
+      </div>
       {{-- message --}}
   	 	 	<div class="form-group col-md-12">
   	 		{!! Form::label('message','Your message', []) !!}
@@ -27,8 +32,9 @@
   	 	</div>
   	 
   	 	{{-- submit --}}
-  	 
-  	 	<button type="submit" class="btn btn-primary">Send Message</button>
+  	 <div class="form-group col-md-12">
+  	 	   <button type="submit" class="btn btn-primary">Send Message</button>
+      </div>
   	 {!! Form::close() !!}
      {{-- end of contact form --}}
   </div>

@@ -31,6 +31,7 @@ class PageController extends Controller
        $this->validate($request,[
          'name'=>'required',
          'email'=>'required',
+         'subject'=>'required',
          'message'=>'required',
         ]);
        $user=Auth::user();
