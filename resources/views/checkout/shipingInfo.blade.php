@@ -33,16 +33,16 @@
 								</a>
 							</li>
 
-                            {{-- show button for all previous address --}}
-                            @if (count($addresses)>0)
-                                @foreach ($addresses as $address)
-                             <li>
-                                <a href="#address{{ $address->id }}" data-toggle="tab">
-                                    address {{ $address->id }}
-                                </a>
-                            </li>
-                                @endforeach
-                            @endif
+                      {{-- show button for all previous address --}}
+                      @if (count($addresses)>0)
+                          @foreach ($addresses as $address)
+                       <li>
+                          <a href="#address{{ $address->id }}" data-toggle="tab">
+                              address {{ $address->id }}
+                          </a>
+                      </li>
+                          @endforeach
+                      @endif
                            
 							
 						</ul>
@@ -94,7 +94,7 @@
             <div class="panel-body">
              {{-- list all the cart items --}}
              @foreach ($cartItems as $item)
-                    <div class="col-sm-12">
+                  <div class="col-sm-12 checkout_product_wrap">
                     {{-- show the product image --}}
                     <div class="col-sm-3 col-xs-3">
                       @php

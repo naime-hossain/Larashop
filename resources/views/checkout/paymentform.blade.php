@@ -20,7 +20,7 @@
             <div class="panel-body">
              {{-- list all the cart items --}}
              @foreach ($cartItems as $item)
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 checkout_product_wrap">
                     {{-- show the product image --}}
                     <div class="col-sm-3 col-xs-3">
                       @php
@@ -68,7 +68,7 @@
 
              {{-- show the total price with tax --}}
              <div class="col-sm-12"><hr /></div>
-                <div class="col-sm-12">
+                <div class="col-sm-12 checkout_product_wrap">
                     <div class="col-xs-12">
                         <strong>Subtotal</strong>
                         <div class="pull-right"><span>$</span><span>{{ Cart::subtotal() }}</span></div>

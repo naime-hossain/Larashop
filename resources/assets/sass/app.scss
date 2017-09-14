@@ -269,9 +269,9 @@ option {
 }
 
 .sidebar-module {
-  padding: 10px;
-  border-bottom: 1px solid #002c53;
-  margin-bottom: 20px;
+    padding: 10px;
+    border-bottom: 1px solid #f5f8fa;
+    margin-bottom: 20px;
 }
 
 .sidebar-module h4 {
@@ -687,4 +687,29 @@ div#social-links ul {
     margin-right: 10px;
     border-radius: 8px;
     /* height: 50px; */
+}
+.h1, h1 {
+    font-size: 36px;
+    line-height: 1.15em;
+}
+.h4, h4 {
+    font-size: 16px;
+    line-height: 1.4em;
+}
+.h2, h2 {
+    font-size: 30px;
+    line-height: 1.4em;
+}
+.h3, h3 {
+    font-size: 25px;
+    line-height: 1.4em;
+}
+.h5, h5 {
+    font-size: 14px;
+    line-height: 1.4em;
+}
+
+.checkout_product_wrap{
+  margin-top:10px;
+  margin-bottom:10px;
 }
