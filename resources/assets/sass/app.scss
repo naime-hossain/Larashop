@@ -666,3 +666,25 @@ form .stars span {
     height: 100%;
     width: 100%;
 }
+
+div#social-links ul {
+    width: 100%;
+    overflow: hidden;
+    padding-left: 5px;
+}
+#social-links ul li {
+    list-style: none;
+    float: left;
+    overflow: hidden;
+    margin-top: 5px;
+    text-align: left;
+}
+#social-links ul li a.social-button {
+    padding: 10px;
+    background: #f5f8fa;
+    line-height: 32px;
+    font-size: 16px;
+    margin-right: 10px;
+    border-radius: 8px;
+    /* height: 50px; */
+}

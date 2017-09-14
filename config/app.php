@@ -181,6 +181,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
         Laravel\Scout\ScoutServiceProvider::class,
+         Jorenvh\Share\Providers\ShareServiceProvider::class,
 
     ],
 
@@ -235,6 +236,7 @@ return [
          'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
          'Image' => Intervention\Image\Facades\Image::class,
           'Alert' => UxWeb\SweetAlert\SweetAlert::class,
+           'Share' => Jorenvh\Share\ShareFacade::class,
 
     ],
 

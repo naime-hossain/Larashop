@@ -6,6 +6,7 @@
 {{-- extra css for this page only --}}
 @section('extra_header')
    <link href="{{ asset('css/zoomple.css') }}" rel="stylesheet" />
+
 @endsection
 {{-- end of extra header --}}
 
@@ -186,8 +187,19 @@
                       @elseif($product->inStock==0)
                       <span class="label label-danger">Not Available</span>
                      @endif
+                     
                     
                   </div>
+                  {{-- share link --}}
+                  <div class="share_link">
+                   <h5>Share this Product on:</h5>
+                      {!! Share::currentPage()
+                        ->facebook()
+                        ->twitter()
+                        ->googlePlus()
+                        ->linkedin($product->name) !!}
+                  </div>
+                
                   {{-- end of availability --}}
            </div>
            {{-- end of single product thumbnail --}}
@@ -374,6 +386,7 @@
 {{-- extra footer for this page activte zoomple js --}}
  @section('extra_footer')
    <script src="{{ asset('js/zoomple.js') }}"></script>
+   <script src="{{ asset('js/share.js') }}"></script>
    <script type="text/javascript" charset="utf-8" >
      
     $(document).ready(function() {
