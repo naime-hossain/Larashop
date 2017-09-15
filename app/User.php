@@ -94,6 +94,22 @@ class User extends Authenticatable
        
       }
 
+         // check if the user is normal user or not
+
+    public function isuser(){
+           if ($this->role) {
+               # code...
+              if ($this->role->name=='user') {
+             # code...
+            return true;
+         }else{
+            return false;
+         }
+           }
+           return false;
+       
+      }
+
       /**
        * User has many Orders.
        *

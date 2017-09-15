@@ -49,9 +49,38 @@
 
 
 {{-- site cover pic --}}
-    <div class=" col-md-4">
+    <div class=" col-md-8">
        {!! Form::label('cover_pic','Select a site cover pic', ['class'=>'btn btn-info']) !!}
      {!! Form::file('cover_pic', ['class'=>'form-control']) !!}
+   </div>
+   {{-- MAIL_DRIVER --}}
+   <div class="form-group col-md-4 {{ $errors->has('mail_driver') ? ' has-error' : '' }}">
+       {!! Form::label('mail_driver','Mail driver', []) !!}
+     {!! Form::text('mail_driver',null, ['class'=>"form-control",'value'=>old('mail_driver')]) !!}
+   </div>
+
+    {{-- MAIL_HOST --}}
+   <div class="form-group col-md-4 {{ $errors->has('mail_host') ? ' has-error' : '' }}">
+       {!! Form::label('mail_host','Mail Host', []) !!}
+     {!! Form::text('mail_host',null, ['class'=>"form-control",'value'=>old('mail_host')]) !!}
+   </div>
+
+    {{--MAIL_PORT --}}
+   <div class="form-group col-md-4 {{ $errors->has('mail_port') ? ' has-error' : '' }}">
+       {!! Form::label('mail_port','mail port', []) !!}
+     {!! Form::text('mail_port',null, ['class'=>"form-control",'value'=>old('mail_port')]) !!}
+   </div>
+
+    {{--MAIL_USERNAME--}}
+   <div class="form-group col-md-4 {{ $errors->has('mail_username') ? ' has-error' : '' }}">
+       {!! Form::label('mail_username','Mail username', []) !!}
+     {!! Form::text('mail_username',null, ['class'=>"form-control",'value'=>old('mail_username')]) !!}
+   </div>
+
+    {{-- MAIL_PASSWORD --}}
+   <div class="form-group col-md-4 {{ $errors->has('mail_password') ? ' has-error' : '' }}">
+       {!! Form::label('mail_password','Mail password', []) !!}
+     {!! Form::text('mail_password',null, ['class'=>"form-control",'value'=>old('mail_password')]) !!}
    </div>
 
 

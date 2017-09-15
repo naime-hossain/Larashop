@@ -58,7 +58,21 @@ class AppServiceProvider extends ServiceProvider
             }
 
             if ($shopSetting->stripe_secret) {
-                 config(['services.stripe.secret'=>$shopSetting->stripe_key]);
+                 config(['services.stripe.secret'=>$shopSetting->stripe_secret]);
+            }
+
+
+
+              if ($shopSetting->paypal_client_id) {
+                 config(['paypal.client_id'=>$shopSetting->paypal_client_id]);
+            }
+
+               if ($shopSetting->paypal_secret) {
+                 config(['paypal.secret'=>$shopSetting->paypal_secret]);
+            }
+
+                if ($shopSetting->paypal_option) {
+                 config(['paypal.settings.mode'=>$shopSetting->paypal_option]);
             }
         }
            

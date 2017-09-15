@@ -17,6 +17,10 @@ class GeneralSetting extends Model
 'cover_pic',
 'site_title',
 'site_slogan',
-
+'mail_driver',
+'mail_host',
+'mail_port',
+'mail_username',
+'mail_password',
     ];
 }
