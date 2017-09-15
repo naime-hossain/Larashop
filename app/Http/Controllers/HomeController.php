@@ -34,7 +34,7 @@ class HomeController extends Controller
     public function Products()
     {
         //
-        $products=Product::with('category','types','reviews','sizes')->paginate(6);
+        $products=Product::with('category','types','reviews','sizes')->paginate(18);
         return view('products.index',compact('products'));
     }
 
