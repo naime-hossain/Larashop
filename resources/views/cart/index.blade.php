@@ -26,7 +26,7 @@
                      <tr>
                          <th>Product name</th>
                          <th>price</th>
-                         <th>sub total</th>
+                         {{-- <th>sub total</th> --}}
                          <th>quantity</th>
                          <th>size</th>
                          <th>color</th>
@@ -55,13 +55,14 @@
                              
                            <td>{{ $cartItem->name }}</td>
                            <td>${{ $cartItem->price}}</td>
-                       <td>
+                           
+                   {{--     <td>
                           without tax:${{ $cartItem->subtotal}}
                          <p>
                           tax: ${{ $cartItem->tax()."( × ". $cartItem->qty.")" }}
                          </p>
                          <p>with tax: ${{ $cartItem->total() }}</p>
-                       </td>
+                       </td> --}}
                       {{-- form for update cart --}}
                     {!! Form::open(['action'=>['CartController@update',$cartItem->rowId],'method'=>'put','class'=>'']) !!}
                      <td width="50px">

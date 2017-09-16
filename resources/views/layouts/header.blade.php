@@ -7,7 +7,8 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+{{-- favicon  --}}
+<link rel="icon" href="{{ asset('images/cart.png') }}" type="image" sizes="16x16">
     <title>{{ config('app.name', 'Larashop') }}</title>
 
     <!-- Styles -->

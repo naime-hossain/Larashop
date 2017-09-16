@@ -718,3 +718,17 @@ div#social-links ul {
     width: 60px;
     height: 35px;
 }
+.ratings p {
+    margin: 0px;
+    color: #fd7a60;
+}
+
+
+@media only screen and (max-width: 764px) {
+   .cart_button {
+    background: rgba(96,125,139,.66);
+    padding: 20px;
+    bottom: 0px;
+    opacity: 1;
+}
+}

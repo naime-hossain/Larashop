@@ -50,7 +50,7 @@
             <!-- /.box-header -->
                   <div class="box-body no-padding">
               <div class="mailbox-read-info">
-                <h3>Message Subject Is Placed Here</h3>
+                <h3>{{ $message->subject }}</h3>
                 <h5>From: {{ $message->email }}
                   <span class="mailbox-read-time pull-right">{{ trim(Carbon::parse($message->created_at)->format('d-m-y')) }}</span></h5>
               </div>
