@@ -79,7 +79,7 @@
                    @if ($sizes->count()>0)
                          <div class="form-group">
                         
-                       {!! Form::select('size',$sizes,$cartItem->options->size, ['placeholder' => 'Pick a size...','class'=>'form-control']) !!}
+                       {!! Form::select('size',$sizes,$cartItem->options->size, ['placeholder' => 'Pick a size...','class'=>'form-control','required']) !!}
                      </div>
                      @endif            
                           
@@ -89,7 +89,7 @@
                        @if ($colors->count()>0)
                          <div class="form-group">
                                
-                               {!! Form::select('color',$colors,$cartItem->options->color, ['placeholder' => 'Pick a color...','class'=>'form-control']) !!}
+                               {!! Form::select('color',$colors,$cartItem->options->color, ['placeholder' => 'Pick a color...','class'=>'form-control','required']) !!}
                              </div>
                       @endif
                       
