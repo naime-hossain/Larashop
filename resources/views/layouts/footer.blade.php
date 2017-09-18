@@ -1,9 +1,10 @@
   {{-- start footer wrap --}}
   <div class="footer_wrap ">
-    	<div class="container">
-    		<div class="row">
+      <div class="container">
+        <div class="row">
         {{-- show categories if exists --}}
-              @if ($categories->count()>0)
+        @if (isset($categories))
+            @if ($categories->count()>0)
                   <div class="col-md-3">
                       <h4>Products by categories</h4>
                     <div class="list-group">
@@ -18,10 +19,13 @@
                   </div>
                   {{-- end of col-3 --}}
               @endif
-    			{{-- end of category list --}}
+          {{-- end of category list --}}
+        @endif
+             
 
           {{-- show social icon if exists --}}
-                @if ($social)
+          @if (isset($social))
+              @if ($social)
                    <div class="col-md-3">
                      <h4>Our Social identity</h4>
                    <div class="list-group">
@@ -90,8 +94,11 @@
                    </div> 
                 @endif
                 {{-- end of social --}}
+          @endif
+               
                 
       {{-- show types if exists --}}
+        @if (isset($types))
             @if ($types->count()>0)
                   <div class="col-md-3">
                       <h4>Products by Types</h4>
@@ -111,10 +118,13 @@
                   {{-- end of col --}}
               @endif
                 {{-- end of type list --}}
+          @endif
+            
               
 
           {{-- show pages if exists --}}
-                @if ($page)
+          @if (isset($page))
+              @if ($page)
                    <div class="col-md-3">
                    <h4>Pages</h4>
                        <div class="list-group">
@@ -147,11 +157,13 @@
                         {{-- end of list group --}}
                     </div>
                     {{-- end of col --}}
-                @endif
+                @endif 
+          @endif
                
-    		</div>
+               
+        </div>
         {{-- end of row --}}
-    	</div>
+      </div>
       {{-- end of container --}}
     </div>
     {{-- end of footer wrap --}}

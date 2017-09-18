@@ -16,7 +16,7 @@
 {{--     <link href="/css/font-awesome.min.css" rel="stylesheet" />
 <link href="/css/material-kit.css" rel="stylesheet"/>
 <link href="/css/sweetalert.css" rel="stylesheet"/> --}}
-     <script src="/js/sweetalert.min.js"></script>
+     <script src="  {{ asset('js/sweetalert.min.js') }}"></script>
 @yield('extra_header')
    {{--  <link href="/css/style.css" rel="stylesheet"/> --}}
 </head>
@@ -44,7 +44,7 @@
             <!-- Branding Image -->
             <a class="navbar-brand fa fa-3x" href="{{ url('/') }}">
             {{-- if has logo show it otherwise the app name --}}
-            @if ($GeneralSetting)
+            @if (isset($GeneralSetting) && $GeneralSetting)
                   @if ($GeneralSetting->logo)
                 <img src="{{ asset('images/'.$GeneralSetting->logo) }}" alt="">
                 @else

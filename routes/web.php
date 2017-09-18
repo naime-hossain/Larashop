@@ -104,7 +104,9 @@ Route::get('/placeOrder','CheckoutController@placeOrder')->name('order.store');
    Route::post('/review/{product_id}','ReviewController@store');
 
 // pages Routes
+   if ($tables_exists) {
     $page=PageSetting::first();
+
     if ($page) {
        if ($page->contactUs) {
       Route::get('/contact','PageController@contact')->name('contact.show');
@@ -117,6 +119,7 @@ Route::get('/placeOrder','CheckoutController@placeOrder')->name('order.store');
       Route::get('/terms&conditions','PageController@termsAndConditions')->name('terms&conditions');
     }
     }
+      }
 
 
 

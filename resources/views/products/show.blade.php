@@ -51,9 +51,9 @@
                         
                         
 
-                            <a href="{{  $photo->cover() }}"  class="zoompleFixed">
+                            <a href="{{  asset($photo->cover()) }}"  class="zoompleFixed">
 
-                           <img class="img-rounded" src="{{  $photo->thumb() }}" alt="{{ $product->name }}">
+                           <img class="img-rounded" src="{{  asset($photo->thumb()) }}" alt="{{ $product->name }}">
                             </a>
 
                         

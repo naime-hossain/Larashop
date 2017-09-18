@@ -23,36 +23,38 @@
               </ol>
               <h2>New Products</h2>
       </div>
-             
-            @if ($products->count()>0)
+          @if (isset($products))
+             @if ($products->count()>0)
                   @include('layouts.products')
 
-
-                
             @endif
+          @endif
+          
 
 
     
       <div class="feature_product_wrap">
-        
-          @if ($feature_products->count()>0)
- <div class="col-md-12">
+        @if (isset($feature_products))
+            @if ($feature_products->count()>0)
+          <div class="col-md-12">
            <h2>Our Feature Products</h2>
          </div>
-                     @php
-                       $products=$feature_products;
-                     @endphp
-                  @include('layouts.products')
+                 @php
+                   $products=$feature_products;
+                 @endphp
+              @include('layouts.products')
 
                
               
-            @endif
+          @endif
+        @endif
+         
       </div>
     
     
       <div class="feature_product_wrap">
-        
-          @if ($popular_products->count()>0)
+         @if (isset($feature_products))
+                 @if ($popular_products->count()>0)
      <div class="col-md-12">
            <h2>Our Popular Products</h2>
          </div>
@@ -70,6 +72,8 @@
                         <a class="btn btn-primary" target="" href="{{ route('products') }}">All products</a>
                     </div>
             @endif
+        @endif
+    
       </div>
   
 

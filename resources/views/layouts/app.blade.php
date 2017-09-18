@@ -4,7 +4,7 @@
 {{-- heading text wrap --}}
       <div class="welcome_wrap"
       {{-- if setting has cover_pic then add it --}}
-      @if ($GeneralSetting)
+      @if (isset($GeneralSetting) && $GeneralSetting)
           @if ($GeneralSetting->cover_pic)
        style="background-image: url({{ asset('images/'.$GeneralSetting->cover_pic ) }});"
     @endif
@@ -13,12 +13,12 @@
    >
       <div class="welcome_text">
          <div class="container">
-         	<div class="row">
-         		<div class="col-md-12">
+          <div class="row">
+            <div class="col-md-12">
              {{-- inject the heading here --}}
-         			@yield('heading')
-         		</div>
-         	</div>
+              @yield('heading')
+            </div>
+          </div>
          </div>
         
 

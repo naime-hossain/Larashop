@@ -13,7 +13,7 @@
               $photo=$product->photos()->first();
            @endphp
            
-                 <img class="img-rounded" src="{{ $photo->thumb() }}" alt="{{ $product->name }}">
+                 <img class="img-rounded" src="{{ asset($photo->thumb()) }}  " alt="{{ $product->name }}">
              
             @else
             {{-- dummy --}}

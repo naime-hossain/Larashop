@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\ShopSetting;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 class AppServiceProvider extends ServiceProvider
@@ -14,9 +15,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+
         //set default string length for db table field
         Schema::defaultStringLength(191);
-
+   $tables_exists= DB::select('SHOW TABLES');
+  //check if installation is previously done or not
+      if ($tables_exists) {
+       
+      
         // global variable for sidebar
         view()->composer('layouts.sidebar',function($view){
 
@@ -78,6 +85,10 @@ class AppServiceProvider extends ServiceProvider
            
            
             // config(['mail.from.address'=>$generalSettings->site_name]);
+
+    }else{
+        $generalSetting='';
+    }
             
         
         
