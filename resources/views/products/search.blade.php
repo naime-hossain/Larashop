@@ -26,7 +26,10 @@
                 <h3>sorry no product found</h3>
             @endif
 
-
+     <div class="col-md-4">
+        <h3>search by </h3>
+        <img src="{{ asset('images/algolia-logo-light.png') }}" alt="">
+     </div>
 
 
         </div>
