@@ -64,7 +64,7 @@ class RegisterController extends Controller
     {
            $users=User::all();
            //make the first user admin bt default
-        if (count($users)==0) {
+        if ($users->count()==0) {
            return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

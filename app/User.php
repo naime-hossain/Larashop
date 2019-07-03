@@ -27,7 +27,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-
+  
     /**
      * User belongs to Role.
      *
@@ -93,6 +93,7 @@ class User extends Authenticatable
            return false;
        
       }
+    
 
          // check if the user is normal user or not
 

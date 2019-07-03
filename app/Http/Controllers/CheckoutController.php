@@ -41,7 +41,7 @@ public function __construct(){
                }
             }
 
-            if (count($cartItems)>0) {
+            if ($cartItems->count()>0) {
                 $addresses=Auth::user()->addresses;
                 return view('checkout.shipingInfo',compact('cartItems','addresses'));
             }else{

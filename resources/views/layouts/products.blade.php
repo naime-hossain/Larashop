@@ -2,7 +2,7 @@
  {{-- listed the products --}}
   @foreach ($products as $product)
                
-      <div class="col-sm-4 col-lg-4 col-md-4">
+      <div class="col-sm-4 col-lg-3 col-md-3">
         <div class="thumbnail img-raised img-rounded">
         <div class="product_head">
 
